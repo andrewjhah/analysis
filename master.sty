@@ -18,6 +18,13 @@
 \usepackage{tikz-cd}
 \usepackage{mathtools}
 \usepackage{multicol}
+\usepackage{enumitem}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{microtype} 
+\usepackage{fancyhdr}
 \onehalfspacing
 %----------Commands----------
 
@@ -151,7 +158,7 @@
 \theoremstyle{definition}
 \newtheorem{definition}[theorem]{Definition}
 \newtheorem{nondefinition}[theorem]{Non-Definition}
-\newtheorem{note}[theorem]{Note}
+\newtheorem{remark}[theorem]{Remark}
 \newtheorem{example}[theorem]{Example}
 \newtheorem{innercustomthm}{Exercise}
 \newenvironment{exercise}[1]
@@ -165,3 +172,11 @@
 \addtolength{\jot}{.05in}
 
 \setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+\DeclareMathOperator{\diam}{diam}
+\newcommand{\interior}[1]{%
+  {\kern0pt#1}^{\mathrm{o}}%
+}
+
+\let\eps\varepsilon

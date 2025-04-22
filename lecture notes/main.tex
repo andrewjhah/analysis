@@ -1,0 +1,88 @@
+\documentclass[11pt]{article}
+\usepackage{master}
+
+\title{Accelerated Analysis 3 Lecture Notes}
+\author{Andrew Hah}
+
+\begin{document}
+\thispagestyle{empty}  % no page number
+
+\begin{center}
+  {\Large MATH 20510. Accelerated Analysis III}\par
+  \vspace{3ex}
+  {\large Based on lectures by Donald Stull}\par
+  {\normalsize Notes taken by Andrew Hah}\par
+  \vspace{2ex}
+  {\small The University of Chicago}\par
+  {\small Spring 2025}\par
+\end{center}
+
+\section{Measure Theory}
+
+\begin{definition}
+    A family of sets $\mathscr{A}$ is called a \emph{ring} if, for every $A, B \in \mathscr{A}$, \begin{enumerate} [(i), nosep, left=0pt]
+        \item $A \cup B \in \mathscr{A}$
+        \item $A \setminus B \in \mathscr{A}$
+    \end{enumerate}
+\end{definition}
+
+\begin{definition}
+    A ring $\mathscr{A}$ is called a \emph{$\sigma$-ring} if for any $\{ A_n \}_1^\infty \subseteq \mathscr{A}$, $$\bigcup_1^\infty A_n \in \mathscr{A}$$
+\end{definition}
+
+Note. This implies that $\bigcap_1^\infty A_n \in \mathscr{A}$. 
+
+\begin{definition}
+    $\phi$ is a \emph{set function} on a ring $\mathscr{A}$ if for every $A \in \mathscr{A}$, $$\phi(A) \in [-\infty, \infty]$$
+\end{definition}
+
+\begin{definition}
+    A set function $\phi$ is \emph{additive} if for any $A, B \in \mathscr{A}$ such that $A \cap B = \emptyset$, $$\phi(A \cup B) = \phi(A) + \phi(B)$$
+\end{definition}
+
+\begin{definition}
+    A set function $\phi$ is \emph{countably additive} if for any $\{ A_n \} \subseteq \mathscr{A}$ such that $A_i \cap A_j = \emptyset$, $\forall i \neq j$, $$\phi \left( \bigcup_1^n A_n \right) = \sum_1^n \phi(A_n)$$
+\end{definition}
+In the last two we assume that there are no $A, B \in \mathscr{A}$ such that $\phi(A) = -\infty, \phi(B) = \infty$. 
+
+\begin{remark}
+    If $\phi$ is an additive set function,
+    \begin{enumerate} [(i), nosep, left=0pt]
+        \item $\phi(\emptyset) = 0$.
+        \item If $A_1, \dots, A_n$ are pairwise disjoint then $\phi(\bigcup_1^n A_n) = \sum_1^n \phi(A_n)$.
+        \item $\phi(A_1 \cup A_2) + \phi(A_1 \cap A_2) = \phi(A_1) + \phi(A_2)$.
+        \item If $\phi$ is nonnegative and $A_1 \subseteq A_2$ then $\phi(A_1) \le \phi(A_2)$.
+        \item If $B \subseteq A$ and $|\phi(B)| < \infty$ then $\phi(A \setminus B) = \phi(A) - \phi(B)$. 
+    \end{enumerate}
+\end{remark}
+
+\begin{theorem}
+    Let $\phi$ be a countably additive set function on a ring $\mathscr{A}$. Suppose $\{ A_n \} \subseteq \mathscr{A}$ such that $A_1 \subseteq A_2 \subseteq \dots$ and $A = \bigcup_1^\infty A_n \in \mathscr{A}$. Then $\phi(A_n) \to \phi(A)$ as $n \to \infty$. 
+\end{theorem}
+\begin{proof}
+    Set $B_1 = A_1$ and $B_n = A_n \setminus A_{n-1}$. Note \begin{enumerate} [(i), nosep, left=0pt]
+        \item $\{ B_n \}$ is pairwise disjoint.
+        \item $A_n = B_1 \cup B_2 \cup \dots \cup B_n$.
+        \item $A = \bigcup_1^\infty B_n$.
+    \end{enumerate}
+    Hence $\phi(A_n) = \sum_1^\infty \phi(B_j)$, $\phi(A) = \sum_1^\infty \phi(B_j)$ and the conclusion follows.
+\end{proof}
+
+\begin{definition}
+    An \emph{interval} $I = \{ (a_i, b_i) \}_1^n$ of $\mathbb{R}^n$ is the set of points $x = (x_1, \dots, x_n)$ such that $a_i \le x_i \le b_i$ or $a_i < x_i \le b_i$, etc. where $a_i \le b_i$. 
+\end{definition}
+Note. $\emptyset$ is an interval. 
+
+\begin{definition}
+    If $A$ is the union of a finite number of intervals, we say $A$ is \emph{elementary}.
+\end{definition}
+We denote the set of elementary sets by $\mathscr{E}$. 
+
+\begin{definition}
+    If $I$ is an interval of $\mathbb{R}^n$, we define the volume of $I$ by $$\mathrm{vol}(I) = \prod_i^n (b_i - a_i)$$
+    If $A = I_1 \cup I_2 \cup \dots \cup I_k$ is elementary, and the intervals are disjoint, then $$\mathrm{vol}(A) = \sum_1^k \mathrm{vol}(I_j)$$
+\end{definition}
+
+\section{Fourier Analysis}
+
+\end{document}
