@@ -1,0 +1,185 @@
+\documentclass[11pt]{article}
+\usepackage{master}
+
+\renewcommand{\abstractname}{}
+
+\title{Accelerated Analysis 3 Lecture Notes}
+\author{Andrew Hah}
+
+\begin{document}
+\thispagestyle{empty}  % no page number
+
+\begin{center}
+  {\Large MATH 20510. Analysis in $\bbR^{n}$ III (accelerated)}\par
+  \vspace{3ex}
+  {\large Based on lectures by Prof. Donald Stull}\par
+  {\normalsize Notes taken by Andrew Hah}\par
+  \vspace{2ex}
+  {\small The University of Chicago}\par
+  {\small Spring 2025}
+\end{center}
+
+\section{Measure Theory}
+
+\begin{definition}
+    A family of sets $\mathscr{A}$ is called a \emph{ring} if, for every $A, B \in \mathscr{A}$, \begin{enumerate} [(i), nosep, left=0pt]
+        \item $A \cup B \in \mathscr{A}$
+        \item $A \setminus B \in \mathscr{A}$
+    \end{enumerate}
+\end{definition}
+
+\begin{definition}
+    A ring $\mathscr{A}$ is called a \emph{$\sigma$-ring} if for any $\{ A_n \}_1^\infty \subseteq \mathscr{A}$, $$\bigcup_1^\infty A_n \in \mathscr{A}.$$
+\end{definition}
+
+Note. This implies that $\bigcap_1^\infty A_n \in \mathscr{A}$. 
+
+\begin{definition}
+    $\phi$ is a \emph{set function} on a ring $\mathscr{A}$ if for every $A \in \mathscr{A}$, $$\phi(A) \in [-\infty, \infty].$$
+\end{definition}
+
+\begin{definition}
+    A set function $\phi$ is \emph{additive} if for any $A, B \in \mathscr{A}$ such that $A \cap B = \emptyset$, $$\phi(A \cup B) = \phi(A) + \phi(B).$$
+\end{definition}
+
+\begin{definition}
+    A set function $\phi$ is \emph{countably additive} if for any $\{ A_n \} \subseteq \mathscr{A}$ such that $A_i \cap A_j = \emptyset$, $\forall i \neq j$, $$\phi \left( \bigcup_1^n A_n \right) = \sum_1^n \phi(A_n).$$
+\end{definition}
+In the last two we assume that there are no $A, B \in \mathscr{A}$ such that $\phi(A) = -\infty, \phi(B) = \infty$. 
+
+\begin{remark}
+    If $\phi$ is an additive set function,
+    \begin{enumerate} [(i), nosep, left=0pt]
+        \item $\phi(\emptyset) = 0$.
+        \item If $A_1, \dots, A_n$ are pairwise disjoint then $\phi(\bigcup_1^n A_n) = \sum_1^n \phi(A_n)$.
+        \item $\phi(A_1 \cup A_2) + \phi(A_1 \cap A_2) = \phi(A_1) + \phi(A_2)$.
+        \item If $\phi$ is nonnegative and $A_1 \subseteq A_2$ then $\phi(A_1) \le \phi(A_2)$.
+        \item If $B \subseteq A$ and $|\phi(B)| < \infty$ then $\phi(A \setminus B) = \phi(A) - \phi(B)$. 
+    \end{enumerate}
+\end{remark}
+
+\begin{theorem}
+    Let $\phi$ be a countably additive set function on a ring $\mathscr{A}$. Suppose $\{ A_n \} \subseteq \mathscr{A}$ such that $A_1 \subseteq A_2 \subseteq \dots$ and $A = \bigcup_1^\infty A_n \in \mathscr{A}$. Then $\phi(A_n) \to \phi(A)$ as $n \to \infty$. 
+\end{theorem}
+\begin{proof}
+    Set $B_1 = A_1$ and $B_n = A_n \setminus A_{n-1}$. Note \begin{enumerate} [(i), nosep, left=0pt]
+        \item $\{ B_n \}$ is pairwise disjoint.
+        \item $A_n = B_1 \cup B_2 \cup \dots \cup B_n$.
+        \item $A = \bigcup_1^\infty B_n$.
+    \end{enumerate}
+    Hence $\phi(A_n) = \sum_1^\infty \phi(B_j)$, $\phi(A) = \sum_1^\infty \phi(B_j)$ and the conclusion follows.
+\end{proof}
+
+\begin{definition}
+    An \emph{interval} $I = \{ (a_i, b_i) \}_1^n$ of $\mathbb{R}^n$ is the set of points $x = (x_1, \dots, x_n)$ such that $a_i \le x_i \le b_i$ or $a_i < x_i \le b_i$, etc. where $a_i \le b_i$. 
+\end{definition}
+Note. $\emptyset$ is an interval. 
+
+\begin{definition}
+    If $A$ is the union of a finite number of intervals, we say $A$ is \emph{elementary}.
+\end{definition}
+We denote the set of elementary sets by $\mathscr{E}$. 
+
+\begin{definition}
+    If $I$ is an interval of $\mathbb{R}^n$, we define the volume of $I$ by $$\mathrm{vol}(I) = \prod_i^n (b_i - a_i).$$
+    If $A = I_1 \cup I_2 \cup \dots \cup I_k$ is elementary, and the intervals are disjoint, then $$\mathrm{vol}(A) = \sum_1^k \mathrm{vol}(I_j).$$
+\end{definition}
+
+\begin{remark}
+  \begin{enumerate} [(i), nosep, left=0pt]
+  \item $\mathscr{E}$ is a ring, but not a $\sigma$-ring.
+  \item If $A \in \mathscr{E}$, then $A$ can be written as a finite union of disjoint intervals.
+  \item If $A \in \sE$, then $\mathrm{vol}(A)$ is well-defined.
+  \item $\mathrm{vol}$ is an additive set function on $\mathscr{E}$, and $\mathrm{vol} \ge 0$.
+\end{remark}
+
+\begin{definition}
+  A nonnegative set function $\phi$ on $\sE$ is \emph{regular} if $\forall A \in \sE$, $\forall \eps > 0$, $\exists$ open $G \in \sE$, $G \supseteq A$ and closed $F \in \sE$, $F \subseteq A$, such that $$\phi(G) \le \phi(A) + \eps, \qquad \phi(A) \le \phi(F) + \eps.$$
+\end{definition}
+
+Note. $\mathrm{vol}$ is regular.
+
+\begin{definition}
+  A \emph{countable open cover} of $E \subseteq \bbR^{n}$ is a collection of open elementary sets $\{ A_{n} \}$ such that $E \subseteq \bigcup_{1}^{\infty} A_{n}$.
+\end{definition}
+
+\begin{definition}
+  The \emph{Lebesgue outer measure} of $E \subseteq \bbR^{n}$ is defined as $$m^{*} (E) = \inf \sum_{1}^{\infty} \mathrm{vol}(A_{n}).$$ where $\inf$ is taken over all countable open covers of $E$.
+\end{definition}
+
+\begin{remark}
+  \begin{enumerate} [(i), nosep, left=0pt]
+       \item  m$^{*}(E)$ is well-defined.
+       \item  $m^{*}(E) \ge 0$.
+       \item  If $E_{1} \subseteq E_{2}$ then $m^{*}(E_{1}) \le m^{*}(E_{2})$.
+  \end{enumerate}
+\end{remark}
+
+\begin{theorem}
+  \begin{enumerate} [(i), nosep, left=0pt]
+  \item If $A \in \sE$, then $m^{*}(A) = \mathrm{vol}(A)$.
+  \item If $E = \bigcup_{1}^{\infty} E_{n}$ then $m^{*}(E) \le \sum_{1}^{\infty} m^{*}(E_{n})$.
+\end{theorem}
+
+\begin{proof}
+  
+\end{proof}
+
+\begin{definition} Let $A, B \subseteq \bbR^{n}$.
+  \begin{enumerate} [(i), nosep, left=0pt]
+  \item $A \triangle B = (A \setminus B) \cup (B \setminus A)$.
+  \item $d(A, B) = m^{*}(A \triangle B)$.
+  \item We say $A_{n} \to A$ if $\displaystyle \lim_{{n \to \infty}} d(A_{n}, A) = 0$.
+  \end{enumerate}
+\end{definition}
+
+\begin{definition}
+  If there is a sequence of elementary sets $\{ A_{n} \}$ such that $A_{n} \to A$ then we say $A$ is \emph{finitely $m$-measurable} and we write $A \in \mathfrak{M}_{F}(m)$.
+\end{definition}
+
+\begin{definition}
+  If $A$ is the countable union of finitely $m$-measurable sets, we say that $A$ is \emph{$m$-measurable} (Lebesgue measurable) and we write $A \in \mathfrak{M}(m)$.
+\end{definition}
+
+\begin{theorem}
+  $\mathfrak{M}(m)$ is a $\sigma$-ring and $m^{*}$ is countably additive on $\mathfrak{M}(m)$.
+\end{theorem}
+
+\begin{definition}
+  The \emph{Lebesgue measure} is the set function defined on $\mathfrak{M}(m)$ by $$m(A) = m^{*}(A), \quad \forall A \in \mathfrak{M}(m).$$
+\end{definition}
+
+\normalfont
+
+To summarize,
+\begin{table}[ht]
+  \centering
+  \begin{tabularx}{\textwidth}{|l|l|Y|}
+    \hline
+    \textbf{set function} & \textbf{domain} & \textbf{properties} \\ 
+    \hline
+    $\mathrm{vol}$ 
+      & $\mathcal{E}$ 
+      & $\ge0$, additive, $\mathcal{E}$‑regular \\
+    \hline
+    $m^*$ 
+      & $\subseteq \mathbb{R}^n$ 
+      & \shortstack[l]{%
+          $\ge0,\ m^*(A)=\mathrm{vol}(A)\ \forall A\in\mathcal{E},$\\%
+          countably subadditive} \\
+    \hline
+    $m$ 
+      & $\mathcal{M}(m)$ 
+      & \shortstack[l]{%
+          $\ge0,\ m(E)=m^*(E)\ \forall E\in\mathcal{M}(m),$\\%
+          countable additivity(!)} \\
+    \hline
+  \end{tabularx}
+\end{table}
+
+\begin{example} Fix $n \in \bbN$.
+  \begin{enumerate} [(i), nosep, left=0pt]
+  \item If $A \in \sE$ then $A \in \mathfrak{M}(m)$ since $m^{*}(A \triangle A) = m^{*}( \emptyset) = 0 \implies A \to A$.
+    \item 
+    
+\end{document}

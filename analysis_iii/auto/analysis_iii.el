@@ -1,7 +1,7 @@
 ;; -*- lexical-binding: t; -*-
 
 (TeX-add-style-hook
- "main"
+ "analysis_iii"
  (lambda ()
    (TeX-add-to-alist 'LaTeX-provided-class-options
                      '(("article" "11pt")))
