@@ -83,10 +83,7 @@ We denote the set of elementary sets by $\mathscr{E}$.
     If $A = I_1 \cup I_2 \cup \dots \cup I_k$ is elementary, and the intervals are disjoint, then $$\mathrm{vol}(A) = \sum_1^k \mathrm{vol}(I_j)$$
 \end{definition}
 
-\begin{remark}
-  Test
-\end{remark}
-
 \section{Fourier Analysis}
 
 \end{document}
+
