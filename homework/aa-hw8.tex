@@ -1,0 +1,281 @@
+\documentclass[11pt]{article}
+\usepackage{master}
+\DeclareMathOperator{\diam}{diam}
+\newcommand{\interior}[1]{%
+  {\kern0pt#1}^{\mathrm{o}}%
+}
+
+\title{Accelerated Analysis HW8}
+\author{Andrew Hah}
+\begin{document}
+
+\pagestyle{plain}
+\begin{center}
+{\Large MATH 20310. Accelerated Analysis Homework 8} \\ 
+\vspace{.2in}  
+Andrew Hah \\
+\end{center}
+
+\begin{exercise}{10}
+    \begin{proof}
+        Suppose, for the sake of contradiction, that $f: X \to Y$ is not uniformly continuous. Then there exists some $\epsilon > 0$ such that for every $\delta > 0$ we can find points in $X$ whose images under $f$ are separated by at least $\epsilon$ in $Y$ even though their preimages are arbitrarily close in $X$. More precisely, if $f$ is not uniformly continuous, there exist sequences $\{p_n\}$ and $\{q_n\}$ in $X$ such that
+\[
+d_X(p_n, q_n) \to 0 \quad \text{as } n \to \infty
+\]
+but
+\[
+d_Y(f(p_n), f(q_n)) > \epsilon \quad \text{for all } n.
+\]
+
+Since $X$ is compact, it is sequentially compact. Thus, from the infinite sequence $\{p_n\}$, we may extract a convergent subsequence $\{p_{n_k}\}$ such that $p_{n_k} \to x$ for some $x \in X$.
+
+Because $d_X(p_n, q_n) \to 0$, it follows that $q_{n_k}$ must also approach $x$. To see this, note that
+\[
+d_X(q_{n_k}, x) \leq d_X(q_{n_k}, p_{n_k}) + d_X(p_{n_k}, x).
+\]
+As $k \to \infty$, $d_X(q_{n_k}, p_{n_k}) \to 0$ and $d_X(p_{n_k}, x) \to 0$, so $d_X(q_{n_k}, x) \to 0$ as well. Thus, $q_{n_k} \to x$.
+
+Since $f$ is continuous, we have
+\[
+f(p_{n_k}) \to f(x) \quad \text{and} \quad f(q_{n_k}) \to f(x).
+\]
+
+It follows that $d_Y(f(p_{n_k}), f(q_{n_k})) \to d_Y(f(x), f(x)) = 0$. However, this contradicts our original assumption that $d_Y(f(p_n), f(q_n)) > \epsilon$ for all $n$. We have found a subsequence for which the images under $f$ are arbitrarily close, contradicting the uniform non-continuity assumption.
+
+Therefore, our assumption was false and $f$ must be uniformly continuous on $X$.
+    \end{proof}
+\end{exercise}
+
+\begin{exercise}{11}
+    \begin{proof}
+        First, we prove that if $f: X \to Y$ is uniformly continuous and
+$\{x_n\}$ is a Cauchy sequence in $X$, then $\{f(x_n)\}$ is a
+Cauchy sequence in $Y$.
+
+Let $\epsilon > 0$. Since $f$ is uniformly continuous, there exists
+$\delta > 0$ such that whenever $d_X(x,y) < \delta$, we have
+$d_Y(f(x), f(y)) < \epsilon$.
+
+Because $\{x_n\}$ is a Cauchy sequence in $X$, there is an
+$N \in \mathbb{N}$ such that for all $m,n > N$, $d_X(x_m, x_n) < \delta$.
+It follows that $d_Y(f(x_m), f(x_n)) < \epsilon$ for all $m,n > N$.
+Hence, $\{f(x_n)\}$ is Cauchy in $Y$.
+
+\end{proof}
+
+\begin{proof}
+
+Next, we give an alternative proof of Exercise 13 using
+this result.
+
+Let $X$ be a metric space, $E$ a dense subset of $X$, and $f: E \to \mathbb{R}$
+a uniformly continuous function. We want to show $f$ can be extended to a
+continuous function $g: X \to \mathbb{R}$.
+
+Fix $p \in X$. Since $E$ is dense in $X$, choose a sequence $\{p_n\} \subset E$
+such that $p_n \to p$. Then $\{p_n\}$ is a Cauchy sequence in $X$, and by the
+previous result, $\{f(p_n)\}$ is a Cauchy sequence in $\mathbb{R}$. Since
+$\mathbb{R}$ is complete, $\{f(p_n)\}$ converges. Define
+\[
+g(p) = \lim_{n \to \infty} f(p_n).
+\]
+
+If $\{q_n\} \subset E$ also converges to $p$, then $\{q_n\}$ is Cauchy in $X$
+and hence $\{f(q_n)\}$ is Cauchy in $\mathbb{R}$. By considering differences,
+one can show $\lim_{n \to \infty} f(q_n) = \lim_{n \to \infty} f(p_n)$, ensuring
+$g$ is well-defined.
+
+If $p \in E$, then taking $p_n = p$ for all $n$ immediately gives $g(p) = f(p)$,
+so $g$ extends $f$.
+
+To show $g$ is continuous, let $\epsilon > 0$. By the uniform continuity of $f$,
+there is a $\delta > 0$ such that if $d_X(x,y) < \delta$, then
+$|f(x)-f(y)| < \epsilon$. Suppose $d_X(p,x) < \delta$ and let $\{p_n\}$, $\{x_n\}$
+be sequences in $E$ converging to $p$ and $x$, respectively. For large enough $n$,
+$d_X(p_n, x_n)$ will also be small enough that $|f(p_n) - f(x_n)| < \epsilon$.
+Taking limits as $n \to \infty$, we get $|g(p)-g(x)| \leq \epsilon$,
+proving continuity of $g$.
+    \end{proof}
+\end{exercise}
+
+\begin{exercise}{12}
+    \begin{proof}
+        Let $(X, d_X)$, $(Y, d_Y)$, and $(Z, d_Z)$ be metric spaces. Suppose $g: X \to Y$ and $f: Y \to Z$ are uniformly continuous. We aim to show that $f \circ g: X \to Z$ defined by $(f \circ g)(x) = f(g(x))$ is uniformly continuous.
+
+Since $f$ is uniformly continuous, for every $\epsilon > 0$ there exists $\delta_1 > 0$ such that for all $y, y' \in Y$,
+\[
+d_Y(y, y') < \delta_1 \implies d_Z(f(y), f(y')) < \epsilon.
+\]
+
+Similarly, since $g$ is uniformly continuous, for this given $\delta_1 > 0$, there exists $\delta > 0$ such that for all $x, x' \in X$,
+\[
+d_X(x, x') < \delta \implies d_Y(g(x), g(x')) < \delta_1.
+\]
+
+Now consider the composition $f \circ g$. Let $\epsilon > 0$ be given. For this $\epsilon$, we have found a $\delta > 0$ as above. If $x, x' \in X$ satisfy $d_X(x, x') < \delta$, then $d_Y(g(x), g(x')) < \delta_1$. Applying the condition for $f$, we get
+\[
+d_Z((f \circ g)(x), (f \circ g)(x')) = d_Z(f(g(x)), f(g(x'))) < \epsilon.
+\]
+    \end{proof}
+\end{exercise}
+
+\begin{exercise}{13}
+    \begin{proof}
+        Let $X$ be a metric space and $E$ a dense subset of $X$. Suppose $f: E \to \mathbb{R}$ is uniformly continuous. We wish to construct a continuous extension $g: X \to \mathbb{R}$ of $f$.
+
+For each $p \in X$ and each positive integer $n$, define
+\[
+V_n(p) = \{ q \in E : d(p,q) < 1/n \}.
+\]
+Since $E$ is dense in $X$, each $V_n(p)$ is nonempty.
+
+By the uniform continuity of $f$, for every $\epsilon > 0$ there exists $\delta > 0$ such that if $\diam(A) < \delta$ for some $A \subset X$, then $\diam(f(A)) < \epsilon$.
+
+Consider the sets $f(V_n(p))$. Since $V_n(p)$ is contained in a ball of radius $1/n$ about $p$, the diameter of $V_n(p)$ tends to zero as $n \to \infty$. By uniform continuity, the diameter of $f(V_n(p))$ also tends to zero. Thus, the sets $f(V_n(p))$ form a nested sequence of sets in $\mathbb{R}$ with diameters tending to zero.
+
+This implies that
+\[
+\bigcap_{n=1}^{\infty} \overline{f(V_n(p))}
+\]
+is a nonempty intersection of closed intervals (or sets) whose lengths tend to zero. Such an intersection consists of exactly one point. Denote this point by $g(p)$.
+
+We define $g: X \to \mathbb{R}$ by $g(p)$ as above. If $p \in E$, then $V_n(p)$ eventually becomes very small and $f(V_n(p))$ becomes arbitrarily close to $f(p)$. Thus, the intersection above is just the singleton $\{ f(p) \}$, proving that $g$ extends $f$.
+
+To check continuity of $g$, let $\epsilon > 0$. By uniform continuity of $f$, choose $\delta > 0$ such that whenever $\diam(A) < \delta$, $\diam(f(A)) < \epsilon$. If $p, x \in X$ and $d(p,x) < \delta$, then for sufficiently large $n$, both $V_n(p)$ and $V_n(x)$ lie in a ball of radius $1/n < \delta$, so $\diam(V_n(p) \cup V_n(x)) < \delta$. Thus, $\diam(f(V_n(p)) \cup f(V_n(x))) < \epsilon$. Since $g(p)$ and $g(x)$ belong to the closures of these sets, $|g(p)-g(x)| \leq \epsilon$. Hence, $g$ is uniformly continuous and therefore continuous on $X$.
+    \end{proof}
+\end{exercise}
+
+\begin{exercise}{14}
+    \begin{proof}
+        Let $I = [0,1]$ and let $f: I \to I$ be continuous. Consider the function
+\[
+g(x) = f(x) - x.
+\]
+Since $f$ is continuous and $x \mapsto x$ is continuous, their difference $g$ is also continuous on $[0,1]$.
+
+Note that $f(I) \subseteq I$, so $f(0) \in [0,1]$ and $f(1) \in [0,1]$. This gives
+\[
+g(0) = f(0) - 0 \geq 0 \quad \text{and} \quad g(1) = f(1) - 1 \leq 0.
+\]
+
+Since $g$ is continuous, by the Intermediate Value Theorem there exists $x \in [0,1]$ such that $g(x) = 0$. But this means $f(x) - x = 0$, or $f(x) = x$.
+
+Thus, $f$ has at least one fixed point in $[0,1]$.
+    \end{proof}
+\end{exercise}
+
+\begin{exercise}{15}
+    \begin{proof}
+        Suppose $f:\mathbb{R} \to \mathbb{R}$ is continuous and open, but not monotonic.
+Then there exist points $x_1 < x_2 < x_3$ such that $f(x_2)$ is not
+ordered between $f(x_1)$ and $f(x_3)$ in a monotone way. Without loss of
+generality, assume
+\[
+f(x_2) > f(x_1) \quad \text{and} \quad f(x_2) > f(x_3).
+\]
+
+This means $x_2$ is a local maximum of $f$. By the continuity of $f$, there is
+an open interval $I$ around $x_2$ where $f(x) \le f(x_2)$ for all $x \in I$, and
+$f(x) < f(x_2)$ for all $x \neq x_2$ in $I$.
+
+Consider a smaller open interval $J \subset I$ around $x_2$. Because
+$f$ attains its strict maximum at $x_2$ on $J$, the set $f(J)$ cannot be open in
+$\mathbb{R}$. Any open neighborhood of $f(x_2)$ would include points larger than
+$f(x_2)$, which are not attained by $f$ near $x_2$, contradicting the openness
+of $f$.
+
+Hence, our assumption that $f$ is not monotonic leads to a contradiction, so $f$ must be monotonic.
+    \end{proof}
+\end{exercise}
+
+\begin{exercise}{16}
+    \begin{proof}
+        The function $[x]$, the greatest integer less than or equal to $x$, is
+continuous for all $x$ that are not integers. However, it has a jump
+discontinuity at every integer. More explicitly, if $n$ is an integer,
+then
+\[
+\lim_{x \to n^-} [x] = n-1 \quad \text{and} \quad [n] = n.
+\]
+
+Similarly, the fractional part function $(x) = x - [x]$ is continuous for
+all non-integers but has a jump discontinuity at every integer $n$. In
+particular,
+\[
+\lim_{x \to n^-} (x) = 1 \quad \text{and} \quad (n) = 0.
+\]
+
+Thus, both $[x]$ and $(x)$ are discontinuous at all integers and continuous
+elsewhere.
+    \end{proof}    
+\end{exercise}
+
+\begin{exercise}{17}
+    Let $f$ be a real function defined on the interval $(a,b)$. A simple (or
+jump) discontinuity of $f$ at $x$ is characterized by the existence of the
+left and right limits $f(x-)$ and $f(x+)$, which are finite but satisfy
+$f(x-) \neq f(x+)$.
+
+Define
+\[
+E = \{ x \in (a,b) : f(x-) < f(x+) \}.
+\]
+(The case $f(x-) > f(x+)$ is treated similarly.)
+
+For each $x \in E$, there exists a rational number $p$ such that
+\[
+f(x-) < p < f(x+).
+\]
+Since $f(x-) = \lim_{t \to x^-} f(t)$, there is an interval to the left of
+$x$ on which $f(t) < p$. Likewise, since $f(x+) = \lim_{t \to x^+} f(t)$, there
+is an interval to the right of $x$ on which $f(t) > p$. Thus, we can find
+rational numbers $q$ and $r$ with $q < x < r$ such that
+\[
+\text{for } a < q < t < x,\ f(t) < p
+\quad \text{and} \quad
+\text{for } x < t < r < b,\ f(t) > p.
+\]
+
+Thus, to each $x \in E$ we associate a triple $(p,q,r)$ of rationals:
+\[
+f(x-) < p < f(x+), \quad a < q < x, \quad x < r < b,
+\]
+together with the condition that $f(t) < p$ for $t \in (q,x)$ and
+$f(t) > p$ for $t \in (x,r)$.
+
+The set of all such triples of rationals $(p,q,r)$ is countable since $\mathbb{Q}$ is countable.
+We now show that each triple $(p,q,r)$ can arise from at most one $x \in E$.
+Suppose there were two points $x_1 < x_2$ in $E$ that produce the same triple
+$(p,q,r)$. By construction, for $t \in (q,x_1)$, $f(t) < p$, and for
+$t \in (x_1,r)$, $f(t) > p$. This already determines a unique position $x_1$
+where $f$ "jumps" from values less than $p$ to values greater than $p$. Hence,
+it is impossible for the same triple $(p,q,r)$ to describe another point $x_2$
+since this would contradict the uniqueness.
+
+Therefore, each triple corresponds to at most one point in $E$. Hence, $E$ is
+at most countable. A similar argument shows that the set of points where
+$f(x-) > f(x+)$ is at most countable.
+
+Combining these results, the set of points at which $f$ has a simple
+discontinuity is the union of two at most countable sets, hence it is at most
+countable.
+\end{exercise}
+
+\begin{exercise}{18}
+    \begin{proof}
+        Let $p \in \mathbb{R}$ be irrational. We need to show $\lim_{x \to p} f(x) = f(p) = 0$.
+
+Given $\epsilon > 0$, choose $N \in \mathbb{N}$ such that $1/N < \epsilon$. Among the rational numbers, those with denominator at most $N$ (in lowest terms)
+are isolated points. Hence, we can choose $\delta > 0$ so that the interval
+$(p-\delta, p+\delta)$ contains no rational number with denominator $\le N$,
+except possibly a finite number we can exclude by further shrinking $\delta$. If $x \in (p-\delta, p+\delta)$ and $x$ is rational, say $x = m/n$ in lowest terms,
+then $n > N$. Thus $f(x) = 1/n < 1/N < \epsilon$. If $x$ is irrational, then
+$f(x)=0 < \epsilon$. This shows that for all $|x-p|<\delta$, $|f(x)-f(p)|<\epsilon$, and hence
+$\lim_{x\to p} f(x)=0=f(p)$. Therefore, $f$ is continuous at every irrational point.
+
+Let $p = m/n$ be rational, with $m \in \mathbb{Z}$, $n \in \mathbb{N}$, and $m,n$ having no common divisor. Then $f(p) = 1/n$. We claim that $\lim_{x\to p} f(x) = 0$. Given $\epsilon > 0$, choose $N$ such that $1/N<\epsilon$. As before, we can choose $\delta > 0$ so that for all $x \in (p-\delta,p+\delta)$, if $x$ is rational $m_x/n_x$ in lowest terms, then $n_x > N$, ensuring $f(x)=1/n_x<1/N<\epsilon$. If $x$ is irrational, $f(x)=0<\epsilon$. Thus $\lim_{x\to p} f(x)=0$, but $f(p)=1/n$. Hence, $f$ has a jump discontinuity
+at every rational $p$.
+    \end{proof}
+\end{exercise}
+
+\end{document}

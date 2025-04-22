@@ -1,0 +1,75 @@
+\documentclass[11pt]{article}
+\usepackage{master}
+\DeclareMathOperator{\diam}{diam}
+\newcommand{\interior}[1]{%
+  {\kern0pt#1}^{\mathrm{o}}%
+}
+
+\let\eps\varepsilon
+
+\title{Accelerated Analysis HW8}
+\author{Andrew Hah}
+\begin{document}
+
+\pagestyle{plain}
+\begin{center}
+{\Large MATH 20410. Accelerated Analysis II Homework 8} \\ 
+\vspace{.2in}  
+Andrew Hah \\
+Due March 5, 2025
+\end{center}
+
+\begin{exercise}{1}
+    \begin{enumerate} [(a)]
+        \item \begin{proof}
+            \begin{enumerate} [(i)]
+                \item $\| f - g \| = \sup_{x \in M} |f(x) - g(x)| \ge 0$
+                \item $\| f - g \| = 0 \iff \sup_{x \in M} |f(x) - g(x)| = 0 \iff f(x) = g(x) \quad \forall x$
+                \item $\| f - g \| = \sup |f(x) - g(x)| = \sup |g(x) - f(x)| = \| g - f\|$
+                \item $\| f - h \| = \sup_{x \in M} |f(x) - h(x)| \le \sup_{x \in M} (|f(x) - g(x)| + |g(x) - h(x)|) \le \| f - g\| + \| g - h \|$
+            \end{enumerate}
+        \end{proof}
+        \item \begin{proof}
+            $\{ f_n \}$ converges to $f$ in $(C(M), \| \cdot \|)$ if $d(f_n, f) = \| f_n - f\| = \sup_{x \in M} |f_n(x) - f(x)| \to 0$ as $ n \to \infty$. But $\sup_{x \in M} |f_n(x) - f(x)| \to 0$ means that  $\forall \epsilon > 0$, $\exists N$ s.t. $n \ge N$ implies $|f_n(x) - f(x)| < \epsilon$ for every $x$, which is exactly uniform convergence. Thus metric convergence is the same as uniform convergence. 
+        \end{proof}
+        \item \begin{proof}
+            Let $\{ f_n \}$ be a Cauchy sequence in $C(M)$. For each $x \in M$, the real sequence $\{ f_n (x) \}$ is Cauchy in $\bbR$, hence it converges to some limit in $\bbR$. Define $f(x) = \lim_{n \to \infty} f_n(x)$. Because $\{ f_n \}$ is Cauchy in the uniform norm, given $\epsilon > 0$, there exists $N$ s.t. $\forall m, n \ge N$, $\| f_m - f_n \| < \epsilon$. Letting $m \to \infty$, we see $f_n$ converges uniformly to $f$, and it is bounded. It suffices to show that $f$ is continuous. Fix $x \in M$ and let $x_k \to x$. Then $|f(x_k) - f(x)| \le |f(x_k) - f_n(x_k)| + |f_n(x_k) - f_n(x)| + |f_n(x) - f(x)|$. For large $n$, $f_n$ is uniformly close to $f$, so the first and last terms can be made small. The middle term is small by continuity of $f_n$ and the fact that $x_k \to x$. Thus, $f \in C(M)$ and $f_n \to f$. 
+        \end{proof}
+    \end{enumerate}
+\end{exercise}
+
+\begin{exercise}{2}
+    \begin{enumerate} [(a)]
+        \item \begin{proof}
+            For $k = 0$, $P_0(x) = 0 \implies 0 \le P_0(x) \le \sqrt{x}$. Now assume $0 \le P_k(x) \le \sqrt{x}$. Then $$P_{k + 1}(x) = P_k(x) + \frac{x - (P_k(x))^2}{2 \sqrt{M}}$$ Since $x - (P_k(x))^2 \ge 0$ by hypothesis, the fraction is nonnegative, so $$P_{k + 1}(x) \ge P_k(x) \ge 0$$ To check $P_{k + 1}(x) \le \sqrt{x}$, we must check $$\frac{x - (P_k(x))^2}{2 \sqrt{M}} \le \sqrt{x} - P_k(x)$$ This is a direct check that is easy to see. Thus by induction, we have that $0 \le P_k(x) \le \sqrt{x}$ for all $k \ge 0$. 
+        \end{proof}
+        \item \begin{proof}
+            Fix $x \in [0, M]$. From part (a) we see that $\{ P_k(x) \}_{k = 0}^\infty$ is a nondecreasing sequence and is bounded above by $\sqrt{x}$. By the monotone convergence theorem, $\{ P_k(x) \}$ converges to some limit $f(x)$.  
+        \end{proof}
+        \item \begin{proof}
+            Letting $P_k (x) \to f(x)$ as in part (b), we let $k \to \infty$ in the recursion $$P_{k + 1}(x) = P_k(x) + \frac{x - (P_k(x))^2}{2 \sqrt{M}}$$ $$f(x) = f(x) + \frac{x - (f(x))^2}{2 \sqrt{M}}$$ Hence $x - (f(x))^2 = 0 \implies f(x) = \sqrt{x}$. 
+        \end{proof}
+    \end{enumerate}
+\end{exercise}
+
+\begin{exercise}{3}
+    \begin{enumerate} [(a)]
+        \item \begin{proof}
+            On $[-1, 1]$, $\phi(x)$ is obviously continuous. Because we set $\phi(x+2) = \phi(x)$, we simply continuously repeat this sawtooth shape, so $|\phi(x) - \phi(y)| \le |x - y|$. 
+        \end{proof}
+        \item \begin{proof}
+            Since $|\phi(\cdot)| \le 1$, each term satisfies $$\left| \left(\frac{3}{4} \right) \phi(4^nx) \right| \le \left( \frac{3}{4} \right)^n$$ By the Weierstrass $M$ test, the partial sums converge. Each finite sum is continuous, and the uniform limit of continuous functions is continuous so $f$ is continuous. 
+        \end{proof}
+        \item \begin{proof}
+            If $n > m$, then $4^n h_m = 4^{n - m} \cdot \frac{1}{2}$ is an integer multiple of 2, which means 
+        \end{proof}
+        \item \begin{proof}
+            Using the linearity of each term in $f$, $$\frac{f(x + h_m) - f(x)}{h_m} = \sum_{n = 0}^\infty \left( \frac{3}{4} \right)^n \frac{\phi(4^n(x+h_m)) - \phi(4^nx)}{h_m}$$ By part (c), $$\left| \frac{f(x+h_m) - f(x)}{h_m} \right| \ge 3^m - \sum_{n = 0}^{m - 1} 3^n = 3^m - (3^m - 1)/2 = \frac{1}{2} (3^m + 1)$$
+        \end{proof}
+        \item \begin{proof}
+            Since $\frac{1}{2}(3^m + 1) \to \infty$ as $m \to \infty$, these difference quotients do not converge. Therefore $f$ has no finite derivative at $x$, i.e. on all of $\bbR$. 
+        \end{proof}
+    \end{enumerate}
+\end{exercise}
+
+\end{document}

@@ -1,0 +1,416 @@
+\documentclass[11pt]{article}
+\usepackage{master}
+\DeclareMathOperator{\diam}{diam}
+\newcommand{\interior}[1]{%
+  {\kern0pt#1}^{\mathrm{o}}%
+}
+
+\title{Accelerated Analysis HW3}
+\author{Andrew Hah}
+\begin{document}
+
+\pagestyle{plain}
+\begin{center}
+{\Large MATH 20410. Accelerated Analysis II Homework 3} \\ 
+\vspace{.2in}  
+Andrew Hah \\
+Due January 29, 2025
+\end{center}
+
+\begin{exercise}{9.6}
+    \begin{proof}
+        For $(x,y)\neq (0,0)$, we can compute the partial 
+derivatives directly (using the quotient rule):
+
+\[
+\frac{\partial f}{\partial x}(x,y) 
+= \frac{(x^2 + y^2)\,y \;-\; x\,y\,(2x)}{(x^2 + y^2)^2} 
+= \frac{y\bigl(y^2 - x^2\bigr)}{(x^2 + y^2)^2},
+\]
+\[
+\frac{\partial f}{\partial y}(x,y) 
+= \frac{(x^2 + y^2)\,x \;-\; x\,y\,(2y)}{(x^2 + y^2)^2} 
+= \frac{x\bigl(x^2 - y^2\bigr)}{(x^2 + y^2)^2}.
+\]
+These expressions are well-defined for all $(x,y)\neq (0,0)$.
+
+At $(0,0)$. By definition of the partial derivative,
+\[
+\frac{\partial f}{\partial x}(0,0)
+= \lim_{h \to 0} \frac{f(h,0) - f(0,0)}{h}
+= \lim_{h \to 0} \frac{0 - 0}{h} 
+= 0.
+\]
+Similarly,
+\[
+\frac{\partial f}{\partial y}(0,0)
+= \lim_{k \to 0} \frac{f(0,k) - f(0,0)}{k}
+= \lim_{k \to 0} \frac{0 - 0}{k}
+= 0.
+\]
+Hence both partial derivatives exist at the origin and are equal to $0$.
+
+To see that $f$ is not continuous at $(0,0)$, observe that
+\[
+\lim_{t \to 0} f(t,t) 
+= \lim_{t \to 0} \frac{\,t \cdot t\,}{t^2 + t^2}
+= \lim_{t \to 0} \frac{t^2}{2t^2}
+= \frac12,
+\]
+which differs from $f(0,0) = 0$.  Thus $f$ is not continuous at $(0,0)$. \\
+
+Thus, all partial derivatives exist everywhere in $\mathbb{R}^2$, 
+yet $f$ itself fails to be continuous at $(0,0)$.
+    \end{proof}
+\end{exercise}
+
+\begin{exercise}{9.8}
+    \begin{proof}
+        Since $f$ has a local maximum at $\mathbf{x}$ and $E$ is open, there exists 
+an $\epsilon>0$ such that
+\(
+\|\mathbf{h}\| < \epsilon
+\quad\Longrightarrow\quad
+\mathbf{x} + \mathbf{h} \in E
+\quad\text{and}\quad
+f(\mathbf{x}+\mathbf{h}) \le f(\mathbf{x}).
+\)
+Define $L = f'(\mathbf{x})$, 
+which is a linear functional on $\mathbb{R}^n$. For any nonzero direction $\mathbf{v} \in \mathbb{R}^n$, consider the function 
+\[
+\phi(t) \;=\; f(\mathbf{x} + t\,\mathbf{v})
+\]
+for $t$ in some small interval about $0$.  Since $\mathbf{x}$ is a local maximum of $f$, 
+$\phi(t)$ attains a local maximum at $t=0$.  Therefore,
+\(
+\phi'(0) \;=\; 0.
+\)
+On the other hand, by definition of the derivative of $f$, we have
+\[
+\phi'(0)
+\;=\;
+\lim_{t\to0} \frac{f(\mathbf{x} + t\,\mathbf{v}) - f(\mathbf{x})}{t}
+\;=\;
+L(\mathbf{v}),
+\]
+where $L = f'(\mathbf{x})$.  Hence
+\(
+L(\mathbf{v}) \;=\; 0
+\quad\text{for all}\quad \mathbf{v}\in \mathbb{R}^n.
+\)
+A linear functional $L$ on $\mathbb{R}^n$ that is zero on all $\mathbf{v}\in\mathbb{R}^n$ 
+must be the zero map.  Consequently, 
+\(
+L \;=\; f'(\mathbf{x}) \;=\; 0.
+\)
+    \end{proof}
+\end{exercise}
+
+\begin{exercise}{9.11}
+    \begin{proof}
+        Let $\mathbf{x} = (x_1, \dots, x_n) \in \mathbb{R}^n$.  By definition,
+\[
+\nabla(fg)(\mathbf{x})
+\;=\;
+\biggl(\,
+\frac{\partial (fg)}{\partial x_1}(\mathbf{x}), 
+\;\dots,\;
+\frac{\partial (fg)}{\partial x_n}(\mathbf{x})
+\biggr).
+\]
+Since $f$ and $g$ are (separately) differentiable, for each $i = 1,\dots,n$, we use 
+the single‐variable product rule on the function $x_i \mapsto f(x_1, \dots, x_i, \dots, x_n)\,g(x_1, \dots, x_i, \dots, x_n)$:
+\[
+\frac{\partial (fg)}{\partial x_i}(\mathbf{x}) 
+\;=\;
+f(\mathbf{x}) \;\frac{\partial g}{\partial x_i}(\mathbf{x})
+\;+\;
+g(\mathbf{x}) \;\frac{\partial f}{\partial x_i}(\mathbf{x}).
+\]
+Consequently,
+\[
+\nabla(fg)(\mathbf{x})
+\;=\;
+\bigl(\,
+f \,\tfrac{\partial g}{\partial x_1} + g\,\tfrac{\partial f}{\partial x_1}, 
+\;\dots,\;
+f\,\tfrac{\partial g}{\partial x_n} + g\,\tfrac{\partial f}{\partial x_n}
+\bigr).
+\]
+Factoring $f$ and $g$ out of each coordinate, we get
+\[
+\nabla(fg)(\mathbf{x})
+= 
+f(\mathbf{x})\,
+\bigl(\tfrac{\partial g}{\partial x_1}, \dots, \tfrac{\partial g}{\partial x_n}\bigr)
+\;+\;
+g(\mathbf{x})\,
+\bigl(\tfrac{\partial f}{\partial x_1}, \dots, \tfrac{\partial f}{\partial x_n}\bigr).
+\]
+That is,
+\[
+\nabla(fg)(\mathbf{x}) 
+\;=\; 
+f(\mathbf{x})\,\nabla g(\mathbf{x})
+\;+\;
+g(\mathbf{x})\,\nabla f(\mathbf{x}).
+\]
+Since $\mathbf{x}$ was arbitrary, this identity holds everywhere in $\mathbb{R}^n$. 
+\quad$\square$
+    \end{proof}
+\end{exercise}
+
+\begin{exercise}{9.13}
+    \begin{proof}
+        Since $\lVert f(t)\rVert = 1$ for all $t$, we have
+\[
+f(t)\cdot f(t) \;=\; \lVert f(t)\rVert^2 \;=\; 1
+\quad\text{for all }t.
+\]
+Differentiate both sides with respect to $t$:
+\[
+\frac{d}{dt}\bigl[f(t)\cdot f(t)\bigr] 
+\;=\;
+\frac{d}{dt}(1)
+\;=\;
+0.
+\]
+By the product rule for dot products,
+\[
+\frac{d}{dt}\bigl[f(t)\cdot f(t)\bigr]
+\;=\;
+f'(t)\cdot f(t) \;+\; f(t)\cdot f'(t)
+\;=\;
+2\,\bigl(f'(t)\cdot f(t)\bigr).
+\]
+Hence
+\[
+2\,\bigl(f'(t)\cdot f(t)\bigr) 
+\;=\;
+0
+\quad\Longrightarrow\quad
+f'(t)\cdot f(t)
+\;=\;
+0.
+\]
+
+Since $f(t)$ always lies on the unit sphere (because $\lVert f(t)\rVert=1$), 
+the vector $f'(t)$ must be tangent to the sphere at $f(t)$. 
+This is equivalent to saying $f'(t)$ is orthogonal to the radius vector $f(t)$, 
+so their dot product is zero.
+    \end{proof}
+\end{exercise}
+
+\begin{exercise}{1}
+    \begin{proof}
+Write $f(x,y)=(u_1,u_2,u_3)$ where 
+\[
+u_1(x,y)=x^2,\quad 
+u_2(x,y)=x+y,\quad
+u_3(x,y)=x\,y.
+\]
+Then $Df(x,y)$ is 
+\[
+Df(x,y)
+\;=\;
+\begin{pmatrix}
+\partial u_1/\partial x & \partial u_1/\partial y\\
+\partial u_2/\partial x & \partial u_2/\partial y\\
+\partial u_3/\partial x & \partial u_3/\partial y
+\end{pmatrix}
+\;=\;
+\begin{pmatrix}
+2x & 0\\[6pt]
+1 & 1\\[6pt]
+y & x
+\end{pmatrix}.
+\]
+Hence
+\[
+Df(a,b)
+\;=\;
+\begin{pmatrix}
+2\,a & 0\\[4pt]
+1 & 1\\[4pt]
+b & a
+\end{pmatrix}.
+\]
+
+\bigskip
+\noindent
+Similarly, write $g(x,y,z) = (v_1,v_2)$ where
+\[
+v_1(x,y,z)=x,\qquad 
+v_2(x,y,z)=x+y+2\,z.
+\]
+Then
+\[
+Dg(x,y,z)
+\;=\;
+\begin{pmatrix}
+\partial v_1/\partial x & \partial v_1/\partial y & \partial v_1/\partial z\\
+\partial v_2/\partial x & \partial v_2/\partial y & \partial v_2/\partial z
+\end{pmatrix}
+\;=\;
+\begin{pmatrix}
+1 & 0 & 0\\[4pt]
+1 & 1 & 2
+\end{pmatrix}.
+\]
+Note that these partial derivatives are all constant, so 
+\[
+Dg\bigl(f(a,b)\bigr)
+\;=\;
+Dg\bigl(a^2,\;a+b,\;a\,b\bigr)
+\;=\;
+\begin{pmatrix}
+1 & 0 & 0\\[4pt]
+1 & 1 & 2
+\end{pmatrix}.
+\]
+
+By the chain rule, we have
+\[
+D\bigl(g\circ f\bigr)(a,b)
+\;=\;
+Dg\bigl(f(a,b)\bigr)\;\cdot\;Df(a,b).
+\]
+Hence
+\[
+D\bigl(g\circ f\bigr)(a,b)
+\;=\;
+\begin{pmatrix}
+1 & 0 & 0\\[4pt]
+1 & 1 & 2
+\end{pmatrix}
+\begin{pmatrix}
+2\,a & 0\\[4pt]
+1 & 1\\[4pt]
+b & a
+\end{pmatrix}
+\;=\;
+\begin{pmatrix}
+2\,a & 0\\[6pt]
+2\,a + 1 + 2\,b & 1 + 2\,a
+\end{pmatrix}.
+\]
+    \end{proof}
+\end{exercise}
+
+\begin{exercise}{2}
+    \begin{proof}
+ ($\implies$) If $f$ is differentiable, each $f_j$ is differentiable.\\
+Suppose $f$ is differentiable at $x$, and let $A= Df(x)$.  Consequently,
+\[
+f(x+\mathbf{h}) \;-\; f(x)\;-\; A(\mathbf{h})
+\;=\;
+\bigl(\,
+f_1(x+\mathbf{h})-f_1(x)-A_1(\mathbf{h}),\;\dots,\;
+f_m(x+\mathbf{h})-f_m(x)-A_m(\mathbf{h})
+\bigr).
+\]
+Hence 
+\[
+\bigl\|\,f(x+\mathbf{h}) \;-\; f(x)\;-\; A(\mathbf{h})\bigr\|_{\mathbb{R}^m}^2
+\;=\;
+\sum_{j=1}^m
+\bigl[\,
+f_j(x+\mathbf{h})-f_j(x)-A_j(\mathbf{h})
+\bigr]^2.
+\]
+If 
+\(\lim_{\mathbf{h}\to \mathbf{0}}\|\,f(x+\mathbf{h}) - f(x) - A(\mathbf{h})\|/\|\mathbf{h}\|=0,\)
+then each term in the above sum must vanish ``fast enough'', i.e.
+\[
+\lim_{\mathbf{h}\to\mathbf{0}}
+\frac{
+\bigl|\,
+f_j(x+\mathbf{h})-f_j(x)-A_j(\mathbf{h})
+\bigr|
+}{\|\mathbf{h}\|}
+\;=\;
+0
+\quad\text{for each }j.
+\]
+But this is precisely the statement that $f_j$ is differentiable at $x$ 
+with derivative $A_j$, i.e.\ $df_j(x)(\mathbf{h}) = A_j(\mathbf{h})$.  
+Thus each $f_j$ is differentiable at $x$.
+
+($\impliedby$) If each $f_j$ is differentiable, then $f$ is differentiable.\\
+Conversely, suppose that each component $f_j$ is differentiable at $x$.  
+This means for each $j=1,\dots,m$, there is a linear functional 
+$L_j:\mathbb{R}^n \to \mathbb{R}$ such that
+\[
+\lim_{\mathbf{h}\to\mathbf{0}}
+\frac{\bigl|\,f_j(x+\mathbf{h})-f_j(x)-L_j(\mathbf{h})\bigr|}
+{\|\mathbf{h}\|}
+\;=\;0.
+\]
+Define $A:\mathbb{R}^n\to\mathbb{R}^m$ by
+\[
+A(\mathbf{h})
+\;=\;
+\bigl(\,L_1(\mathbf{h}),\,L_2(\mathbf{h}),\,\ldots,\,L_m(\mathbf{h})\bigr).
+\]
+This $A$ is linear (componentwise) and will serve as our candidate for $Df(x)$.  
+Indeed,
+\[
+f(x+\mathbf{h}) \;-\; f(x)\;-\; A(\mathbf{h})
+\;=\;
+\bigl(\,
+f_1(x+\mathbf{h})-f_1(x)-L_1(\mathbf{h}),\;\dots,\;
+f_m(x+\mathbf{h})-f_m(x)-L_m(\mathbf{h})
+\bigr).
+\]
+Again, by summing squares or using standard vector norms, we see that 
+\[
+\lim_{\mathbf{h}\to\mathbf{0}}
+\frac{\|\,f(x+\mathbf{h}) - f(x) - A(\mathbf{h})\|}{\|\mathbf{h}\|}
+\;=\;
+0,
+\]
+because each component tends to zero at the required rate.  
+Hence $f$ is differentiable at $x$ and $Df(x)=A$.
+    \end{proof}
+\end{exercise}
+
+\begin{exercise}{3}
+    \begin{proof}
+        \begin{enumerate} [(1)]
+            \item $f(x) = \|x\|^2$. \\
+
+            Let $x = (x_1,x_2,\ldots,x_n)\in\mathbb{R}^n$.  Then
+\[
+  f(x) \;=\; \|x\|^2 \;=\; x_1^2 + x_2^2 + \cdots + x_n^2.
+\]
+This is a polynomial in the coordinates $x_1,\ldots,x_n$, so it is differentiable everywhere in $\mathbb{R}^n$.  In fact, we can compute the gradient directly:
+\[
+  \nabla f(x)
+  \;=\;
+  \begin{pmatrix}
+    \frac{\partial}{\partial x_1} (x_1^2 + \cdots + x_n^2)\\[6pt]
+    \vdots\\[6pt]
+    \frac{\partial}{\partial x_n} (x_1^2 + \cdots + x_n^2)
+  \end{pmatrix}
+  \;=\;
+  \begin{pmatrix}
+    2x_1\\[6pt]
+    \vdots\\[6pt]
+    2x_n
+  \end{pmatrix}
+  \;=\;
+  2x.
+\]
+Hence $f$ is differentiable at every point $x \in \mathbb{R}^n$.
+    \item $f(x_1,\ldots,x_n,y_1,\ldots,y_n) = x_1y_1 + \cdots + x_ny_n$. \\
+
+        This function is a polynomial (bilinear) in the $2n$ variables 
+\[
+  x_1,\ldots,x_n,y_1,\ldots,y_n.
+\]
+Since polynomials are differentiable everywhere, it follows that $f$ is differentiable at all points of $\mathbb{R}^{2n}$.
+        \end{enumerate}
+    \end{proof}
+\end{exercise}
+
+\end{document}

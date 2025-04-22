@@ -1,0 +1,362 @@
+\documentclass[12pt]{article}
+
+
+%----------Packages----------
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+%\usepackage{amsrefs}
+\usepackage{dsfont}
+\usepackage{mathrsfs}
+\usepackage{stmaryrd}
+\usepackage[all]{xy}
+\usepackage[mathcal]{eucal}
+\usepackage{verbatim}  %%includes comment environment
+\usepackage{fullpage}  %%smaller margins
+\usepackage{hyperref}
+\usepackage{setspace}
+\usepackage{graphicx}
+\usepackage[shortlabels]{enumitem}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{tikz-cd}
+\usepackage{multicol}
+\onehalfspacing
+%----------Commands----------
+
+%%penalizes orphans
+\clubpenalty=9999
+\widowpenalty=9999
+
+%% bold math capitals
+\newcommand{\bA}{\mathbf{A}}
+\newcommand{\bB}{\mathbf{B}}
+\newcommand{\bC}{\mathbf{C}}
+\newcommand{\bD}{\mathbf{D}}
+\newcommand{\bE}{\mathbf{E}}
+\newcommand{\bF}{\mathbf{F}}
+\newcommand{\bG}{\mathbf{G}}
+\newcommand{\bH}{\mathbf{H}}
+\newcommand{\bI}{\mathbf{I}}
+\newcommand{\bJ}{\mathbf{J}}
+\newcommand{\bK}{\mathbf{K}}
+\newcommand{\bL}{\mathbf{L}}
+\newcommand{\bM}{\mathbf{M}}
+\newcommand{\bN}{\mathbf{N}}
+\newcommand{\bO}{\mathbf{O}}
+\newcommand{\bP}{\mathbf{P}}
+\newcommand{\bQ}{\mathbf{Q}}
+\newcommand{\bR}{\mathbf{R}}
+\newcommand{\bS}{\mathbf{S}}
+\newcommand{\bT}{\mathbf{T}}
+\newcommand{\bU}{\mathbf{U}}
+\newcommand{\bV}{\mathbf{V}}
+\newcommand{\bW}{\mathbf{W}}
+\newcommand{\bX}{\mathbf{X}}
+\newcommand{\bY}{\mathbf{Y}}
+\newcommand{\bZ}{\mathbf{Z}}
+
+%% blackboard bold math capitals
+\newcommand{\bbA}{\mathbb{A}}
+\newcommand{\bbB}{\mathbb{B}}
+\newcommand{\bbC}{\mathbb{C}}
+\newcommand{\bbD}{\mathbb{D}}
+\newcommand{\bbE}{\mathbb{E}}
+\newcommand{\bbF}{\mathbb{F}}
+\newcommand{\bbG}{\mathbb{G}}
+\newcommand{\bbH}{\mathbb{H}}
+\newcommand{\bbI}{\mathbb{I}}
+\newcommand{\bbJ}{\mathbb{J}}
+\newcommand{\bbK}{\mathbb{K}}
+\newcommand{\bbL}{\mathbb{L}}
+\newcommand{\bbM}{\mathbb{M}}
+\newcommand{\bbN}{\mathbb{N}}
+\newcommand{\bbO}{\mathbb{O}}
+\newcommand{\bbP}{\mathbb{P}}
+\newcommand{\bbQ}{\mathbb{Q}}
+\newcommand{\bbR}{\mathbb{R}}
+\newcommand{\bbS}{\mathbb{S}}
+\newcommand{\bbT}{\mathbb{T}}
+\newcommand{\bbU}{\mathbb{U}}
+\newcommand{\bbV}{\mathbb{V}}
+\newcommand{\bbW}{\mathbb{W}}
+\newcommand{\bbX}{\mathbb{X}}
+\newcommand{\bbY}{\mathbb{Y}}
+\newcommand{\bbZ}{\mathbb{Z}}
+
+%% script math capitals
+\newcommand{\sA}{\mathscr{A}}
+\newcommand{\sB}{\mathscr{B}}
+\newcommand{\sC}{\mathscr{C}}
+\newcommand{\sD}{\mathscr{D}}
+\newcommand{\sE}{\mathscr{E}}
+\newcommand{\sF}{\mathscr{F}}
+\newcommand{\sG}{\mathscr{G}}
+\newcommand{\sH}{\mathscr{H}}
+\newcommand{\sI}{\mathscr{I}}
+\newcommand{\sJ}{\mathscr{J}}
+\newcommand{\sK}{\mathscr{K}}
+\newcommand{\sL}{\mathscr{L}}
+\newcommand{\sM}{\mathscr{M}}
+\newcommand{\sN}{\mathscr{N}}
+\newcommand{\sO}{\mathscr{O}}
+\newcommand{\sP}{\mathscr{P}}
+\newcommand{\sQ}{\mathscr{Q}}
+\newcommand{\sR}{\mathscr{R}}
+\newcommand{\sS}{\mathscr{S}}
+\newcommand{\sT}{\mathscr{T}}
+\newcommand{\sU}{\mathscr{U}}
+\newcommand{\sV}{\mathscr{V}}
+\newcommand{\sW}{\mathscr{W}}
+\newcommand{\sX}{\mathscr{X}}
+\newcommand{\sY}{\mathscr{Y}}
+\newcommand{\sZ}{\mathscr{Z}}
+
+\newcommand\cG{\mathcal G}
+\newcommand{\BB}{\mathcal B}
+\newcommand{\CC}{\mathcal C}
+
+\newcommand{\simto}{\overset{\sim}{\rightarrow}}
+\newcommand{\epi}{\twoheadrightarrow}
+\newcommand{\mon}{\hookrightarrow}
+\newcommand{\from}{\leftarrow}
+\newcommand{\id}{\mathbf{1}}
+\newcommand{\ev}{\operatorname{ev}}
+\newcommand{\im}{\operatorname{im}}
+\newcommand{\push}{\operatorname{push}}
+\newcommand{\FF}{\mathbf{F}}
+\newcommand{\ZZ}{\mathbf{Z}}
+\newcommand{\Fun}{\operatorname{Fun}}
+\newcommand{\Maps}{\operatorname{Maps}}
+\newcommand{\Mat}{\operatorname{Mat}}
+\newcommand{\LP}{\operatorname{LP}}
+\newcommand{\coker}{\operatorname{coker}}
+\newcommand{\spec}{\operatorname{spec}}
+
+\renewcommand{\_}[1]{\underline{ #1 }}
+\renewcommand{\emptyset}{\O}
+
+\DeclareMathOperator{\ext}{ext}
+
+\providecommand{\abs}[1]{\lvert #1 \rvert}
+\providecommand{\norm}[1]{\lVert #1 \rVert}
+\providecommand{\x}{\times}
+\providecommand{\ar}{\rightarrow}
+\providecommand{\arr}{\longrightarrow}
+
+
+%----------Theorems----------
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{nondefinition}[theorem]{Non-Definition}
+\newtheorem{note}[theorem]{Note}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{innercustomthm}{Exercise}
+\newenvironment{exercise}[1]
+  {\renewcommand\theinnercustomthm{#1}\innercustomthm}
+  {\endinnercustomthm}
+
+\newenvironment{solution}{\par\noindent\textit{Solution.}\ }{\par}
+
+\numberwithin{equation}{subsection}
+
+\addtolength{\jot}{.05in}
+
+\setlength{\parindent}{0pt}
+
+
+
+%----------Title-------------
+\title{Honors Analysis HW1}
+\author{Andrew Hah}
+\begin{document}
+
+\pagestyle{plain}
+\begin{center}
+{\Large MATH 20700. Honors Analysis Homework 2} \\ 
+\vspace{.2in}  
+Andrew Hah \\
+Due October 14, 2024
+\end{center}
+
+\begin{exercise}{5}
+    \begin{solution}
+        \begin{enumerate} [(i)]
+            \item $d_a (p, q) \ge 0, \forall p, q \in S^1$. \\
+            Both $|\measuredangle (p) - \measuredangle (q)|$ and $2\pi - |\measuredangle (p) - \measuredangle (q)|$ are non-negative because the difference between $\measuredangle (p)$ and $\measuredangle (q)$ cannot exceed $2\pi$ on the unit circle. 
+            \item $d_a(p, q) = 0 \iff p = q$. \\
+            $(\implies)$ If $d_a(p, q) = 0$ then this implies that the minimal angle between $p$ and $q$ is 0. Hence $\measuredangle (p) = \measuredangle (q) \mod 2\pi$, which means $p = q$ on $S^1$. \\
+            $(\impliedby)$ If $p = q$ then $\measuredangle (p) = \measuredangle (q)$ so $d_a (p, q) = \min \{ 0, 2\pi \} = 0$. 
+            \item $d_a (p, q) = d_a (q, p), \forall p, q \in S^1$. \\
+            The expression for $d_a(p, q)$ is symmetric in $p$ and $q$ because $|\measuredangle (p) - \measuredangle (q)| = |\measuredangle (q) - \measuredangle (p)|$. 
+            \item $d_a(p, r) \le d_a(p, q) + d_a(q, r), \forall p, q, r \in S^1$. \\
+            We lift the circle $S^1$ to the real line $\bbR$ via the covering map $\theta \mapsto e^{i \theta}$. For each point $p \in S^1$, let $\theta_p$ be a representative angle in $[0, 2 \pi)$. For $p, q \in S^1$ define $d_a (p, q) = \min_{k \in \bbZ} |\theta_p - (\theta_q + 2\pi k)|$. This is an equivalent metric because in both forms, we are computing the smallest arc length between $p$ and $q$. Now, select lifts $\overset{\sim}{\theta_p}, \overset{\sim}{\theta_q}, \overset{\sim}{\theta_r} \in \bbR$ such that $|\overset{\sim}{\theta_p} - \overset{\sim}{\theta_q}| = d_a(p, q)$, $|\overset{\sim}{\theta_q} - \overset{\sim}{\theta_r}| = d_a(q, r)$, and $|\overset{\sim}{\theta_p} - \overset{\sim}{\theta_r}| = d_a (p, r)$. By the standard triangle inequality, $|\overset{\sim}{\theta_p} - \overset{\sim}{\theta_q}| + |\overset{\sim}{\theta_q} - \overset{\sim}{\theta_r}| \ge |\overset{\sim}{\theta_p} - \overset{\sim}{\theta_r}|$. Substituting the definitions we get $d_a (p, q) + d_a (q, r) \ge d_a (p, r)$. 
+        \end{enumerate}
+    \end{solution}
+\end{exercise}
+
+\begin{exercise}{6}
+    \begin{solution}
+        \begin{enumerate} [(i)]
+            \item $d_s(p, q) \ge 0, \forall p, q \in [0, \frac{\pi}{2})$. \\
+            The sine function is non-negative on the interval $[0, \frac{\pi}{2})$, and $|p - q|$ is always non-negative.
+            \item $d_s(p, q) = 0 \iff p = q$. \\
+            $(\implies)$ If $d_s(p, q) = 0$ then $\sin |p - q| = 0 \implies |p - q| = 0$ since $\sin x = 0$ only when $x = 0$ in $[0, \pi / 2)$. Thus $p = q$. \\
+            $(\impliedby)$ If $p = q$ then $d_s(p, q) = \sin 0 = 0$. 
+            \item $d_s(p, q) = d_s(q, p), \forall p, q \in [0, \frac{\pi}{2})$. \\
+            The expression $\sin |p - q|$ is inherently symmetric because $|p - q| = |q - p|$ and $\sin x = \sin x$. 
+            \item $d_s(p, r) \le d_s(p, q) + d_s (q, r), \forall p, q, r \in [0, \frac{\pi}{2})$. \\
+            Assume without loss of generality that $p \le q \le r$. Let $A = q - p$ and $B = r - q$. Then $A, B \ge 0$ and $A + B = r - p < \frac{\pi}{2}$. We want to show $\sin(A + B) \le \sin A + \sin B$. Since $\sin(A + B) = \sin A \cos B + \cos A \sin B$, we can rewrite the inequality as \begin{equation*}
+                \begin{gathered}
+                    \sin A \cos B + \cos A \sin B \le \sin A + \sin B \\
+                    \sin A (\cos B - 1) + \sin B (\cos A - 1) \le 0
+                \end{gathered}
+            \end{equation*}
+            Since $\cos B - 1 \le 0$ and $\cos A - 1 \le 0$ for $A, B \in [0, \frac{\pi}{2})$, and $\sin A, \sin B \ge 0$, each term is non-positive. Thus the triangle inequality holds. 
+        \end{enumerate}
+    \end{solution}
+\end{exercise}
+
+\begin{exercise}{7}
+    \begin{proof}
+        Let $(p_n)$ be a sequence in $M$ that converges to some point $p \in M$. By definition, for $\epsilon = 1$, there exists $N$ such that $\forall n \ge N$, $d(p_n, p) < 1$. This means that all the terms of the sequence from $p_N$ onward lie within the open ball $B_1(p)$. The terms $p_1, p_2, \dots, p_{N = 1}$ are finite, i.e., constitute a finite set. Since this set is finite and $M$ is a metric space, each point $p_k$ for $1 \le k < N$ has a finite distance from $p$. Let $M = \max \{ d(p_k, p) : 1 \le k < N \}$. Since there are finitely many terms, $M$ is well-defined and finite. To bound the entire sequence, we let $r = \max \{ M, 1 \}$. Thus $\forall n$, $d(p_n, p) \le r$, i.e., $p_n \in B_r (p)$.
+    \end{proof}
+\end{exercise}
+
+\begin{exercise}{9}
+    \begin{proof}
+        Case 1) Let $(x_n)$ be a monotonically increasing sequence in $\bbR$, and let it be bounded above. Since $(x_n)$ is bounded above, it has a least upper bound, so let $L = \sup \{ x_n : n \in \bbN \}$. Since $L$ is the supremum, for any $\epsilon > 0$, $L - \epsilon$ is not an upper bound of the sequence. Therefore, there exists some $N$ such that $x_N > L - \epsilon$. Because $(x_n)$ is monotonically increasing, for all $n \ge N$, $x_n \ge x_N > L - \epsilon.$ Additionally, since $L$ is an upper bound, $x_n \le L$ for all $n$. Combining, we see that for all $n \ge N$, $L - \epsilon < x_n \le L$. This implies $0 \le L - x_n < \epsilon$ which implies $|x_n - L| < \epsilon$. Therefore $x_n \to L$ as $n \to \infty$. \\
+        Case 2) The case for a monotonically decreasing sequence that is bounded below is symmetric. Let $(x_n)$ be a monotonically decreasing sequence in $\bbR$, and let it be bounded below. Since $(x_n)$ is bounded below, it has a greatest lower bound, so let $L = \inf \{ x_n : n \in \bbN \}$. Since $L$ is the infimum, for any $\epsilon > 0$, $L + \epsilon$ is not a lower bound of the sequence. Therefore, there exists some $N$ such that $x_N < L + \epsilon$. Because $(x_n)$ is monotonically decreasing, for all $n \ge N$, $x_n \le x_N < L + \epsilon.$ Additionally, since $L$ is a lower bound, $x_n \ge L$ for all $n$. Combining, we see that for all $n \ge N$, $L \le x_n < M + \epsilon$. This implies $0 \le x_n - L < \epsilon$ which implies $|x_n - L| < \epsilon$. Therefore $x_n \to L$ as $n \to \infty$.
+    \end{proof}
+\end{exercise}
+
+\begin{exercise}{11}
+    \begin{enumerate} [(a)]
+        \item \begin{proof}
+            Call an element $x_n$ of $(x_n)$ a peak if it is greater than or equal to all subsequence elements, i.e., $x_n \ge x_m, \forall m > n$. Then there are two cases: \\
+            Case 1) There are infinitely many peaks in $(x_n)$. List all of the peaks in the order that they appear in the sequence as $x_{n_1}, x_{n_2}, \dots$ where $n_1 < n_2 < \dots$. By definition, $x_{n_1} \ge x_{n_k}, \forall k \ge 1$, $x_{n_2} \ge x_{n_k}, \forall k \ge 2$, and so on. Thus the subsequence $(x_{n_k})$ satisfies $x_{n_1} \ge x_{n_2} \ge \dots$, which is a non-increasing monotone subsequence. \\
+            Case 2) There are finitely many peaks in $(x_n)$. Let us say that beyond a certain index $N$ there are no peaks. This means that for every $n \ge N$, there exists $m > n$ such that $x_m > x_n$. We construct by induction. Choose $n_1 = N$. Suppose $n_k$ has been chosen such that $n_k \ge N$. Since $n_k$ is not a peak, there exists some $m > n_k$ with $x_m > x_{n_k}$. Let $n_{k + 1}$ be the smallest such $m$ where $x_{n_{k+1}} > x_{n_k}$. Continue this process infinitely, which we know is possible since there are infinitely many elements beyond $N$ and no peaks exist after $N$. By construction, $x_{n_1} < x_{n_2} < \dots$, thus $(x_{n_k})$ is a monotone increasing subsequence. 
+        \end{proof}
+        \item \begin{solution}
+            We can deduce that every bounded sequence in $\bbR$ has a convergent subsequence because we have just proved that every sequence in $\bbR$ has a monotone subsequence. Then if the original sequence is bounded, the subsequence is also bounded, and by exercise 9, we know that since this subsequence is bounded and monotone, it converges in $\bbR$. Thus we have found a convergent subsequence.
+        \end{solution}
+        \item \begin{solution}
+            The proof goes exactly as above. Given a bounded sequence $(x_n)$ in $\bbR$, we know that we can find a monotone subsequence $(x_{n_k})$ that is either monotonically increasing or monotonically decreasing. If $(x_{n_k})$ is increasing, we showed in exercise 9 that it converges to its supremum, and if it is decreasing, we showed that it converges to its infimum. Thus, in either case, $(x_{n_k})$ is convergent, therefore $(x_n)$ contains a convergent subsequence.
+        \end{solution}
+        \item \begin{solution}
+            Assume $K \subset \bbR$ is closed and bounded. Let $(x_n)$ be a sequence in $K$. Since $K$ is bounded, $(x_n)$ is a bounded sequence in $\bbR$. By the Bolzano-Weierstrass Theorem, there exists a convergent subsequence $(x_{n_k})$ that converges to some limit $L \in \bbR$. Since $K$ is closed, the limit $L$ of the subsequence must be in $K$, since $K$ contains all of its limit points. Thus, every sequence in $K$ has a convergent subsequence whose limit is in $K$, which makes $K$ sequentially compact. 
+        \end{solution}
+    \end{enumerate}
+\end{exercise}
+
+\begin{exercise}{12}
+    \begin{enumerate} [(a)]
+        \item \begin{solution}
+            Yes, limits of a sequence are unaffected by rearrangement. Given $f: \bbN \to \bbN$ bijection and $(q_k)$ a rearrangement of $(p_n)$, assume $(p_n)$ converges to some limit $L$. Then we know $\forall \epsilon > 0$, there exists $N$ such that $n \ge N$ implies $|p_n - L| < \epsilon$. Since $f$ is a bijection, each $n \ge N$ appears exactly once in $(q_k)$. Therefore, there exists $K$ such that for all $k \ge K$, $f(k) \ge N$. Thus, for all $k \ge K$, $|q_k - L| = |p_{f(k)} - L| < \epsilon$. Thus $(q_k)$ converges to $L$. It is also easy to see that if $(p_n)$ does not converge, then $(q_k)$ will not converge either. Suppose $(p_n)$ has at least two distinct accumulation points, $L_1$ and $L_2$. Since $f$ is a bijection, infinitely many terms near $L_1$ and $L_2$ must also appear in $(q_k)$, thus $(q_k)$ cannot converge to a single limit. 
+        \end{solution}
+        \item \begin{solution}
+            Suppose $(p_n)$ converges to $L$. Then $\forall \epsilon > 0$, there exists $N$ such that $\forall n \ge N$, $|p_n - L| < \epsilon$. Since $(q_k)$ is a subsequence of $(p_n)$ by injectivity of $f$, there exists $K$ such that for all $k \ge K$, $f(k) \ge N$. Then $|q_k - L| = |p_{f(k)} - L| < \epsilon$, so $(q_k)$ converges to $L$. However, it is not the case that any sequence that does not converge will have a rearrangment that also does not converge. For example, let $p_n = (-1)^n$. This sequence does not converge, however the injection $f(k) = 2k$ will make $q_k = p_{2k} = 1$ for all $k$, which converges to 1.
+        \end{solution}
+        \item \begin{solution}
+            If $f$ is a surjection, $f$ may map multiple inputs to the same output, creating repetitions in $(q_k)$. For example, let $p_n = \frac{1}{n}$ which converges to 0. Let $f$ be a surjective function \begin{equation*} f(k) = 
+                \begin{cases}
+                    1 & \text{ if } k \text{ is odd} \\
+                    \frac{k}{2} & \text{ if } k \text{ is even}
+                \end{cases}
+            \end{equation*}
+            This ensures that all $n \in \bbN$ are mapped to by $f$. However, the rearrangement $(q_k)$ does not converge, since it has infinitely many 1s. Thus, limits are not unaffected.
+        \end{solution}
+    \end{enumerate}
+\end{exercise}
+
+\begin{exercise}{13}
+    \begin{proof}
+        Suppose not, i.e., that $f$ is not continuous at some point $p \in M$. Then by definition, there exists an $\epsilon > 0$ such that $\forall \delta > 0$ there exists a point $q \in M$ with $d_M(p, q) < \delta$ but $d_N(f(p), f(q)) \ge \epsilon$. We construct a sequence $(p_n)$ in $M$ such that $p_n \to p$, i.e., $d_M (p, p_n) < \delta = \frac{1}{n}$ but $d_N(f(p), f(p_n)) \ge \epsilon$ for all $n$. According to the given, since $p_n \to p$ in $M$, it must follow that $f(p_n) \to f(p)$ in $N$. However, by construction, $d_N (f(p), f(p_n)) \ge \epsilon$ for all $n$, which is a contradiction. Thus $f$ must be continuous. 
+    \end{proof}
+\end{exercise}
+
+\begin{exercise}{17}
+    \begin{solution}
+        Claim: All capital letters that have the same number of "holes" are homeomorphic. All of the letters with no holes, namely C, E, F, G, H, I, J, K, L, M, N, S, T, U, V, W, X, Y, Z, can be continuously deformed into one another without creating or removing any holes. These letters are all topologically equivalent to a simple closed curve. Additionally, we see that in terms of properties, all of these letters with no holes are compact, connected, and simply connected, and they all have the same properties. Similarly, the letters with one hole, A, D, O, P, Q, R, are all homeomorphic to each other, since they are all homeomorphic and have the same properties as a circle with one hole. And lastly, the only letter with two holes, B, is not homeomorphic to any other letter.
+    \end{solution}
+\end{exercise}
+
+\begin{exercise}{22}
+    \begin{proof}
+        Suppose $M$ is not complete. Then there exists at least one Cauchy sequence $(x_n)$ in $M$ that does not converge to any limit in $M$. Since $(x_n)$ is Cauchy, it is bounded, so we can let $S = \{ x_n : n \in \bbN \}$ and this set is bounded. Since $S$ is bounded, the closure of $S$, $\overline{S}$, is also bounded. By assumption, $\overline{S}$ is both closed and bounded, thus it is compact. In metric spaces, compactness is equivalent to sequential compactness, so the sequence $(x_n)$ has a convergent subsequence $(x_{n_k})$ that converges to some limit $x \in \overline{S}$. However, in metric spaces, if a Cauchy sequence has a convergent subsequence, the entire sequence converges to the same limit. To see this, let $(x_n)$ be a Cauchy sequence with a convergent subsequence $(x_{n_k})$ converging to $x$. Then $\forall \epsilon > 0$, choose $K$ such that $\forall k \ge K$, $d(x_{n_k}, x) < \frac{\epsilon}{2}$. Since $(x_n)$ is Cauchy, there exists $N$ such taht for all $m, n \ge N$, $d(x_m, x_n) < \frac{\epsilon}{2}$. Then for $n \ge \max \{N, n_K \}$, we have $d(x_n, x) \le d(x_n, x_{n_k}) + d(x_{n_k}, x) < \frac{\epsilon}{2} + \frac{\epsilon}{2} = \epsilon$. Hence, $(x_n)$ converges to $x$. Our initial assumption was that $(x_n)$ does not converge in $M$, so we have reached a contradiction. 
+    \end{proof}
+\end{exercise}
+
+\begin{exercise}{28}
+    \begin{enumerate} [(a)]
+        \item \begin{solution}
+            No, not necessarily. Define a function $f: M \to N$ by $f(x) = x$ for all $x \in \bbR$. Let $M = \bbR$ equipped with the standard Euclidean topology, and let $N = \bbR$ equipped with the discrete topology, where every subset of $N$ is open. Then $f$ is open, since $f$ maps open sets in $M$ to open sets in $N$, since it is essentially the identity map. However, consider a singleton set $\{ x \}$ in $N$, which is open in $N$. The preimage under $f$ is $f^{-1}(\{ x \}) = \{ x \}$. In the standard topology, singleton sets are not open, thus the preimage of an open set in $N$ is not open in $M$, so $f$ is not continuous. 
+        \end{solution}
+        \item \begin{solution}
+            Yes, if $f$ is a homeomorphism, then $f$ is necessarily open. Since $f$ is a homeomorphism, its inverse $f^{-1}: N \to M$ is also continuous. The set $f(U)$ is open in $N$ if and only if $f^{-1}(f(U)) = U$ is open in $M$. Given that $U$ is open in $M$ and $f^{-1}$ is continuous, $f(U)$ must be open in $N$. Therefore, $f$ maps open sets in $M$ to open sets in $N$, making it an open map. 
+        \end{solution}
+        \item \begin{solution}
+            Yes. Since $f$ is bijective, we know that $f^{-1}: N \to M$ exists. Consider any open set $V \subset M$. Since $f$ is open, $f(V)$ is open in $N$. The preimage under $f^{-1}$ of $f(V)$ is $f^{-1}(f(V)) = V$, which is open in $M$ by assumption. This implies that the preimage of every open set under $f^{-1}$ is open in $N$, which is the definition of continuity for $f^{-1}$. Thus, $f$ is a homeomorphism. 
+        \end{solution}
+        \item \begin{solution}
+            No. For example, let $f(x) = x^3 - x$. The function is a polynomial and thus continuous. It is also surjective since as $x \to \pm \infty$, $f(x) \to \pm \infty$. However, consider the open interval $(0, 1)$. Since $f$ achieves its minimum value at $x = \frac{1}{\sqrt{3}}$, we see that $f((0, 1))$ is mapped to an interval of the form $[a, 0)$ where $a$ is the minimum value. Thus $f$ is not open.  
+        \end{solution}
+        \item \begin{solution}
+            Yes. We first show injectivity. Suppose for the sake of contradiction that $f$ is not injective. Then there exists $a, b \in \bbR$ such that $f(a) = f(b)$ with $a \neq b$. Assume without loss of generality that $a < b$. By continuity, $f$ achieves its maximum, $M$, and minimum, $m$, on $[a, b]$. If $x_M$ and $x_m$ are in $\{ a, b \}$ then $f$ is constant on $[a, b]$, which implies that $f$ is not open, which is a contradiction. So we assume $x_M \in (a, b)$. Then if $x_m \in (a, b)$, $f((a, b)) = [m, M]$ and if $x_m \in \{ a, b \}$ then $f((a, b)) = (m, M]$. In either case, this contradicts openness. Thus, $f$ is injective and therefore a bijection. Then by part c), we have a homeomorphism. 
+        \end{solution}
+        \item \begin{solution}
+            No. Consider $f: S^1 \to S^1$ defined by $f(z) = z^2$. This is clearly surjective and it is also open since if we let $I = \{ e^{it} : t \in (a, b) \}$ then $f(I) = \{ e^{2it} : t \in (a, b)$ is open. However, it is clearly not injective since $f(1) = 1 = f(-1)$. 
+        \end{solution}
+    \end{enumerate}
+\end{exercise}
+
+\begin{exercise}{101}
+    \begin{enumerate} [(a)]
+        \item We first want to show the $\Sigma$ is complete. \begin{proof}
+Let \((s^k)\) be a Cauchy sequence in \(\Sigma\). This means that for every \(\epsilon > 0\), there exists an \(N\) such that for all \(k, m \geq N\),
+\[
+d(s^k, s^m) = \sum_{n=1}^\infty \frac{|s^k_n - s^m_n|}{2^n} < \epsilon
+\]
+Since each term \(\frac{|s^k_n - s^m_n|}{2^n}\) is non-negative, it follows that for each fixed \(n\), the sequence \((s^k_n)\) is eventually constant. Define the limit sequence \(s = (s_n)\) where
+\[
+s_n = \lim_{k \to \infty} s^k_n
+\]
+Each \(s_n \in \{0,1\}\), so \(s \in \Sigma\).
+
+To show that \(s^k \to s\), fix \(\epsilon > 0\) and choose \(N\) such that \(\sum_{n=N+1}^\infty \frac{1}{2^n} < \frac{\epsilon}{2}\). For all \(k \geq K = \max\{K_1, K_2, \dots, K_N\}\),
+\[
+d(s^k, s) = \sum_{n=1}^\infty \frac{|s^k_n - s_n|}{2^n} \leq \sum_{n=N+1}^\infty \frac{1}{2^n} < \frac{\epsilon}{2} < \epsilon
+\]
+Thus, \(\Sigma\) is complete.
+\end{proof}
+Next we prove that $\Sigma$ is totally bounded. \begin{proof}
+Given \(\epsilon > 0\), choose \(N\) such that
+\[
+\sum_{n=N+1}^\infty \frac{1}{2^n} < \frac{\epsilon}{2}
+\]
+There are \(2^N\) possible finite sequences of length \(N\). For each such sequence \(s = (s_1, s_2, \dots, s_N)\), define the set
+\[
+U_s = \{ a \in \Sigma \mid a_1 = s_1, a_2 = s_2, \dots, a_N = s_N \}
+\]
+Each \(U_s\) is a ball of radius \(\epsilon/2\) centered at a representative sequence with the first \(N\) terms matching \(s\). The collection \(\{U_s\}_{s \in \{0,1\}^N}\) covers \(\Sigma\) and consists of finitely many balls.
+\end{proof}
+Since \(\Sigma\) is both complete and totally bounded, by the Heine-Borel Theorem, \(\Sigma\) is compact.
+\item \begin{solution}
+    Define a map \(f: \Sigma \to C\) (where \(C\) is the Cantor set) by:
+\[
+f((a_n)) = \sum_{n=1}^\infty \frac{2a_n}{3^n}
+\]
+where \(a_n \in \{0,1\}\).
+
+Different sequences in \(\Sigma\) map to different points in \(C\) because each sequence corresponds to a unique ternary expansion using only digits 0 and 2. Thus $f$ is injective. Every point in the Cantor set has a ternary expansion using only digits 0 and 2, which corresponds to some sequence in \(\Sigma\), which makes $f$ surjective. The map \(f\) is continuous because small changes in the sequence \((a_n)\) (i.e., differences in higher indices) result in small changes in the sum, preserving continuity. The inverse map \(f^{-1}: C \to \Sigma\) is also continuous. Given a point in the Cantor set, its ternary expansion can be read as a binary sequence, and small changes in the point correspond to small changes in the sequence. \\
+Since \(f\) is bijective, continuous, and its inverse \(f^{-1}\) is continuous, \(f\) is a homeomorphism. Therefore, \(\Sigma\) is homeomorphic to the Cantor set.
+\end{solution}
+    \end{enumerate}
+\end{exercise}
+
+\end{document}

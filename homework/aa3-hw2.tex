@@ -1,0 +1,215 @@
+\documentclass[11pt]{article}
+\usepackage{master}
+\DeclareMathOperator{\diam}{diam}
+\newcommand{\interior}[1]{%
+  {\kern0pt#1}^{\mathrm{o}}%
+}
+
+\let\eps\varepsilon
+
+\title{Accelerated Analysis 3 HW2}
+\author{Andrew Hah}
+\begin{document}
+
+\pagestyle{plain}
+\begin{center}
+{\Large MATH 20510. Accelerated Analysis III} \\
+{\Large Homework 2} \\
+\vspace{.2in}  
+Andrew Hah \\
+Due April 9, 2025
+\end{center}
+
+\begin{exercise}{11.1}
+    \begin{proof}
+        Let $E_n = \{ x \in E : f(x) > \frac{1}{n} \}$ for all $n \ge 1$. Write $A = \bigcup_1^\infty E_n$. Then $$\int_E f dm \ge \int_{E_n} f dm \ge \int_{E_n} \frac{1}{n} dm = \frac{1}{n} \int_{E_n} \chi_{E_n} =  \frac{1}{n} m(E_n)$$ for every $n$. Since $\int_E f dm = 0$, this implies that $m(E_n) = 0$ for all $n$. Then since $A = \bigcup_1^\infty E_n$, we have that $m(A) \le \sum_1^\infty m(E_n) = 0$, so $m(A) = 0$. But since $A = \{ x : f(x) > 0 \}$, we have that $f(x) = 0$ on $E \setminus A$, and because $m(A) = 0$, we have that $f(x) = 0$ almost everywhere on $E$. 
+    \end{proof}
+\end{exercise}
+
+\begin{exercise}{11.2}
+    \begin{proof}
+        Consider $A = \{ x \in E : f(x) \ge 0 \}$ and $B = \{ x \in E : f(x) < 0 \}$. Then $E = A \sqcup B$ and $A, B \in \mathfrak{M}$. Since $A, B$ are measurable subsets of $E$, $$\int_A f dm = \int_B f dm = 0$$ Equivalently, $$\int_E f^+ dm = \int_E f^- dm = 0$$ Then by the previous exercise, since $f^+, f^- \ge 0$ and their Lebesgue integrals on $E$ are both zero, $f^+ (x) = 0$ and $f^-(x) = 0$ almost everywhere on $E$, which implies that $f(x) = f^+ (x) - f^-(x) = 0$ almost everywhere on $E$. 
+    \end{proof}
+\end{exercise}
+
+\begin{exercise}{11.3}
+    \begin{proof}
+        Let $E^*$ be the set of points at which $\{ f_n (x) \}$ converges, i.e.
+        $$E^* = \{ x \in E : \{ f_n(x) \} \text{ converges} \} $$ Then since real sequences converge if and only if they are Cauchy, we have $$E^* = \{ x \in E : \forall \eps > 0, \exists N \in \mathbb{N} \text{ s.t. } n, m \ge N \implies |f_n(x) - f_m(x)| < \eps \}$$ Taking $\eps = \frac{1}{k}$ for $k = 1, 2, \dots$, we get $$E^* = \bigcap_{k = 1}^\infty \bigcup_{N = 1}^\infty \bigcap_{n, m \ge N} \left \{ x \in E : |f_n(x) - f_m(x)| < \frac{1}{k} \right \}$$ The set $\left \{ x \in E : |f_n(x) - f_m(x)| < \frac{1}{k} \right \}$ is measurable because each $f_k \in \{ f_n \}$ is measurable which implies that $|f_n - f_m|$ is measurable. Thus, $\left \{ x \in E : |f_n(x) - f_m(x)| < \frac{1}{k} \right \} \in \mathfrak{M}$. $E^*$ is the result of taking countable unions and intersections of measurable sets, so $E^*$ is measurable.
+    \end{proof}
+\end{exercise}
+
+\begin{exercise}{11.5}
+    \begin{proof}
+        First note that $f_n(x) \ge 0$ always. Next, we see that if $x \le \frac{1}{2}$, then $g(x) = 0$, meaning every even term ($f$) is $0$, so infinitely many terms of the sequence are $0$. If $x > \frac{1}{2}$, then $g(1 - x) = 0$, meaning every odd term is $0$ so infinitely many terms of the sequence are $0$. In either case, $\{ f_n (x) \}$ takes the value $0$ infinitely often, so $$0 \le \liminf _{n \to \infty} f_n(x) \le 0 \implies \liminf _{n \to \infty} f_n(x) = 0 \quad (0 \le x \le 1)$$
+
+    Next we consider $\int_0^1 f_n$. There are two cases for $n$. \begin{enumerate} [(i)]
+        \item $n$ is even. Then $f_n(x) = g(x)$ so $$\int_0^1 f_n(x) dx = \int_0^1 g(x) dx = \int_0^{\frac{1}{2}} 0 dx + \int_{\frac{1}{2}}^1 1 dx = \frac{1}{2}$$
+        \item $n$ is odd. Then $f_n(x) = g(1 - x)$, so by change of variable $u = 1 - x$, $$\int_0^1 f_n(x) dx = \int_0^1 g(1 - x) dx = \int_1^0 g(u) (-du) = \int_0^1 g(u) du = \frac{1}{2}$$
+    \end{enumerate}
+    Thus in every case, $\int_0^1 f_n(x) dx = \frac{1}{2}$.
+    \end{proof}
+\end{exercise}
+
+\begin{exercise}{11.6}
+    \begin{proof}
+        We see that $|f_n(x) - 0| = |f_n(x)| \le \frac{1}{n}$ for all $x \in \bbR$. Thus as $n \to \infty$, $|f_n(x) - 0| \to 0$, so $f_n(x) \to 0$ uniformly. Moreover, $$\int_{- \infty}^\infty f_n dx =  \int_{-n}^n \frac{1}{n} dx = \frac{2n}{n} = 2$$
+    \end{proof}
+\end{exercise}
+
+\begin{exercise}{1}
+    \begin{proof}
+        If $f \ge 0$, define the sets $$E_{n, i} = \left \{ x : \frac{i - 1}{2^n} \le f(x) < \frac{i}{2^n} \right \} \quad \text{and} \quad F_n = \{ x : f(x) \ge n \}$$ for $n \ge  1$ and $i = 1, \dots, 2^n$. Define $$f_n = \sum_{i = 1}^{n2^n} \frac{i - 1}{2^n} \chi_{E_{n, i}} + n \chi_{F_n}$$ We see that $f_n$ is measurable. Fix $x \in \bbR^n$, let $\eps > 0$, and let $N \in \bbN$ such that $N > f(x)$ and $2^{-N} < \eps$. Let $n \ge N$. Note that $x \in E_{n, i}$ for some $i$. Since $f_n(x) = \frac{i - 1}{2^n}$ and $f(x) \ge f_n(x)$, $f(x) - f_n(x) \le \frac{1}{2^n} < \eps$. Thus $f_n \to f$ pointwise. We now show $\{ f_n \}$ is monotonically increasing. \begin{enumerate} [(i)]
+            \item Case 1: $x \in F_n$. Then $f(x) \ge n$ and $f_n(x) = n$. If $x \in F_{n + 1}$, then $f_{n + 1}(x) = n + 1 > n = f_n(x)$. If $x \notin F_{n + 1}$, then $x \in $ some $E_{n + 1 ,i}$. Then $\frac{i - 1}{2^{n + 1}} \ge n \implies f_{n + 1}(x) \ge n = f_n(x)$.
+            \item Case 2: $x \in E_{n, i}$ for some $i$. Then $f_n(x) = \frac{i - 1}{2^n}$. Then there is some $j$ such that $x \in E_{n + 1, j} = \{ x : \frac{j - 1}{2^{n + 1}} \le f(x) < \frac{j}{2^{n+1}} \}$. Because $\frac{i - 1}{2^n} \le f(x)$, we have $\frac{j - 1}{2^{n+1}} \ge \frac{i - 1}{2^n}$ so $f_{n+1}(x) = \frac{j - 1}{2^{n+1}} \ge \frac{i - 1}{2^n} = f_n(x)$. 
+        \end{enumerate}
+        Thus in both cases, $\{ f_n \}$  is monotonically increasing. We next consider the general case. Given $f$, write $f^+(x) = \max \{ f(x), 0 \}$ and $f^-(x) = - \min \{ f(x), 0 \}$ so that $f = f^+ - f^-$ and $f^+, f^- \ge 0$. By the previous part, there exist two sequences of nonnegative measurable simple functions $f_n^+ \to f^+$ and $f_n^- \to f^-$ each converging pointwise. Define $f_n(x) = f_n^+(x) - f_n^-(x)$. Then $f_n$ is simple and measurable since it is the difference of two simple measurable functions, and converges pointwise. 
+    \end{proof}
+\end{exercise}
+
+\begin{exercise}{2}
+    \begin{enumerate} [(a)]
+        \item \begin{proof}
+            Since $f$ is bounded, $|f(x)| \le M$ for some constant $M$. In other words, $f^+, f^- \le M$. Then $$\int_E f^+ dm \le \int_E M dm = M m(E) < \infty$$ and similarly $\int_E f^- dm < \infty$ so $f \in \mathscr{L}$ on $E$.
+        \end{proof}
+        \item \begin{proof}
+            Since $a \le f$, $f - a \ge 0$ so $$\int_E (f - a) dm = \int_E f dm - \int_E a dm = \int_E f dm - a m(E) \ge 0$$ i.e., $\int_E f dm \ge a m(E)$. On the other hand, since $b \ge f$, $b - f \ge 0$. Thus $$\int_E (b - f) dm = \int_E b dm - \int_E f dm = b m(E) - \int_E f dm \ge 0$$ i.e., $\int_E f dm \le b m(E)$.
+        \end{proof}
+        \item \begin{proof}
+            Since $f(x) \le g(x)$ for all $x \in E$, $h(x) = g(x) - f(x) \ge 0$ for all $x \in E$. Then $h \in \mathscr{L}$, $\int_E h dm \ge 0$, and thus $$\int_E h dm = \int_E (g - f) dm = \int_E g dm - \int_E f dm \ge 0$$i.e., $\int_E g dm \ge \int_E f dm$.
+        \end{proof}
+        \item \begin{proof}
+            Let $g$ be a simple measurable function, $g = \sum_1^k c_i \chi_{E_i}$ with $c_i$'s distinct and $E_i$'s measurable and disjoint such that $0 \le g \le f$. Then $cg = \sum_1^k cc_i \chi_{E_i}$ and $$\int_E cg dm = \sum_1^k cc_i m(E_i \cap E) = c \sum_1^k c_i m (E_i \cap E) = c \int_E g dm$$ Now let $h \ge 0$ be measurable. By definition, $\int_E h dm= \sup \{ \int_E \varphi : 0 \le \varphi \le h, \varphi \text{ simple} \}$. But then $\int_E (ch) = \sup \{ \int_E \psi : 0 \le \psi \le ch, \psi \text{ simple} \}$. Every simple $\psi \le ch$ can be written as $\psi = c \varphi$ with $\varphi = \psi /c \le g$ and vice versa. Thus, $$\int_E (ch) dm = \sup_{\varphi \le g} \int_E (c\varphi) = \sup_{\varphi \le g} c \int_E \varphi = c \int_E h dm$$ Now for any arbitrary $f \in \mathscr{L}$, we can write $f = f^+ - f^-$ for which $f^+, f^- \ge 0$. Then by the above, we saw that $$\int_E c f^+ = c \int_E f^+, \quad \text{and} \quad \int_E cf^- = c \int_E f^-$$ Thus, $$\int_E cf = \int_E (cf^+ - cf^-) = \int_E cf^+ - \int_E cf^- = c \left( \int_E f^+ - \int_E f^- \right) = c \int_E f$$
+        \end{proof}
+        \item \begin{proof}
+            For any simple measurable $g$ such that $0 \le g \le f$, we have that $\int_E f dm = \sup \sum_1^k c_i m(E_i \cap E)$. Consider nonnegative $f$. Since $m(E) = 0$, $m(E_i \cap E) = 0$ for all $E_i$, so $$\int_E f dm = \sup \sum_1^k c_i m(E_i \cap E) = \sup \sum_1^k 0 = 0 $$ Setting $f = f^+ - f^-$ proves the general case.
+        \end{proof}
+        \item \begin{proof}
+            If $A \subset E$, $$\int_A f dm \le \int_E f dm$$ Thus if $\int_E f dm < \infty$, $\int_A f dm < \infty$ as well.
+        \end{proof}
+    \end{enumerate}
+\end{exercise}
+
+\begin{exercise}{3}
+    \begin{proof}
+We first note that since $m^*(\Delta(A,B)) = 0$, there exists a countable open cover 
+\(
+V \;=\; \bigcup_1^\infty V_n
+\)
+of $\Delta(A,B)$ such that the total volume $m(V) < \varepsilon$ for every $\varepsilon > 0$. 
+Since $A \in \mathfrak{M}$, for the same $\varepsilon > 0$ there exists an open set $U$ with $A \subseteq U$ and $m(U \setminus A) < \eps$ as well as a closed set $F$ with $F \subseteq A$ and $m(A \setminus F) < \eps$. Since 
+\[
+B \;\subseteq\; A \cup (B \setminus A) \;\subseteq\; A \cup \Delta(A,B) \;\subseteq\; U \cup V
+\]
+we have
+\[
+m^*(B) 
+\;\le\; 
+m^*\bigl(U \cup V\bigr) 
+\;\le\; 
+m^*(U) + m^*(V) 
+\;=\; 
+m(U) \;+\; m(V).
+\]
+Because $m(U) < m(A) + \varepsilon$ and $m(V) < \varepsilon$, we get
+\[
+m^*(B) 
+\;<\; 
+\bigl(m(A) + \varepsilon \bigr) + \varepsilon 
+\;=\; 
+m(A) \;+\; 2\,\varepsilon.
+\]
+Note that
+\[
+A 
+\;\subseteq\; 
+B \cup (A \setminus B) 
+\;\subseteq\; 
+B \cup \Delta(A,B)
+\;\subseteq\;
+B \cup V.
+\]
+Hence 
+\[
+F 
+\;\subseteq\; 
+A
+\;\subseteq\; 
+B \cup V.
+\]
+Therefore,
+\[
+m(F)
+\;\le\; 
+m^*\bigl(B \cup V\bigr)
+\;\le\; 
+m^*(B) + m^*(V)
+\;=\; 
+m^*(B) + m(V).
+\]
+Since $m(V)<\varepsilon$, 
+\[
+m^*(B) 
+\;\ge\; 
+m(F) - m(V).
+\]
+But $m(F) > m(A) - \varepsilon$ because $m(A \setminus F) < \varepsilon$. Thus
+\[
+m^*(B) 
+\;\ge\; 
+\bigl(m(A) - \varepsilon\bigr) \;-\; \varepsilon
+\;=\;
+m(A) \;-\; 2\,\varepsilon.
+\]
+
+Combining the two inequalities, we see that for every $\varepsilon>0$,
+\[
+m(A) - 2\,\varepsilon 
+\;\le\; 
+m^*(B) 
+\;<\; 
+m(A) + 2\,\varepsilon.
+\] This forces
+\[
+m^*(B) 
+\;=\; 
+m(A).
+\]
+
+It remains to show that $B \in \mathfrak{M}$. We show that for every $\varepsilon>0$, there is an open set $W \supset B$ 
+such that $m\bigl(W \setminus B\bigr) < \varepsilon$.  
+Choose $U_{\varepsilon/2} \supset A$ with $m(U_{\varepsilon/2} \setminus A) < \tfrac{\varepsilon}{2}$ 
+and an open set $V_{\varepsilon/2} \supset \Delta(A,B)$ with $m(V_{\varepsilon/2}) < \tfrac{\varepsilon}{2}$.  
+Then
+\[
+B 
+\;\subseteq\; 
+A \cup \Delta(A,B)
+\;\subseteq\; 
+U_{\varepsilon/2} \cup V_{\varepsilon/2}.
+\]
+Let $W = U_{\varepsilon/2} \cup V_{\varepsilon/2}$, which is open.  Clearly $B \subseteq W$, and
+\[
+W \setminus B 
+\;\subseteq\; 
+\bigl(U_{\varepsilon/2} \setminus B \bigr)\,\cup\, V_{\varepsilon/2}
+\;\subseteq\; 
+\bigl(U_{\varepsilon/2} \setminus A\bigr)\,\cup\, V_{\varepsilon/2},
+\]
+since $B$ contains all of $A$ except possibly on $\Delta(A,B)$. Thus
+\[
+m\bigl(W \setminus B\bigr)
+\;\le\;
+m\bigl(U_{\varepsilon/2} \setminus A\bigr)
+\;+\;
+m\bigl(V_{\varepsilon/2}\bigr)
+\;<\;
+\tfrac{\varepsilon}{2} + \tfrac{\varepsilon}{2}
+\;=\;
+\varepsilon.
+\]
+This shows $B$ can be covered by an open set differing in measure by less than $\varepsilon$, and thus $B \in \mathfrak{M}$.
+\end{proof}
+\end{exercise}
+
+\end{document}
