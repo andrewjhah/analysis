@@ -1,0 +1,54 @@
+\documentclass[11pt]{article}
+\usepackage{master}
+
+\title{Entropy and Graphons}
+\author{Andrew Hah}
+\date{\vspace{-.75em}Spring 2025}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+This paper began with my curiosity about how ideas from information theory and analysis can be used to understand the behavior of large combinatorial structures. In particular, I explored two tools in depth: entropy, which captures uncertainty and structure, and graphons, which describe the limiting behavior of dense graphs. This paper surveys what I’ve learned so far. Beginning with entropy in finite combinatorics, I then introduce the theory of graph limits and graphons, and finally explore how entropy extends to this setting and informs recent results.
+\end{abstract}
+
+\tableofcontents
+
+\section{Extremal Graph Theory}
+
+\subsection{Classical Results}
+
+\subsection{Homomorphism Densities}
+Let \( G \) be a finite simple graph with vertex set \( V(G) \) and edge set \( E(G) \). An important question in many areas of graph theory is: how often does a fixed small graph \( H \) appear inside \( G \)?
+
+To quantify this, we define the \emph{homomorphism density} of a graph \( H \) in a graph \( G \), denoted \( t(H, G) \), as the probability that a uniformly random map \( \phi : V(H) \to V(G) \) is a graph homomorphism; that is, for every edge \( \{u, v\} \in E(H) \), the image \( \{\phi(u), \phi(v)\} \in E(G) \). Formally,
+\[
+t(H, G) := \frac{|\mathrm{Hom}(H, G)|}{|V(G)|^{|V(H)|}},
+\]
+where \( \mathrm{Hom}(H, G) \) is the set of all homomorphisms from \( H \) to \( G \).
+
+This quantity reflects the “density” of \( H \) in \( G \). For example, if \( H \) is the triangle \( K_3 \), then \( t(K_3, G) \) captures how likely it is for three randomly chosen vertices in \( G \) to form a triangle, when accounting for all mappings.
+
+The homomorphism density is closely related to induced subgraph counts and plays a fundamental role in extremal graph theory. Many classical results — such as Turán’s Theorem — can be rephrased in terms of maximizing or minimizing \( t(H, G) \) under certain constraints.
+
+In what follows, we will use homomorphism densities as a lens for understanding graph sequences, graph parameters, and the eventual need for limiting objects such as graphons.
+
+\section{Entropy in Combinatorics}
+
+\section{Motivating Graph Limits}
+
+\section{Graphons}
+
+\section{Entropy of Graphons}
+
+\section{Flag Algebras}
+
+\section{Open Questions}
+
+\section*{Acknowledgments}
+
+\section*{References}
+
+
+\end{document}
