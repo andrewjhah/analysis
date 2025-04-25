@@ -31,8 +31,6 @@
     A ring $\mathscr{A}$ is called a \emph{$\sigma$-ring} if for any $\{ A_n \}_1^\infty \subseteq \mathscr{A}$, $$\bigcup_1^\infty A_n \in \mathscr{A}.$$
 \end{definition}
 
-Note. This implies that $\bigcap_1^\infty A_n \in \mathscr{A}$. 
-
 \begin{definition}
     $\phi$ is a \emph{set function} on a ring $\mathscr{A}$ if for every $A \in \mathscr{A}$, $$\phi(A) \in [-\infty, \infty].$$
 \end{definition}
@@ -124,15 +122,14 @@ Note. $\mathrm{vol}$ is regular.
 
 \begin{proof}
   (i) Let $A \in \mathscr{E}$ and $\epsilon > 0$. Since $\mathrm{vol}$ is regular, $\exists$ open $G \in \mathscr{E}$ such that $A \subseteq G$ and $\mathrm{vol}(G) \le \mathrm{vol}(A) + \epsilon$. Since $G \supseteq A$ and $G \in \mathscr{E}$ is open, $m^*(A) \le \mathrm{vol}(G) \le \mathrm{vol}(A) + \epsilon$. There also $\exists$ closed $F \in \mathscr{E}$ such that $F \subseteq A$ and $\mathrm{vol}(A) \le \mathrm{vol}(F) + \epsilon$. By definition, $\exists$ collection $\{ A_n \}$ of open elementary sets such that $A \subseteq \bigcup A_n$ and $\sum_1^\infty \mathrm{vol}(A_n) \le m^*(A) + \epsilon$. Since $F \subseteq \bigcup A_n$ and $F$ is compact, $F\subseteq A_1 \cup \dots \cup A_N$ from some $N$. 
-    \begin{equation*} \begin{split} \mathrm{vol}(A) & \le \mathrm{vol}(F) + \epsilon \\ & \le \mathrm{vol}(A_1 \cup \dots \cup A_N) + \epsilon \\ & \le \sum_1^N \mathrm{vol}(A_n) + \epsilon \\ & \le \sum_1^\infty \mathrm{vol}(A_n) + \epsilon \\ & \le m^* (A) + \epsilon + \epsilon \\ & = m^* (A) + 2 \epsilon \end{split} \end{equation*} Since $\epsilon$ was arbitrary, $m^*(A) = \mathrm{vol}(A)$. \\
-
-    (ii) If $m^* (E_n) = \infty$ for any $n \in \mathbb{N}$, then we are done. Assume not. Let $\epsilon > 0$. For every $n \in \mathbb{N}$, $\exists$ open cover of $E_n$, $\{ A_{n, k} \}_{k = 1}^\infty$ such that $$\sum_{k = 1}^\infty \mathrm{vol}(A_{n, k}) \le m^* (E_n) + \epsilon / 2^n$$Then $E \subseteq \bigcup_{n = 1}^\infty \bigcup_{k = 1}^\infty A_{n, k}$ and so \begin{equation*}
-        \begin{split}
+  \begin{align*} \mathrm{vol}(A) & \le \mathrm{vol}(F) + \epsilon \\ & \le \mathrm{vol}(A_1 \cup \dots \cup A_N) + \epsilon \\ & \le \sum_1^N \mathrm{vol}(A_n) + \epsilon \\ & \le \sum_1^\infty \mathrm{vol}(A_n) + \epsilon \\ & \le m^* (A) + \epsilon + \epsilon \\ & = m^* (A) + 2 \epsilon  \end{align*} Since $\epsilon$ was arbitrary, $m^*(A) = \mathrm{vol}(A)$.
+\end{proof}
+\begin{proof}
+    (ii)  If $m^* (E_n) = \infty$ for any $n \in \mathbb{N}$, then we are done. Assume not. Let $\epsilon > 0$. For every $n \in \mathbb{N}$, $\exists$ open cover of $E_n$, $\{ A_{n, k} \}_{k = 1}^\infty$ such that $$\sum_{k = 1}^\infty \mathrm{vol}(A_{n, k}) \le m^* (E_n) + \epsilon / 2^n$$Then $E \subseteq \bigcup_{n = 1}^\infty \bigcup_{k = 1}^\infty A_{n, k}$ and so \begin{align*}
             m^*(E) & \le \sum_{n = 1}^\infty \sum_{k = 1}^\infty \mathrm{vol}(A_{n, k}) \\
             & \le \sum_{n = 1}^\infty m^*(E_n) + \epsilon / 2^n \\ & = \sum_{n = 1}^\infty m^*(E_n) + \sum_1^\infty \epsilon / 2^n \\
-            & = \sum_1^\infty m^*(E_n) + \epsilon
-        \end{split}
-    \end{equation*}
+            & = \sum_1^\infty m^*(E_n) + \epsilon \qedhere
+      \end{align*}
 \end{proof}
 
 \begin{definition} Let $A, B \subseteq \bbR^{n}$.
@@ -225,7 +222,7 @@ To summarize,
 \end{proof}
 
 \begin{theorem}
-    Suppose $\{ f_n \}$ is a sequence of measurable functions. Define $$g = \sup_n f_n \quad \text{ and } \quad h = \limsup_{n \to \infty} f_n$$ Then $g, h$ are measurable. 
+     Suppose $\{ f_n \}$ is a sequence of measurable functions. Define $$g = \sup_n f_n \quad \text{ and } \quad h = \limsup_{n \to \infty} f_n$$ Then $g, h$ are measurable. 
 \end{theorem}
 \begin{proof}
     $\{ x : g(x) > a \} = \bigcup_{n = 1}^\infty \{ x : f_n(x) > a \} $ implies $ g$ is measurable. Similarly, $\inf_n f_n$ is measurable. Define $g_n = \sup_{n \ge m} f_n$ and note that $g_n$ is measurable for all $m$. Since $h = \inf_m g_m$, $h$ is measurable. 
