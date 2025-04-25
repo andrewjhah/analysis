@@ -15,8 +15,7 @@
   {\large Based on lectures by Prof. Donald Stull}\par
   {\normalsize Notes taken by Andrew Hah}\par
   \vspace{2ex}
-  {\small The University of Chicago}\par
-  {\small Spring 2025}
+  {\small The University of Chicago - Spring 2025}
 \end{center}
 
 \section{Measure Theory}
@@ -91,6 +90,7 @@ We denote the set of elementary sets by $\mathscr{E}$.
   \item If $A \in \mathscr{E}$, then $A$ can be written as a finite union of disjoint intervals.
   \item If $A \in \sE$, then $\mathrm{vol}(A)$ is well-defined.
   \item $\mathrm{vol}$ is an additive set function on $\mathscr{E}$, and $\mathrm{vol} \ge 0$.
+  \end{enumerate}
 \end{remark}
 
 \begin{definition}
@@ -119,10 +119,20 @@ Note. $\mathrm{vol}$ is regular.
   \begin{enumerate} [(i), nosep, left=0pt]
   \item If $A \in \sE$, then $m^{*}(A) = \mathrm{vol}(A)$.
   \item If $E = \bigcup_{1}^{\infty} E_{n}$ then $m^{*}(E) \le \sum_{1}^{\infty} m^{*}(E_{n})$.
+  \end{enumerate}
 \end{theorem}
 
 \begin{proof}
-  
+  (i) Let $A \in \mathscr{E}$ and $\epsilon > 0$. Since $\mathrm{vol}$ is regular, $\exists$ open $G \in \mathscr{E}$ such that $A \subseteq G$ and $\mathrm{vol}(G) \le \mathrm{vol}(A) + \epsilon$. Since $G \supseteq A$ and $G \in \mathscr{E}$ is open, $m^*(A) \le \mathrm{vol}(G) \le \mathrm{vol}(A) + \epsilon$. There also $\exists$ closed $F \in \mathscr{E}$ such that $F \subseteq A$ and $\mathrm{vol}(A) \le \mathrm{vol}(F) + \epsilon$. By definition, $\exists$ collection $\{ A_n \}$ of open elementary sets such that $A \subseteq \bigcup A_n$ and $\sum_1^\infty \mathrm{vol}(A_n) \le m^*(A) + \epsilon$. Since $F \subseteq \bigcup A_n$ and $F$ is compact, $F\subseteq A_1 \cup \dots \cup A_N$ from some $N$. 
+    \begin{equation*} \begin{split} \mathrm{vol}(A) & \le \mathrm{vol}(F) + \epsilon \\ & \le \mathrm{vol}(A_1 \cup \dots \cup A_N) + \epsilon \\ & \le \sum_1^N \mathrm{vol}(A_n) + \epsilon \\ & \le \sum_1^\infty \mathrm{vol}(A_n) + \epsilon \\ & \le m^* (A) + \epsilon + \epsilon \\ & = m^* (A) + 2 \epsilon \end{split} \end{equation*} Since $\epsilon$ was arbitrary, $m^*(A) = \mathrm{vol}(A)$. \\
+
+    (ii) If $m^* (E_n) = \infty$ for any $n \in \mathbb{N}$, then we are done. Assume not. Let $\epsilon > 0$. For every $n \in \mathbb{N}$, $\exists$ open cover of $E_n$, $\{ A_{n, k} \}_{k = 1}^\infty$ such that $$\sum_{k = 1}^\infty \mathrm{vol}(A_{n, k}) \le m^* (E_n) + \epsilon / 2^n$$Then $E \subseteq \bigcup_{n = 1}^\infty \bigcup_{k = 1}^\infty A_{n, k}$ and so \begin{equation*}
+        \begin{split}
+            m^*(E) & \le \sum_{n = 1}^\infty \sum_{k = 1}^\infty \mathrm{vol}(A_{n, k}) \\
+            & \le \sum_{n = 1}^\infty m^*(E_n) + \epsilon / 2^n \\ & = \sum_{n = 1}^\infty m^*(E_n) + \sum_1^\infty \epsilon / 2^n \\
+            & = \sum_1^\infty m^*(E_n) + \epsilon
+        \end{split}
+    \end{equation*}
 \end{proof}
 
 \begin{definition} Let $A, B \subseteq \bbR^{n}$.
@@ -180,6 +190,83 @@ To summarize,
 \begin{example} Fix $n \in \bbN$.
   \begin{enumerate} [(i), nosep, left=0pt]
   \item If $A \in \sE$ then $A \in \mathfrak{M}(m)$ since $m^{*}(A \triangle A) = m^{*}( \emptyset) = 0 \implies A \to A$.
-    \item 
-    
+    \item $\bbR^n \in \mathfrak{M}(m)$ since $\bbR^n = \bigcup_{N \in \bbN} [-N, N]^n \implies m(\bbR^n) = \infty$.
+    \item If $A \in \mathfrak{M}(m)$ then $A^c \in \mathfrak{M}(m)$.
+    \item $\forall x \in \bbR^n$, $\{ x \} \in \mathfrak{M}(m)$ and $m(\{ x \}) = 0$.
+    \item $\forall x_1, \dots, x_n \in \mathbb{R}^n$, $\{ x_1, \dots, x_n \} \in \mathfrak{M} (m)$ and $m(\{ x_1, \dots, x_n \}) = 0 \implies m(\mathbb{Q}^n) = 0$.
+    \end{enumerate}
+\end{example}
+
+\begin{definition}
+    $f: \mathbb{R}^n \to \mathbb{R} \cup \{ - \infty, \infty \}$ is \emph{measurable} if $\{ x \in \mathbb{R}^n : f(x) > a \} \in \mathfrak{M}$, $\forall a \in \mathbb{R}$, i.e. $f^{-1} ((a, \infty]) \in \mathfrak{M}$, $\forall a \in \mathbb{R}$.
+\end{definition}
+
+\begin{example}
+    $f$ continuous $\implies$ $f$ measurable. 
+\end{example}
+
+\begin{theorem}
+    The following are equivalent, \begin{enumerate} [(i), nosep, left=0pt]
+        \item $\{ x : f(x) > a \}$ is measurable $\forall a \in \mathbb{R}$. 
+        \item $\{ x : f(x) \ge a \}$ is measurable $\forall a \in \mathbb{R}$. 
+        \item $\{ x : f(x) < a \}$ is measurable $\forall a \in \mathbb{R}$. 
+        \item $\{ x : f(x) \le a \}$ is measurable $\forall a \in \mathbb{R}$. 
+    \end{enumerate}
+\end{theorem}
+\begin{proof} (i) $\implies$ (ii).
+     $$\{ x : f(x) \ge a \} = \bigcap_{n = 1}^\infty \left \{ x : f(x) > a - \frac{1}{n} \right \}$$
+\end{proof}
+
+\begin{theorem}
+    If $f$ is measurable then $|f|$ is measurable. 
+\end{theorem}
+\begin{proof}
+    It suffices to show that $\{ x : |f(x)| < a \} \in \mathfrak{M}$, $\forall a \in \mathbb{R}$. $$\{ x : |f(x)  | < a \} = \{ x : f(x) < a \} \cap \{ x : f(x) > -a \}$$
+\end{proof}
+
+\begin{theorem}
+    Suppose $\{ f_n \}$ is a sequence of measurable functions. Define $$g = \sup_n f_n \quad \text{ and } \quad h = \limsup_{n \to \infty} f_n$$ Then $g, h$ are measurable. 
+\end{theorem}
+\begin{proof}
+    $\{ x : g(x) > a \} = \bigcup_{n = 1}^\infty \{ x : f_n(x) > a \} $ implies $ g$ is measurable. Similarly, $\inf_n f_n$ is measurable. Define $g_n = \sup_{n \ge m} f_n$ and note that $g_n$ is measurable for all $m$. Since $h = \inf_m g_m$, $h$ is measurable. 
+\end{proof}
+
+\begin{corollary}
+     If $f, g$ are measurable then $\max\{ f, g \}$ and $\min \{ f, g \}$ are also measurable.
+\end{corollary}
+
+\begin{corollary}
+    Define $f^+ = \max \{ f, 0 \}$, $f^- = - \min \{ f, 0 \}$. Then if $f$ is measurable, $f^+, f^-$ are also measurable.
+\end{corollary}
+
+\begin{corollary}
+    If $\{ f_n \}$ is a sequence of measurable functions such that $f_n$ converges to $f$ pointwise, then $f$ is measurable. 
+\end{corollary}
+
+\begin{theorem}
+    $f, g: \mathbb{R}^n \to \mathbb{R}$ measurable, $F: \mathbb{R}^2 \to \mathbb{R}$ continuous, and $h(x) = F(f(x), g(x))$. Then $h$ is measurable. In particular, this tells us that $f + g$ and $fg$ are measurable. 
+\end{theorem}
+
+\begin{definition}
+    A function $f: \mathbb{R}^n \to \mathbb{R}$ is \emph{simple} if $\mathrm{range}(f)$ is a finite set.
+\end{definition}
+
+\begin{example}
+    Let $E \subseteq \mathbb{R}^n$. The characteristic function of $E$ is $$\chi_E (x) = \begin{cases} 1 & \text{if } x \in E \\ 0 & \text{otherwise} \end{cases}$$Suppose $f$ is simple, so $\mathrm{range}(f) = \{ c_1, \dots, c_m \}$. Let $E_i = \{ x : f(x) = c_i \}$. Then $$f = \sum_1^m \chi_{E_i} c_i$$
+\end{example}
+
+\begin{theorem}
+    $f: \mathbb{R}^n \to \mathbb{R}$. There exists a sequence $\{ f_n \}$ of simple functions such that $f_n \to f$ pointwise. \begin{enumerate}
+        \item If $f$ is measurable, $\{ f_n \}$ can be chosen to be measurable.
+        \item If $f\ge 0$ then $\{ f_n \}$ can be chosen to be monotonically increasing.
+    \end{enumerate} 
+\end{theorem}
+\begin{proof}
+    If $f \ge 0$, define the sets $$E_{n, i} = \left \{ x : \frac{i - 1}{2^n} \le f(x) < \frac{i}{2^n} \right \}, \quad n \ge 1, i = 1, \dots, n2^n$$ $$F_n = \{ x \mid f(x) \ge n \}, \quad n \ge 1$$Define $$f_n = \sum_{i = 1}^{n2^n} \frac{i - 1}{2^n} \chi_{E_{n, i}} + n \chi_{F_n}$$ We see that $f_n$ is measurable. Fix $x \in \bbR^n$, let $\eps > 0$, and let $N \in \bbN$ such that $N > f(x)$ and $2^{-N} < \eps$. Let $n \ge N$. Note that $x \in E_{n, i}$ for some $i$. Since $f_n(x) = \frac{i - 1}{2^n}$ and $f(x) \ge f_n(x)$, $f(x) - f_n(x) \le \frac{1}{2^n} < \eps$. Thus $f_n \to f$ pointwise. We now show $\{ f_n \} $ is monotonically increasing. 
+    \begin{enumerate}
+        \item Case 1: $x \in F_n$. Then $f(x) \ge n$ and $f_n(x) = n$. If $x \in F_{n + 1}$, then $f_{n + 1}(x) = n + 1 > n = f_n(x)$. If $x \notin F_{n + 1}$ then $x \in$ some $E_{n+1, i}$. Then $\frac{i - 1}{2^{n + 1}} \ge n \implies f_{n + 1}(x) \ge n = f_n(x)$.
+        \item Case 2: $x \in E_{n, i}$ for some $i$. Then $f_n(x) = \frac{i - 1}{2^n}$. Then there is some $j$ such that $x \in E_{n + 1, j} = \{ x : \frac{j - 1}{2^{n + 1}} \le f(x) \le \frac{j}{2^{n + 1}} \} $. Because $\frac{i - 1}{2^n} \le f(x)$, we have $\frac{j - 1}{2^{n + 1}} \ge \frac{i - 1}{2^n}$ so $f_{n + 1}(x) = \frac{j - 1}{2^{n + 1}} \ge \frac{i - 1}{2^n} = f_n (x)$.
+    \end{enumerate}
+    Thus in both cases, $\{ f_n \}$ is monotonically increasing. We next consider the general case. Given $f$, we write $f^+(x) = \max \{ f(x), 0 \}$ and $f^- = - \min \{ f(x), 0 \}$ so that $f = f^+ - f^-$ and $f^+, f^- \ge 0$. By the previous part, there exist two sequences of nonnegative measurable simple functions $f_n^+ \to f^+$ and $f_n^- \to f^-$ each converging pointwise. Define $f_n(x) = f_n^+(x) - f_n^-(x)$. Then $f_n$ is simple and measurable since it is the difference of two simple measurable functions, and converges pointwise.
+\end{proof}
 \end{document}
