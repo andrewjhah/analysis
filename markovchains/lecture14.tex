@@ -1,0 +1,42 @@
+\documentclass[11pt]{article}
+\usepackage{master}
+\title{Markov Chains}
+\author{Andrew Hah}
+
+\begin{document}
+
+\pagestyle{plain}
+\begin{center}
+{\Large MATH 235. Markov Chains} \\
+{\Large Lecture 14} \\
+\vspace{.2in}
+April 25, 2025
+\end{center}
+
+Recall. The $t$-time transition matrix $P_{t}$ is the $N \times N$ matrix satisfying $e^{{tA}}$ where $A$ is the matrix with $x, y$ entries: $\alpha(x, y)$, $x \neq y$; $-\alpha(x), x = y$.
+
+\begin{note}
+  $\alpha(x) = \sum_{y \in S \setminus \{ x \}} \alpha(x, y)$.
+\end{note}
+
+\begin{note}
+  $e^{tA} = \sum_{n = 0}^{\infty} \frac{(tA)^n}{n!}$. If $A$ is diagonalizable, then we may write $A = QDQ^{-1}$, and so $e^{tA} = Qe^{tD}Q^{-1}$ because $(tQDQ^{-1})^n = t^nQD^nQ^{-1}$. If $D$ is diagonal with entries $\lambda_1, \dots, \lambda_n$ then $(tD)^n$ is diagonal with entries $(t\lambda_1)^n, \dots, (t \lambda_n)^{n}$.
+\end{note}
+
+\begin{example} Consider the continuous Markov chain with state space $S = \{ 0, 1 \}$ and rates $\alpha(0, 1) = 2$, $\alpha(1, 0) = 3$. We have \begin{align*} A = \begin{pmatrix} -2 & 2 \\ 3 & -3 \end{pmatrix} \end{align*} We diagonalize $A$. The eigenvalues are $\lambda_1 = 0, \lambda_2 = -5$ with eigenvectors $v_1 = \begin{pmatrix} 1 \\ 1 \end{pmatrix}$, $v_2 = \begin{pmatrix} 2 \\ -3 \end{pmatrix}$. Thus \begin{align*} A = \begin{pmatrix} -2 & 1 \\ 3 & 1 \end{pmatrix} \begin{pmatrix} -5 & 0 \\ 0 & 0 \end{pmatrix} \begin{pmatrix} -2 & 1 \\ 3 & 1 \end{pmatrix}^{-1} \end{align*} Which gives \begin{align*} e^{tA} = \begin{pmatrix} -2 & 1 \\ 3 & 1 \end{pmatrix} \begin{pmatrix} -e^{5t} & 0 \\ 0 & 1 \end{pmatrix} \begin{pmatrix} -2 & 1 \\ 3 & 1 \end{pmatrix}^{-1} = \frac{1}{5} \begin{pmatrix} 3 +  2e^{-5t} & 2 - 2e^{-5t} \\ 3 - 3e^{-5t} & 2 + 3e^{-5t} \end{pmatrix} \end{align*} In particular, $\bbP (X_t= 1 \mid X_0 = 0) = \frac{2 - 2e^{-5t}}{5}$.
+\end{example}
+
+\begin{remark} The matrix $A$ is called the \emph{infinitesimal generator} for the Markov chain.
+\end{remark}
+
+\begin{definition} A continuous time Markov chain is \emph{irreducible} if we can get from any state to any other state, i.e., $p_t(x, y) > 0$ for all $x, y$, for all $t > 0$.
+\end{definition}
+
+\begin{definition} A function $\pi: S \to [0, 1]$ with $\sum_{x \in S} \pi_x= 1 $ is a \emph{stationary (invariant) distribution} for $\{ X_{t} \}$ if the following is true: If the distribution of $X_0$ is $\pi$, then the distribution of $X_t$ is $\pi$ for all $t > 0$.
+\end{definition}
+
+This means $\frac{d}{dt} \pi P_t = 0 \iff \frac{d}{dt} \pi e^{tA} = 0 \iff \pi A = 0$.
+
+\begin{proposition} If $\{ X_t \}$ is irreducible, then there exists a unique stationary distribution $\pi$ for $\{ X_t \}$. Moreover, $\lim_{t \to \infty} p_t(x, y) = \pi_{y}$ for all $x, y \in S$.
+
+\end{document}
