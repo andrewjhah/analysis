@@ -82,7 +82,7 @@ We denote the set of elementary sets by $\mathscr{E}$.
     If $A = I_1 \cup I_2 \cup \dots \cup I_k$ is elementary, and the intervals are disjoint, then $$\mathrm{vol}(A) = \sum_1^k \mathrm{vol}(I_j).$$
 \end{definition}
 
-\begin{remark}
+\begin{remark} $\text{}$
   \begin{enumerate} [(i), nosep, left=0pt]
   \item $\mathscr{E}$ is a ring, but not a $\sigma$-ring.
   \item If $A \in \mathscr{E}$, then $A$ can be written as a finite union of disjoint intervals.
@@ -105,7 +105,7 @@ Note. $\mathrm{vol}$ is regular.
   The \emph{Lebesgue outer measure} of $E \subseteq \bbR^{n}$ is defined as $$m^{*} (E) = \inf \sum_{1}^{\infty} \mathrm{vol}(A_{n}).$$ where $\inf$ is taken over all countable open covers of $E$.
 \end{definition}
 
-\begin{remark}
+\begin{remark} $\text{}$
   \begin{enumerate} [(i), nosep, left=0pt]
        \item  m$^{*}(E)$ is well-defined.
        \item  $m^{*}(E) \ge 0$.
@@ -113,7 +113,7 @@ Note. $\mathrm{vol}$ is regular.
   \end{enumerate}
 \end{remark}
 
-\begin{theorem}
+\begin{theorem} $\text{}$
   \begin{enumerate} [(i), nosep, left=0pt]
   \item If $A \in \sE$, then $m^{*}(A) = \mathrm{vol}(A)$.
   \item If $E = \bigcup_{1}^{\infty} E_{n}$ then $m^{*}(E) \le \sum_{1}^{\infty} m^{*}(E_{n})$.
@@ -259,11 +259,83 @@ To summarize,
     \end{enumerate} 
 \end{theorem}
 \begin{proof}
+  \renewcommand{\qedsymbol}{\blacksquare}
     If $f \ge 0$, define the sets $$E_{n, i} = \left \{ x : \frac{i - 1}{2^n} \le f(x) < \frac{i}{2^n} \right \}, \quad n \ge 1, i = 1, \dots, n2^n$$ $$F_n = \{ x \mid f(x) \ge n \}, \quad n \ge 1$$Define $$f_n = \sum_{i = 1}^{n2^n} \frac{i - 1}{2^n} \chi_{E_{n, i}} + n \chi_{F_n}$$ We see that $f_n$ is measurable. Fix $x \in \bbR^n$, let $\eps > 0$, and let $N \in \bbN$ such that $N > f(x)$ and $2^{-N} < \eps$. Let $n \ge N$. Note that $x \in E_{n, i}$ for some $i$. Since $f_n(x) = \frac{i - 1}{2^n}$ and $f(x) \ge f_n(x)$, $f(x) - f_n(x) \le \frac{1}{2^n} < \eps$. Thus $f_n \to f$ pointwise. We now show $\{ f_n \} $ is monotonically increasing. 
     \begin{enumerate}
         \item Case 1: $x \in F_n$. Then $f(x) \ge n$ and $f_n(x) = n$. If $x \in F_{n + 1}$, then $f_{n + 1}(x) = n + 1 > n = f_n(x)$. If $x \notin F_{n + 1}$ then $x \in$ some $E_{n+1, i}$. Then $\frac{i - 1}{2^{n + 1}} \ge n \implies f_{n + 1}(x) \ge n = f_n(x)$.
         \item Case 2: $x \in E_{n, i}$ for some $i$. Then $f_n(x) = \frac{i - 1}{2^n}$. Then there is some $j$ such that $x \in E_{n + 1, j} = \{ x : \frac{j - 1}{2^{n + 1}} \le f(x) \le \frac{j}{2^{n + 1}} \} $. Because $\frac{i - 1}{2^n} \le f(x)$, we have $\frac{j - 1}{2^{n + 1}} \ge \frac{i - 1}{2^n}$ so $f_{n + 1}(x) = \frac{j - 1}{2^{n + 1}} \ge \frac{i - 1}{2^n} = f_n (x)$.
     \end{enumerate}
     Thus in both cases, $\{ f_n \}$ is monotonically increasing. We next consider the general case. Given $f$, we write $f^+(x) = \max \{ f(x), 0 \}$ and $f^- = - \min \{ f(x), 0 \}$ so that $f = f^+ - f^-$ and $f^+, f^- \ge 0$. By the previous part, there exist two sequences of nonnegative measurable simple functions $f_n^+ \to f^+$ and $f_n^- \to f^-$ each converging pointwise. Define $f_n(x) = f_n^+(x) - f_n^-(x)$. Then $f_n$ is simple and measurable since it is the difference of two simple measurable functions, and converges pointwise.
-\end{proof}
+  \end{proof}
+
+  \begin{definition} (Lebesgue Integration)
+    Suppose $g = \sum_{i = 1}^k c_i\chi_{E_i}$, $c_i > 0$ is measurable and $E \in \mathfrak{M}$. Define $$I_E(g) = \sum_1^k c_i m(E_i \cap E)$$ Let $f$ be a nonnegative measurable function, $E \in \mathfrak{M}$. Define $$\int_E f dm = \sup I_E(g)$$ where $\sup$ is taken over all measurable simple functions $g$ such that $0 \le g \le f$.
+  \end{definition}
+
+  \begin{remark} $\text{}$
+    \begin{enumerate}
+    \item $\int_E f dm$ is the Lebesgue integral of $f$ over $E$.
+    \item It can take value $\infty$.
+    \item If $f$ is measurable, simple, and nonnegative, then $$\int_E f dm = I_{E}(f)$$
+   \end{enumerate}
+ \end{remark}
+
+  \begin{proof} of remark (iii).
+        Suppose for the sake of contradiction that there exists $g$ simple, nonnegative, and measurable such that $0 \le g \le f$ and $I_E(g) > I_E(f)$. Then $$g = \sum_1^{k} c_i \chi_{E_{i}}, \quad f = \sum_1^k d_j \chi_{F_j}$$ and $$I_E(g) = \sum_1^k c_i m(E_i \cap E) > I_E(f) = \sum_1^k d_j m(F_j \cap E)$$ Let $H_{i, j} = E_i \cap F_j$. Since $g \le f$, $\forall i$, $E_i \subseteq \bigcup F_j$. Hence, \begin{align*} g & = \sum_{i = 1}^k \sum_{j = 1}^k c_i \chi_{E_i \cap F_j} \\ & = \sum_{n = 1}^M c_n \chi_{H_n} \end{align*} Note that for every $n$, $\exists$ unique $F_j \supseteq H_n$. This implies $c_n\le d_j$, contradiction.
+      \end{proof}
+
+  \begin{definition}
+    Let $f$ be measurable, and consider $\int_E f^+ dm$ and $\int_E f^- dm$. If at least one is finite, define $$\int_E f dm = \int_E f^+ dm - \int_E f^- dm$$ If both $\int_E f^+ dm$ and $\int_E f^- dm$ are finite, we say that $f$ is \emph{integrable} on $E$ and write $f \in \sL$ on $E$.
+  \end{definition}
+
+  \begin{remark} $\text{}$
+    \begin{enumerate}
+    \item If $a \le f(x) \le b$ for all $x \in E \in \mathfrak{M}$ and $m(E) < \infty$, then $am(E) \le \int_E f dm \le bm(E)$.
+    \item If $f$ is bounded on $E \in \mathfrak{M}$ and $m(E) < \infty$, then $f \in \sL$ on $E$.
+    \item If $f, g \in \sL$ on $E$ and $f(x) \le g(x)$ for all $x \in E$, then $\int_E f dm \le \int_E g dm$.
+    \item If $f \in \sL$ on $E \in \mathfrak{M}$ and $c \in \bbR$ then $cf \in \sL$ on $E$ and $\int_E cf dm = c \int_E f dm$.
+    \item If $m(E) = 0$ then $\int_E f dm = 0$.
+    \item If $f \in \sL$ on $E$, $A \in \mathfrak{M}$, $A \subseteq E$, then $f \in \sL$ on $A$.
+      \item If $f$ is Riemann integrable on $[a, b]$ then $f \in \sL$ on $[a, b]$ and the values of the integrals agree.
+    \end{enumerate}
+  \end{remark}
+
+  \begin{proof} of remark (i). Assume $a \ge 0$. $\int_E f dm = \sup \int_E g dm$ where $\sup$ is taken over all simple measurable $g$ such that $0 \le g \le f$. Let $g = a$ on $E$. Then $\int_E f dm \ge \int_E g dm = a m(E)$. Let $g$ be a measurable simple function such that $0 \le g \le f$. Then $g = \sum_1^k c_i \chi_{E_i}$ for distinct $c_i$'s and measurable $E_i$ that are disjoint. Since $g \le f \le b$, $c_i \le b$ for all $i$. So \begin{align*} \int_E g dm & = \sum_1^k c_i m (E_i \cap E) \\ & \le b \sum_1^k m (E_i \cap E) \\ & \le b m(E) \end{align*}Hence, $\int_E f dm \le b m(E)$.
+  \end{proof}
+
+  \begin{theorem} $\text{}$
+    \begin{enumerate}
+    \item Suppose $f$ is nonnegative and measurable. For $A \in \mathfrak{M}$ define $$\phi(A) = \int_A f dm$$
+      Then $\phi$ is countably additive on $\mathfrak{M}$.
+    \item The same conclusion holds if $f \in \sL$.
+    \end{enumerate}
+  \end{theorem}
+
+  \begin{proof} To prove (ii), it suffices to apply (i) to $f^+$ and $f^-$. Suppose $\{ A_n \}$ is a sequence of measurable sets which are pairwise disjoint. Let $A = \bigcup A_n$. \\
+
+    Step 1 (Characteristic functions). Suppose $f = \chi_E$ for some $E \in \mathfrak{M}$. Then \begin{align*} \phi(A) & = \int_A f dm \\ & = m(A \cap E) \\ & = m \left( \left( \bigcup_1^{\infty} A_n \right) \cap E \right) \\ & = m\left( \bigcup_1^\infty (A_n \cap E) \right) \\ & = \sum_1^\infty m(A_n \cap E) \\ & = \sum_1^\infty \int_{A_n} f dm \\ & = \sum_1^\infty \phi(A_n) \end{align*}
+
+    Step 2 (Simple functions). Suppose $f$ is simple, measurable, and nonnegative, i.e., $f = \sum_1^k c_{i} \chi_{E_i}$ for disjoint $E_i$'s in $\mathfrak{M}$. Then \begin{align*} \phi(A) & = \int_A f dm \\ & = \sum_1^k c_i m(E_i \cap A) \\ & = \sum_1^k c_i \int_A \chi_{E_i} dm \\ & = \sum_1^k c_i \sum_1^\infty \int_{A_n} \chi_{E_i} dm \\ & = \sum_1^\infty \sum_1^k \int_{A_n} c_i \chi_{E_i} dm \\ & = \sum_1^\infty \int_{A_n} f dm \\ & = \sum_1^\infty \phi(A_n) \end{align*}
+
+    Step 3. Let $g$ be a measurable simple function such that $0 \le g \le f$. Then \begin{align*} \int_A g dm & = \sum_1^\infty \int_{A_n} g dm \\ & \le \sum_1^\infty \int_{A_n} f dm \\ & = \sum_1^\infty \phi(A_n) \end{align*} Hence $\phi(A) = \int_A f dm \le \sum_1^{\infty} \phi(A_n)$.
+
+    If $\phi(A_n) = \infty$ for any $n$, then we are done. Thus assume $\phi(A_n) < \infty$ for every $n$. Let $\epsilon > 0$, and choose measurable simple $g$ such that $0 \le g \le f$ and $\int_{A_1} g dm \ge \int_{A_1} f dm - \epsilon, \dots, \int_{A_n} g dm \ge \int_{A_n} f dm - \epsilon$. Hence $$\phi(A_1 \cup \dots \cup A_n) \ge \phi(A_1) + \dots + \phi(A_n) - n \epsilon$$Since $\epsilon$ was arbitrary, $\forall n$, $\phi(A_1 \cup \dots \cup A_n) \ge \phi(A_1) + \dots + \phi(A_n)$.
+  \end{proof}
+
+  \begin{corollary} If $A, B \in \mathfrak{M}$, $m(A \setminus B) = 0$, and $B \subseteq A$, then $$\int_A f dm = \int_B f dm$$ for every $f \in \sL$.
+  \end{corollary}
+
+  \begin{theorem} If $f \in \mathscr{L}$ on $E$, then $|f| \in \mathscr{L}$ on $E$ and $|\int_E f dm| \le \int_E |f| dm$.
+  \end{theorem}
+  \begin{proof}
+    Let $A = \{ x \in E \mid f(x) \ge 0 \}$ and $B = \{ x \in E \mid f(x) < 0 \}$. Note that $E = A \sqcup B$ and $A, B \in \mathfrak{M}$. Then $$\int_E |f| dm = \int_A |f| dm + \int_B |f| dm = \int_E f^+ dm + \int_E f^- dm < \infty$$Thus $|f| \in \mathscr{L}$. Since $f \le |f|$ and $-f \le |f|$, $\int_E f dm \le \int_E f dm \le \int_E |f| dm$, and $\int_E -f dm = - \int_E f dm \le \int_E |f| dm$ so $$\left| \int_E f dm \right| \le \int_E |f| dm$$
+  \end{proof}
+
+  \begin{theorem} (Lebesgue's Monotone Convergence Theorem). Let $E \in \mathfrak{M}$ and $\{ f_n \}$ a sequence of measurable functions such that $$0 \le f_1 (x) \le f_2(x) \le \dots \quad \forall (x \in E)$$Define $f(x) = \lim_{n \to \infty} f_n(x)$ for all $x \in E$. Then $$\int_E  f_n dm \to \int_E f dm \quad (n \to \infty)$$
+  \end{theorem}
+  \begin{proof}
+    Since $\{ f_n \}$ is a monotone sequence of nonnegative measurable functions,  $\{ \int_E f_n dm \}$ is a monotone sequence of extended real numbers. Thus there must exist $\alpha \in \mathbb{R} \cup \{ \pm \infty \}$ such that $\alpha = \lim_{n \to \infty} \int_E f_n dm$. Since $f_n \le f$ for every $n$, $\alpha \le \int_E f dm$. 
+    Let $0 < c < 1$ and $g$ be a simple, measurable function such that $0 \le g \le f$. For every $n \ge 1$, define $$E_n = \{ x \in E \mid f_n(x) \ge cg(x) \}$$Since $\{ f_n \}$ is increasing, $E_1 \subseteq E_2 \subseteq \dots$. Since $f_n \to f$ pointwise, $E = \bigcup_1^\infty E_n$. For every $n$, $cg \le f_n$ on $E_n$, so $$c \int_{E_n} g dm = \int_{E_n} cg dm \le \int_{E_n} f_n dm$$As $n \to \infty$, $$\int_{E_n} g dm \to \int_E g dm$$Therefore, $\alpha \ge c \int_{E} g dm$. Since $c < 1$ was arbitrary, $\alpha \ge \int_E g dm$. By definition of integration, $\alpha \ge \int_E  f dm$.
+  \end{proof}
+  
 \end{document}
