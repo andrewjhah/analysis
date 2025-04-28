@@ -1,7 +1,7 @@
 ;; -*- lexical-binding: t; -*-
 
 (TeX-add-style-hook
- "lecture14"
+ "lecture15"
  (lambda ()
    (TeX-add-to-alist 'LaTeX-provided-class-options
                      '(("article" "11pt")))

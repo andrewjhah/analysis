@@ -1,0 +1,55 @@
+\documentclass[11pt]{article}
+\usepackage{master}
+\title{MATH 20510. Lec 15}
+\author{Andrew Hah}
+
+\begin{document}
+
+\pagestyle{plain}
+\begin{center}
+{\Large MATH 20510} \\
+{\Large Lecture 15} \\
+\vspace{.2in}
+April 28, 2025
+\end{center}
+
+\begin{definition} (Informal) A \emph{differential $1$-form} on $\bbR^n$ is \begin{enumerate}
+  \item An object which can be integrated on any curve in $\bbR^n$.
+  \item A rule assigning a real number to every oriented line segment in $\bbR^n$ in a ``suitable'' way.
+  \end{enumerate}
+\end{definition}
+
+\begin{definition} Let $p \in \bbR^n$. The \emph{tangent space} to $\bbR^n$ at $p$ is $T_p \bbR^n = \{ (p, v) : v \in \bbR^n \}$.
+\end{definition}
+
+Notation. If $\alpha$ is a 1-form, $p \in \bbR^n$, write $\alpha_p$ to denote the restriction of $\alpha$ to $T_p \bbR^n$.- $\alpha_p(v)$ is the value $\alpha$ assigns to the (oriented) line segment from $p$ to $p + v$.
+
+We require that $\alpha_p$ is a linear functional $\forall p \in \bbR^n$, that is \begin{enumerate}
+\item $\alpha_p(tv) = t \cdot \alpha_p(v)$, $\forall t \in \bbR, \forall p, v \in \bbR^n$.
+\item $\alpha_p(v + w) = \alpha_p(v) + \alpha_p(w)$, $\forall p, v, w \in \bbR^n$.
+\end{enumerate}
+
+With differential forms, we denote the projection maps in $\bbR^n$ by $dx_1, \dots, dx_n$, where $$dx_i(v) = dx_i(v_1, \dots, v_n) = v_i, \quad \forall i = 1, \dots, n$$
+
+These form a basis for the set of linear functionals. Therefore, for any $1$-form $\alpha$, its restriction $\alpha_p$ can be written as \begin{align*} \alpha_p & = A_1dx_1 + A_2dx_2 + \dots + A_ndx_n \\ & = A_1(p) dx_1 + \dots + A_n(p)dx_n \end{align*}
+
+Last requirement: $A_i(p)$ must be sufficiently continuous with respect to $p$.
+
+\begin{definition} A \emph{differential $1$-form} $\alpha$ on $\bbR^n$ is a map from every tangent vector $(p, v)$ in $\bbR^n$ which can be expressed in the form $$\alpha = f_1dx_1 + \dots + f_ndx_n$$ where $f_i: \bbR^n \to \bbR$ is $C^2$.
+\end{definition}
+
+\begin{example} $\alpha = ydx + dz$ on $\bbR^3$. Let $p = \begin{pmatrix} 1 \\ 2 \\ 3 \end{pmatrix}$ and $v = \begin{pmatrix} 4 \\ 5 \\ 6 \end{pmatrix}$. Then \begin{align*} \alpha((p, v)) & = \alpha_p(v) \\ & = f_1(p) dx_1(v) + f_2(p) dx_2(v) + f_3(p) dx_3(v) \\ & = 2 \cdot 4 + 0 + 1 \cdot 6 \\ & = 14 \end{align*}
+\end{example}
+
+\begin{definition} A \emph{curve} (1-surface) in $\bbR^n$ is a $C^1$-mapping $\gamma: [a, b] \to \bbR^n$.
+\end{definition}
+
+\begin{definition} Let $\alpha = f_1dx_1 + \dots + f_ndx_n$ be a $1$-form in $\bbR^n$ and let  $\gamma: [a, b] \to \bbR^{n}$ be $C^1$. \begin{align*} \int_{\gamma} \alpha = \int_a^b (f_1 (\gamma(t))\gamma_1'(t) + \dots + f_n (\gamma(t)) \gamma_n'(t)) dt \end{align*}
+\end{definition}
+
+\begin{example} $\alpha = x^2dx_1 + dx_2$ on $\bbR^2$. $\gamma(t) = (t, t^2)$, $t \in [0, 1]$. Then $\gamma_1' (t) = 1$, $\gamma_2'(t) = 2t$. \begin{align*} \int_{\gamma} \alpha & = \int_0^1 (f_1(\gamma(t)) \gamma_1' (t) + f_2 (\gamma(t)) \gamma_2'(t)) \\ & = (t^2 \cdot 1 + \cdot 2t) dt \\ & = \frac{4}{3} \end{align*}
+\end{example}
+
+
+
+\end{document}
