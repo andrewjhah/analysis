@@ -1,0 +1,58 @@
+\documentclass[11pt]{article}
+\usepackage{master}
+\title{MATH 20510 Lec 16}
+\author{Andrew Hah}
+
+\begin{document}
+
+\pagestyle{plain}
+\begin{center}
+{\Large MATH 20510} \\
+{\Large Lecture 16} \\
+\vspace{.2in}
+April 30, 2025
+\end{center}
+
+\begin{definition} A \emph{$2$-surface} is a $C^1$ map $\gamma : I^2 \to \bbR^n$.
+\end{definition}
+
+\begin{definition} (Informal) A \emph{$2$-form} on $\bbR^n$ is
+  \begin{enumerate}
+  \item An object which can be integrated over any $2$-surface.
+  \item A rule which assigns a real number to every oriented parallelogram in $\bbR^n$ in a ``suitable'' way.
+  \end{enumerate}
+\end{definition}
+
+Specify an oriented parallelogram in $\bbR^n$ based at $p \in \bbR^n$ by giving $(v, w)$. We want every $2$-form $\omega$ to satisfy the following for every $p \in \bbR^n$
+\begin{enumerate}
+\item $\omega_p(tv_1, v_2) = \omega_p(v_1, tv_2) = t \omega_p(v_1, v_2)$.
+\item $\omega_p(v_1, v_2 + v_3) = \omega_p (v_1, v_2) + \omega_p(v_1, v_3)$ and $\omega_p(v_1 + v_2, v_3) = \omega_p(v_1, v_3) + \omega_p(v_2, v_3)$.
+\item $\omega_p(v_1, v_2) = - \omega_p(v_2, v_1)$.
+\end{enumerate}
+
+Basic $2$-forms on $\bbR^n$. $\forall v, w \in \bbR^n$,
+\begin{enumerate}
+\item $(dx_1 \wedge dx_2)(v, w) = \det \begin{pmatrix} v_1 & w_1 \\ v_2 & w_2 \end{pmatrix}$.
+\item $(dx_1 \wedge dx_3)(v, w) = \det \begin{pmatrix} v_1 & w_1 \\ v_3 & w_3 \end{pmatrix}$.
+\item $(dx_i \wedge dx_j)(v, w) = \det \begin{pmatrix} v_i & w_i \\ v_j & w_j \end{pmatrix}$.
+\end{enumerate}
+
+\begin{remark} If $\omega_p$ satisfies $(i) - (iii)$ then $\omega_p$ can be expressed as $$\omega_p = \sum_{i, j} A_{i, j}(p) (dx_i \wedge dx_j)$$ for constant $A_{i, j}$.
+\end{remark}
+
+\begin{definition} A \emph{$2$-form} in $\bbR^n$ is a rule assigning a real number to each oriented parallelogram in $\bbR^n$ that can be written as $$\omega = \sum_{i, j} f_{i, j} (dx_i \wedge dx_j)$$ where $f_{i, j}: \bbR^n \to \bbR$ is $C^2$. \\
+
+For any $p \in \bbR^n$, $v, w \in \bbR^n$, $$\omega_p(v, w) = \sum_{i, j} f_{i, j}(p) (dx_i \wedge dx_j)(v, w).$$
+\end{definition}
+
+\begin{example} $\omega$ is a $2$-form in $\bbR^2$, \begin{align*} \omega & = f_{1,1} \underbrace{(dx_1 \wedge dx_1)}_{= 0} + f_{1, 2} (dx_1 \wedge dx_2) + f_{2, 1} \underbrace{(dx_2 \wedge dx_1)}_{= - (dx_1 \wedge dx_2)} + f_{2, 2} \underbrace{(dx_2 \wedge dx_2)}_{= 0} \\ & = (f_{1, 2} - f_{2, 1})(dx_1 \wedge dx_2) \end{align*}
+  This implies that every $2$-form in $\bbR^2$ can be written as $\omega = f(dx_1 \wedge dx_2)$ where $f$ is $C^2$.
+\end{example}
+
+\begin{example} $\omega$ is a $2$-form in $\bbR^3$, \begin{align*} \omega = f_1 (dx_1 \wedge dx_2) + f_2 (dx_1 \wedge dx_3) + f_3 (dx_2 \wedge dx_3). \end{align*}
+\end{example}
+
+\begin{definition} Let $\gamma : I^2 \to \bbR^3$ be $C^1$, and $\omega = f_1 (dx_1 \wedge dx_2) + f_2 (dx_1 \wedge dx_3) + f_3 (dx_2 \wedge dx_3)$ be a $2$-form. Then \begin{align*} \int_{\gamma} \omega & = \int_{I^2} \omega_{\gamma(z)} \left( \frac{\partial \gamma}{\partial x_1}(z), \frac{\partial \gamma}{\partial x_2} (z) \right) dz \\ & = \int_{I^2}  f_1(\gamma (z)) (dx_1 \wedge dx_2) \left( \frac{\partial \gamma}{\partial x_1}(z), \frac{\partial \gamma}{\partial x_2} (z) \right) \\ & \qquad + f_2(\gamma(z))(dx_1 \wedge dx_3) \left( \frac{\partial \gamma}{\partial x_1}(z), \frac{\partial \gamma}{\partial x_2} (z) \right) + f_3 (\gamma (z)) (dx_2 \wedge dx_3) \left( \frac{\partial \gamma}{\partial x_1}(z), \frac{\partial \gamma}{\partial x_2} (z) \right) dz \\ & = \int_{I^2} f_1(\gamma(z)) \det \begin{pmatrix} D_1\gamma_1(z) & D_2 \gamma_1 (z) \\ D_1 \gamma_2(z) & D_2 \gamma_2(z) \end{pmatrix}\\ & \qquad +  f_2 (\gamma(z)) \det \begin{pmatrix} D_1\gamma_1(z) & D_2 \gamma_1 (z) \\ D_1 \gamma_3(z) & D_2 \gamma_3(z) \end{pmatrix} +  f_3(\gamma(z)) \det \begin{pmatrix} D_1\gamma_2(z) & D_2 \gamma_2 (z) \\ D_1 \gamma_3(z) & D_2 \gamma_3(z) \end{pmatrix} \end{align*}
+\end{definition}
+
+\end{document}

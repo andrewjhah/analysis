@@ -29,7 +29,7 @@ We require that $\alpha_p$ is a linear functional $\forall p \in \bbR^n$, that i
 \item $\alpha_p(v + w) = \alpha_p(v) + \alpha_p(w)$, $\forall p, v, w \in \bbR^n$.
 \end{enumerate}
 
-With differential forms, we denote the projection maps in $\bbR^n$ by $dx_1, \dots, dx_n$, where $$dx_i(v) = dx_i(v_1, \dots, v_n) = v_i, \quad \forall i = 1, \dots, n$$
+We denote the projection maps in $\bbR^n$ by $dx_1, \dots, dx_n$, where $$dx_i(v) = dx_i(v_1, \dots, v_n) = v_i, \quad \forall i = 1, \dots, n$$
 
 These form a basis for the set of linear functionals. Therefore, for any $1$-form $\alpha$, its restriction $\alpha_p$ can be written as \begin{align*} \alpha_p & = A_1dx_1 + A_2dx_2 + \dots + A_ndx_n \\ & = A_1(p) dx_1 + \dots + A_n(p)dx_n \end{align*}
 
@@ -47,7 +47,7 @@ Last requirement: $A_i(p)$ must be sufficiently continuous with respect to $p$.
 \begin{definition} Let $\alpha = f_1dx_1 + \dots + f_ndx_n$ be a $1$-form in $\bbR^n$ and let  $\gamma: [a, b] \to \bbR^{n}$ be $C^1$. \begin{align*} \int_{\gamma} \alpha = \int_a^b (f_1 (\gamma(t))\gamma_1'(t) + \dots + f_n (\gamma(t)) \gamma_n'(t)) dt \end{align*}
 \end{definition}
 
-\begin{example} $\alpha = x^2dx_1 + dx_2$ on $\bbR^2$. $\gamma(t) = (t, t^2)$, $t \in [0, 1]$. Then $\gamma_1' (t) = 1$, $\gamma_2'(t) = 2t$. \begin{align*} \int_{\gamma} \alpha & = \int_0^1 (f_1(\gamma(t)) \gamma_1' (t) + f_2 (\gamma(t)) \gamma_2'(t)) \\ & = (t^2 \cdot 1 + \cdot 2t) dt \\ & = \frac{4}{3} \end{align*}
+\begin{example} $\alpha = x^2dx_1 + dx_2$ on $\bbR^2$. $\gamma(t) = (t, t^2)$, $t \in [0, 1]$. Then $\gamma_1' (t) = 1$, $\gamma_2'(t) = 2t$. \begin{align*} \int_{\gamma} \alpha & = \int_0^1 (f_1(\gamma(t)) \gamma_1' (t) + f_2 (\gamma(t)) \gamma_2'(t)) \\ & =\int_a^b (t^2 \cdot 1 +1  \cdot 2t) dt \\ & = \frac{4}{3} \end{align*}
 \end{example}
 
 

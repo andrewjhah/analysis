@@ -18,7 +18,9 @@
   {\small The University of Chicago - Spring 2025}
 \end{center}
 
-\section{Measure Theory}
+\tableofcontents
+
+\section{Measure and Integration}
 
 \begin{definition}
     A family of sets $\mathscr{A}$ is called a \emph{ring} if, for every $A, B \in \mathscr{A}$, \begin{enumerate} [(i), nosep, left=0pt]
@@ -259,7 +261,7 @@ To summarize,
     \end{enumerate} 
 \end{theorem}
 \begin{proof}
-  \renewcommand{\qedsymbol}{\blacksquare}
+  \renewcommand{\qedsymbol}{\ensuremath{\blacksquare}}
     If $f \ge 0$, define the sets $$E_{n, i} = \left \{ x : \frac{i - 1}{2^n} \le f(x) < \frac{i}{2^n} \right \}, \quad n \ge 1, i = 1, \dots, n2^n$$ $$F_n = \{ x \mid f(x) \ge n \}, \quad n \ge 1$$Define $$f_n = \sum_{i = 1}^{n2^n} \frac{i - 1}{2^n} \chi_{E_{n, i}} + n \chi_{F_n}$$ We see that $f_n$ is measurable. Fix $x \in \bbR^n$, let $\eps > 0$, and let $N \in \bbN$ such that $N > f(x)$ and $2^{-N} < \eps$. Let $n \ge N$. Note that $x \in E_{n, i}$ for some $i$. Since $f_n(x) = \frac{i - 1}{2^n}$ and $f(x) \ge f_n(x)$, $f(x) - f_n(x) \le \frac{1}{2^n} < \eps$. Thus $f_n \to f$ pointwise. We now show $\{ f_n \} $ is monotonically increasing. 
     \begin{enumerate}
         \item Case 1: $x \in F_n$. Then $f(x) \ge n$ and $f_n(x) = n$. If $x \in F_{n + 1}$, then $f_{n + 1}(x) = n + 1 > n = f_n(x)$. If $x \notin F_{n + 1}$ then $x \in$ some $E_{n+1, i}$. Then $\frac{i - 1}{2^{n + 1}} \ge n \implies f_{n + 1}(x) \ge n = f_n(x)$.
@@ -331,11 +333,85 @@ To summarize,
     Let $A = \{ x \in E \mid f(x) \ge 0 \}$ and $B = \{ x \in E \mid f(x) < 0 \}$. Note that $E = A \sqcup B$ and $A, B \in \mathfrak{M}$. Then $$\int_E |f| dm = \int_A |f| dm + \int_B |f| dm = \int_E f^+ dm + \int_E f^- dm < \infty$$Thus $|f| \in \mathscr{L}$. Since $f \le |f|$ and $-f \le |f|$, $\int_E f dm \le \int_E f dm \le \int_E |f| dm$, and $\int_E -f dm = - \int_E f dm \le \int_E |f| dm$ so $$\left| \int_E f dm \right| \le \int_E |f| dm$$
   \end{proof}
 
-  \begin{theorem} (Lebesgue's Monotone Convergence Theorem). Let $E \in \mathfrak{M}$ and $\{ f_n \}$ a sequence of measurable functions such that $$0 \le f_1 (x) \le f_2(x) \le \dots \quad \forall (x \in E)$$Define $f(x) = \lim_{n \to \infty} f_n(x)$ for all $x \in E$. Then $$\int_E  f_n dm \to \int_E f dm \quad (n \to \infty)$$
+  \begin{theorem} (Lebesgue's monotone convergence theorem). Let $E \in \mathfrak{M}$ and $\{ f_n \}$ a sequence of measurable functions such that $$0 \le f_1 (x) \le f_2(x) \le \dots \quad \forall (x \in E)$$Define $f(x) = \lim_{n \to \infty} f_n(x)$ for all $x \in E$. Then $$\int_E  f_n dm \to \int_E f dm \quad (n \to \infty)$$
   \end{theorem}
   \begin{proof}
     Since $\{ f_n \}$ is a monotone sequence of nonnegative measurable functions,  $\{ \int_E f_n dm \}$ is a monotone sequence of extended real numbers. Thus there must exist $\alpha \in \mathbb{R} \cup \{ \pm \infty \}$ such that $\alpha = \lim_{n \to \infty} \int_E f_n dm$. Since $f_n \le f$ for every $n$, $\alpha \le \int_E f dm$. 
     Let $0 < c < 1$ and $g$ be a simple, measurable function such that $0 \le g \le f$. For every $n \ge 1$, define $$E_n = \{ x \in E \mid f_n(x) \ge cg(x) \}$$Since $\{ f_n \}$ is increasing, $E_1 \subseteq E_2 \subseteq \dots$. Since $f_n \to f$ pointwise, $E = \bigcup_1^\infty E_n$. For every $n$, $cg \le f_n$ on $E_n$, so $$c \int_{E_n} g dm = \int_{E_n} cg dm \le \int_{E_n} f_n dm$$As $n \to \infty$, $$\int_{E_n} g dm \to \int_E g dm$$Therefore, $\alpha \ge c \int_{E} g dm$. Since $c < 1$ was arbitrary, $\alpha \ge \int_E g dm$. By definition of integration, $\alpha \ge \int_E  f dm$.
   \end{proof}
+
+  \begin{theorem} Let $f = f_1 + f_2$, $f_1, f_2 \in \mathscr{L}$ on $E \in \mathfrak{M}$. Then $f \in \mathscr{L}$ on $E$ and $\int_E f dm = \int_E f_1 dm + \int_E f_2 dm$.
+  \end{theorem}
+  \begin{proof} If $f_1, f_2$ are simple measurable functions, then the conclusion is immediate. Assume that $f_1, f_2 \ge 0$. Choose a monotonically increasing sequence of nonnegative measurable simple functions $\{ g_n \}$ and $\{ h_n \}$ converging to $f_1$ and $f_2$ respectively. Let $s_n = g_n + h_n$. Then $\forall n$, $$\int_E s_n dm = \int_E g_n dm + \int_E h_n dm$$Note. $\{ s_n \}$ is a monotonically increasing sequence of simple nonnegative measurable functions converging to $f$. By the monotone convergence theorem, $$\int_E f dm = \lim_{n \to \infty} \int_E s_n dm = \lim_{n \to \infty} \int_E g_n dm + \int_E h_n dm = \int_E f_1 dm + \int_E f_2 dm$$ Now assume $f_1 \ge 0, f_2 < 0$. Define $$A = \{ x \in E \mid f(x) \ge 0 \} \quad \text{and} \quad B = \{ x \in E \mid f(x) < 0 \}$$ Note that both $A$ and $B$ are measurable. Since $f, f_1, -f_2 \ge 0$ on $A$ and $f_1 = f + (-f_2)$, $$\int_A f_1 dm = \int_A f dm + \int_A - f_2 dm = \int_A f dm - \int_A f_2 dm$$i.e., $\int_A f dm = \int_A f_1 dm + \int_A f_2 dm$.
+Since $-f, f_1, -f_2 \ge 0$ on $B$, $$\int_B -f_2 dm = \int_B -f dm + \int_B f_1 dm$$ i.e., $\int_B f dm = \int_B f_1 dm + \int_B f_2 dm$. 
+Hence \begin{align*} \int_{E = A \sqcup B}  f dm & = \int_A f dm + \int_B f dm \\ & = \int_A f_1 dm + \int_A f_2 dm + \int_B f_1 dm + \int_B f_2 dm \\ & = \int_E f_1 dm + \int_E f_2 dm  \end{align*} Let \begin{align*} E_1 & = \{ x \in E \mid f_1(x) \ge 0, f_2(x) \ge 0 \} \\ E_2 & = \{ x \in E \mid f_1(x) \ge 0, f_2(x) < 0 \} \\ E_3 & = \{ x \in E \mid f_1(x) < 0, f_2(x) \ge 0 \} \\ E_4 & = \{ x \in E \mid f_1(x) < 0, f_2(x) < 0 \} \end{align*} Apply what we've proven to all four sets and then we get the generalized conclusion.
+\end{proof}
+
+\begin{lemma} (Fatou's lemma) $E \in \mathfrak{M}$, $\{ f_n \}$ nonnegative measurable functions. Let $f = \liminf_{n \to \infty} f_n$. Then \begin{align*} \int_E f dm \le \liminf_{n \to \infty} \int_E f_n dm \end{align*}
+\end{lemma}
+\begin{proof} For every $n \ge 1$, define $$g_n = \inf_{m \ge n} f_n$$ Note. the $g_n$'s are measurable on $E$ and \begin{enumerate}
+  \item $0 \le g_1 \le g_2 \le \dots$.
+  \item $g_n \le f_n$, $\forall n$.
+  \item  $\lim_{n \to \infty} g_n(x) = f(x)$, $\forall x \in E$.
+  \end{enumerate}
+  By the monotone convergence theorem, $$\lim_{n \to \infty} \int_E g_n dm = \int_E f dm$$ By property (ii), $$\int_E g_n dm \le \int_E f_n dm \quad \forall n$$ Together, these two imply the conclusion.
+\end{proof}
+
+\begin{theorem} (Dominated convergence theorem) Suppose $E \in \mathfrak{M}$, $\{ f_n \}$ measurable on $E$ such that $f_n \to f$ pointwise on $E$. Suppose $\exists g \in \mathscr{L}$ on $E$ such that $|f_n(x)| \le g(x)$ for all $x \in E$. Then \begin{align*} \int_E f dm = \lim_{n \to \infty} \int_E f_n dm \end{align*}
+\end{theorem}
+\begin{proof}
+  Note $f_n \in \mathscr{L}$ on $E$ for all $n$ and $f \in \mathscr{L}$ on $E$. Since $f_n + g \ge 0$ for all $n$, applying Fatou's Lemma gives $$\int_E (f + g) dm \le \liminf_{n \to \infty} \int_E (f_n + g) dm$$ Then \begin{align*} \int_E f dm + \int_E g dm & \le \liminf_{n \to \infty} \left( \int_E f_n dm + \int_E g dm \right) \\ & = \left( \liminf_{n \to \infty} \int_E f_n dm \right) + \int_E g dm \end{align*} Thus $$\int_E f dm \le \liminf_{n \to \infty} \int_E f_n dm$$ Since $g - f_n \ge 0$, apply Fatou's Lemma to get $$\int_E (g - f) dm \le \liminf_{n \to \infty} \left( \int_E (g - f_n) dm \right)$$ By the same logic as above, we see that $$- \int_E f dm \le \liminf_{n \to \infty} - \int_E f_n dm$$ We conclude that $$\int_E f \ge \limsup_{n \to \infty} \int_E f_n dm$$ Thus $$\int_E f dm = \lim_{n \to \infty} \int_E f_n dm$$
+\end{proof}
+
+\begin{lemma} Nonmeasurable sets exist (assuming Axiom of Choice).
+\end{lemma}
+\begin{proof} For every $a \in [-1, 1]$ define $\tilde{a} = \{ c \in [-1, 1] : a - c \in \mathbb{Q} \}$. \\
+
+  Claim 1. If $\tilde{a} \cap \tilde{b} \neq \emptyset$ then $\tilde{a} = \tilde{b}$. 
+
+  Suppose $c \in \tilde{a} \cap \tilde{b}$. Then $a - c \in \mathbb{Q}$, $b - c \in \mathbb{Q}$, and therefore $a - b, b-a \in \mathbb{Q}$. Let $d \in \tilde{a}$, so $a - d \in \mathbb{Q}$. Then $a - d = (a - b) + (b - d)$ so $b -d \in \mathbb{Q}$, i.e., $d \in \tilde{b}$ and the claim follows. 
+
+  Note. $[-1, 1] = \bigcup_{a \in [-1, 1]} \tilde{a}$. 
+  Let $V$ be a set that contains exactly one element from every distinct $\tilde{a}$ (Axiom of Choice). Let $r_1, r_2, \dots$ be an enumeration of $\mathbb{Q} \cap [-2, 2]$. \\
+
+  Claim 2. $[-1, 1] \subseteq \bigcup_{k = 1}^\infty V + r_k$. 
+
+  Let $d \in [-1, 1]$, so $d \in \tilde{a}$ for some $a$. Let $c \in V$ s.t. $c \in \tilde{a}$. Then $c - d \in \mathbb{Q} \cap [-2, 2]$ so $c - d = r_k$ for some $k$. Hence, $d \in V + r_k$. 
+
+  By Claim 2, $$2 = m^*([-1, 1]) \le m^* \left( \bigcup_1^\infty V + r_k \right) \le \sum_1^\infty m^*(V + r_k)= \sum_1^\infty m^*(V)$$ Thus $m^*(V) > 0$. \\
+
+  Claim 3. $V+ r_1, V+ r_2, \dots$ are disjoint.
+
+  Suppose ftsoc that $d \in (V + r_k) \cap (V + r_\ell)$. Then $d = v + r_k$, $v \in V$ and $d = v' + r_\ell$, $v' \in V$. In particular, $v - v' \in \mathbb{Q}$. By Claim 1, $v, v' \in \tilde{a}$. Contradiction. 
+
+  For any $n \in \mathbb{N}$, $$\bigcup_{k = 1}^n V + r_k \subseteq [-3, 3]$$Hence, $$m^* \left(\bigcup_1^\infty V + r_k\right) \le 6$$Let $n \in \mathbb{N}$ such that $nm^*(V) > 6$. Then $$m^* \left(\bigcup_1^n V + r_k \right) < \sum_1^n m^*(V + r_k)$$Which implies that $V+r_1, V+r_2, \dots$ cannot all be measurable. Hence, $V$ is not measurable.
+\end{proof}
+
+\begin{definition} Let $E \in \mathfrak{M}$, $f$ measurable. We write $f \in \mathscr{L}^2$ on $E$ if $$\int_E |f|^2 dm < \infty$$
+\end{definition}
+
+\begin{remark} $f \in \mathscr{L}$ on $E$ $(\mathscr{L}^1)$ if $\int_E |f| dm < \infty$.
+\end{remark}
+
+\begin{example} $\text{}$
+  \begin{enumerate}
+  \item $E = (0, 1]$, $f(x) = x^{-1/2}$. $f \in \mathscr{L}^1, f \notin \mathscr{L}^2$.
+  \item $E = (1, \infty)$, $f(x) = \frac{1}{x}$. $f \notin \mathscr{L}^1, f \in \mathscr{L}^2$.
+  \end{enumerate}
+\end{example}
+
+\begin{theorem} If $m(E) < \infty$, then $f \in \mathscr{L}^2 \implies f \in \mathscr{L}^1$.
+\end{theorem}
+
+\section{Fourier Analysis}
+
+Recall. Let $f: \mathbb{R} \to \mathbb{C}$. We can decompose $f$ into its real and imaginary components, $$f = f_{RE} + i f_{IM}$$where $f_{RE}, f_{IM}: \mathbb{R} \to \mathbb{R}$.
+
+We say $f \in \sR$ (Riemann integrable) if $f_{RE}, f_{IM} \in \mathscr{R}$ and $$\int_{- \infty}^\infty f dx = \int_{- \infty}^\infty f_{RE} dx + i \int_{-\infty}^\infty f_{IM} dx$$
+
+\begin{definition} A \emph{trigonometric polynomial} is a function $$f(x) = a_0 + \sum_1^N a_n \cos (nx) + b_n \sin (nx)$$ where $a_0, \dots, a_N, b_1, \dots, b_N \in \mathbb{C}$.
+\end{definition}
+
+Note. We can equivalently write this as $$f(x) = \sum_{-N}^N c_n e^{inx}$$ where $c_{-N}, \dots, c_N \in \mathbb{C}$. 
   
 \end{document}
