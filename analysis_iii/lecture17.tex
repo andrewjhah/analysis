@@ -1,0 +1,56 @@
+\documentclass[11pt]{article}
+\usepackage{master}
+\title{MATH 20510 Lec 17}
+\author{Andrew Hah}
+
+\begin{document}
+
+\pagestyle{plain}
+\begin{center}
+{\Large MATH 20510} \\
+{\Large Lecture 17} \\
+\vspace{.2in}
+May 2, 2025
+\end{center}
+
+\begin{definition} The integral of a $2$-form $\omega = \sum_{i, j} f_{i, j} (dx_i \wedge dx_j)$ over a $2$-surface $\gamma : [a, b] \times [c, d] \to \bbR^n$ (which is $C^1$) is \begin{align*} \int_{\gamma} \omega = \int_a^b \left( \int_c^d \omega_{\gamma(t_1, t_2)} \left( \frac{\partial \gamma}{\partial t_1}, \frac{\partial \gamma}{\partial t_2} \right)  dt_2 \right) dt_1 \end{align*}
+\end{definition}
+
+\begin{definition} A \emph{$k$-surface} in $\bbR^n$ is a $C^1$ map $\gamma: D \to \bbR^n$ where $D$ is a $k$-cell.
+\end{definition}
+
+\begin{definition} (Informal) A $k$-form in $\bbR^n$, $\omega$, is a rule that assigns a real number to every oriented $k$-dimensional parallelepiped in $\bbR^n$ in a ``suitable'' way.
+\end{definition}
+
+Specify a $k$-dimensional oriented parallelepiped in $\bbR^n$ based at $p \in \bbR^n$ by giving an ordered list of vectors $v_1, \dots, v_k \in T_p\bbR^n$. We require that for any $p \in \bbR^n$, a $k$-form $\omega$ satisfies
+\begin{enumerate}
+\item $\omega_p(v_1, \dots, tv_i, \dots,  v_k) = t \omega_p (v_1, \dots, v_i, \dots,  v_k)$.
+\item $\omega_p(v_1, \dots, v_i + w_i, \dots, v_k) = \omega(v_1, \dots, v_i, \dots, v_k) + \omega_p (v_1, \dots, w_i, \dots v_k)$.
+\item $\omega_p(v_1, \dots, v_i, \dots, v_j, \dots, v_k) = - \omega_p(v_1, \dots, v_j, \dots, v_i, \dots, v_k)$.
+\end{enumerate}
+
+\begin{definition} A \emph{multi-index} of length $k$ in $\bbR^n$ is a list $I = (i_1, \dots, i_k)$ of $k$ integers between $1$ and $n$.
+\end{definition}
+
+\begin{definition} Let $I = (i_1, \dots, i_k)$ be a multi-index. Then $dx_I = dx_{i_1} \wedge \dots \wedge dx_{i_k}$ is the $k$-form in $\bbR^n$ defined by \begin{align*} dx_I (v^1 , \dots, v^k) & = \det \begin{pmatrix} v_{i_1}^1 & v_{i_1}^2 & \hdots & v_{i_1}^k \\ v_{i_2}^1 & v_{i_2}^2 & \hdots & v_{i_2}^k \\ \vdots & \vdots & \ddots & \vdots \\ v_{i_k}^1 & v_{i_k}^2 & \hdots & v_{i_k}^k \end{pmatrix} \end{align*}
+\end{definition}
+
+\begin{remark} $\text{}$
+  \begin{enumerate}
+  \item If $I$ contains a repeated index, then $dx_I (v^1, \dots, v^k) = 0$.
+  \item For any $I$, if $v^1, \dots, v^k$ contains a repeated vector, then $dx_I (v^1, \dots, v^k) = 0$. 
+  \item If $J$ is obtained from $I$ by swapping a single pair of indices, then $dx_I (v^1, \dots, v^k) = - dx_J (v^1, \dots, v^k)$.
+  \end{enumerate}
+\end{remark}
+
+\begin{definition} A \emph{differential $k$-form} in $\bbR^n$, $\omega$, is a rule assigning a real number to each oriented parallelepiped of the form \begin{align*} \omega = \sum_I f_I dx_I \end{align*} where the sum is taken over all multi-indices $I$ of length $k$ and $f_I: \bbR^n \to \bbR$ is $C^2$. If $p \in \bbR^n$, $v^1, \dots, v^k \in \bbR^n$, \begin{align*} \omega_p (v^1, \dots, v^k) = \sum_I f_I (p) dx_I (v^1, \dots, v^k) \end{align*}
+\end{definition}
+
+\begin{definition} Let $\phi: D \to \bbR^n$ be a $k$-surface and $\omega = \sum_I f_I dx_I$ be a $k$-form. \begin{align*} \int_{\phi} \omega & = \int_D \omega_{\phi(u)} \left( \frac{\partial \phi}{\partial u_1} , \dots, \frac{\partial \phi}{\partial u_k} \right) du \\ & = \int_D \sum_I f_I(\phi(u)) dx_I \left( \frac{\partial \phi}{\partial u_1} , \dots, \frac{\partial \phi}{\partial u_k} \right) du \\ & = \int_D \sum_I f_I (\phi(u)) \frac{\partial(x_{i_1}, \dots, x_{i_k})}{\partial (u_1, \dots, u_k)} du \end{align*} where $\frac{\partial(x_{i_1}, \dots, x_{i_k})}{\partial (u_1, \dots, u_k)}$ is the Jacobian of the map $u_1, \dots, u_k \mapsto \phi_{i_1}(u), \dots, \phi_{i_k}(u)$.
+\end{definition}
+
+\begin{example} $\omega = xdy \wedge dz - y dx \wedge dz + z dx \wedge dy$ is a $2$-form in $\bbR^3$. $\phi: [0, 3] \times [0, 2 \pi] \to \bbR^3$, $\phi(r, \theta) = (r \cos \theta, r \sin \theta, 5)$. \begin{align*}
+\end{example}
+
+
+\end{document}
