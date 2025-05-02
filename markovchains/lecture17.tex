@@ -1,0 +1,51 @@
+\documentclass[11pt]{article}
+\usepackage{master}
+\usepackage{dsfont}
+\title{MATH 23500 Lec 17}
+\author{Andrew Hah}
+
+\begin{document}
+
+\pagestyle{plain}
+\begin{center}
+{\Large MATH 23500} \\
+{\Large Lecture 17} \\
+\vspace{.2in}
+May 2, 2025
+\end{center}
+
+\begin{theorem} (Optional stopping theorem) Let $\{ M_n \}$ be a martingale with respect to $\{ \mathcal{F}_n \}$, and let $\tau$ be a stopping time. Assume that $\tau$ is bounded, i.e., $\exists k$ such that $\bbP ( \tau \le k ) = 1$. Then $$\bbE [M_{\tau}] = \bbE [M_0]$$
+\end{theorem}
+\begin{proof} $M_{\tau} = \sum_{n = 0}^k M_n \mathds{1}_{\{ \tau = n \}}$. Conditioning on $\mathcal{F}_{k - 1}$, we obtain \begin{align*} \bbE [ M_{\tau} \mid \mathcal{F}_{k - 1}] & = \sum_0^k \bbE [ M_n \mathds{1}_{\{ \tau = n\}} \mid \mathcal{F}_{k - 1}] \\ & = \sum_0^{k - 1} \bbE [M_n \mathds{1}_{\{ \tau = n\}} \mid \mathcal{F}_{k - 1}] + \bbE [M_k \mathds{1}_{\{ \tau = k\}} \mid \mathcal{F}_{k - 1}] \\ & = M_{k - 1} \mathds{1}_{\{ \tau > k - 1\}} + \sum_0^{k - 1} M_n \mathds{1}_{\{ \tau = n\}} \\ & = M_{k - 1} \mathds{1}_{\{ \tau > k - 2\}} + \sum_0^{k - 2} M_n \mathds{1}_{\{ \tau = n\}} \end{align*} Similarly, $\bbE [ M_{\tau} \mid \mathcal{F}_{k - 2}] = M_{k - 2}\mathds{1}_{\{ \tau > k - 3\}} + \sum_0^{k - 3} M_n \mathds{1}_{\{ \tau = n\}}$. We repeat this $k$ times to obtain \begin{align*} \bbE [M_{\tau} \mid \mathcal{F}_0 ] = M_{0} \mathds{1}_{\{ \tau \ge 0\}} = M_0 \end{align*} Thus \begin{align*} \bbE [M_{\tau} ] = \bbE [ \bbE [ M_{\tau} \mid \mathcal{F}_0]] = \bbE [M_0] \end{align*}
+\end{proof}
+
+\begin{example} Let $\{ X_n \}$ be the random walk on $\bbZ$ starting at $0$. Then $\{ X_n \}$ is a martingale. Let $\tau = \min \{ n \ge 0 : X_n = 1 \}$. Then $\bbE [ X_{\tau} ] = 1 \neq 0 = \bbE [X_0]$.
+
+  What if $\tau$ is not bounded? We write $\tau \wedge n = \min \{ \tau, n \}$. Then $\tau \wedge n$ is a bounded stopping time. Then \begin{align*} \bbE [M_0] & = \bbE [M_{\tau \wedge n}] \\ & = \bbE [ M_{\tau} \mathds{1}_{\{ \tau \le n \}}] + \bbE [M_{\tau} \mathds{1}_{\{ \tau > n \}}] \end{align*}
+\end{example}
+
+\begin{theorem} (Dominated convergence theorem) Let $\{ X_n \}$ be a sequence of real-valued random variables such that $X_n \to X$ with probability $1$. Assume there exists a random variable $Y$ such that $\bbE [|Y|] < \infty$ and $|X_n| \le |Y|$ for all $n$. Then \begin{align*} \bbE [X_n] \to \bbE[X] \end{align*}
+\end{theorem}
+
+\begin{example} If $\bbE [|M_{\tau}|] < \infty$ and $\bbP ( \tau < \infty) = 1$, we can apply the DCT with $X_n = M_n \mathds{1}_{\{ \tau \le n \}}$ and $Y = M_{\tau}$. We know that as $n \to \infty$, $\mathds{1}_{\{ \tau \le n \}} \to 1$ so \begin{align*} \bbE [M_n \mathds{1}_{\{ \tau \le n \}} ] \to \bbE [M_{\tau}] \end{align*}
+\end{example}
+
+Thus, $\bbE [M_0] = \bbE [M_{\tau}]$ provided that $\lim_{n \to \infty} \bbE [M_n \mathds{1}_{\{ \tau > n \}}] = 0$. 
+
+\begin{theorem} (Optional stopping theorem II) Let $\tau$ be a stopping time, and assume that \begin{enumerate}
+  \item $\bbP (\tau < \infty) = 1$
+  \item $\bbE [|M_{\tau}|] < \infty$
+  \item $\lim_{n \to \infty} \bbE [M_n \mathds{1}_{\{ \tau > n \}}] = 0$
+  \end{enumerate}
+  Then $$\bbE [M_{\tau}] = \bbE [M_0]$$
+\end{thereom}
+
+\begin{remark} If $M_n$ is bounded, i.e., $\exists c$ such that $|M_n| \le c$ for all $n$, then $\bbE [M_n \mathds{1}_{\{ \tau > n \}}] \le c \bbP (\tau > n) \to 0$.
+\end{remark}
+
+\begin{example} Let $\{ X_n \}$ be the simple random walk on $\bbZ$, started at $0$. Let $\tau = \min \{ n \ge 0 : X_n = a \text{ or } X_{n} = -b \} $. Then $\bbP (X_{\tau} < \infty) = 1$, $\bbE [|X_{\tau}|] < \infty$, and \begin{align*} \bbE [|X_n | \mathds{1}_{\{ \tau > n \}} ] \le \max \{ a, b \} \bbP (\tau > n) \to 0 \end{align*} Hence, by OST II, $0 = \bbE [X_{\tau}] = a \bbP (X_{\tau} = a) + (-b) \bbP (X_{\tau} = -b)$, which gives \begin{align*} \bbP (X_{\tau} = a) = \frac{b}{a + b} \end{align*}
+\end{example}
+
+
+
+\end{document}
