@@ -1,0 +1,79 @@
+\documentclass[11pt]{article}
+\usepackage{master}
+\title{MATH 20510 Lec 18}
+\author{Andrew Hah}
+
+\begin{document}
+
+\pagestyle{plain}
+\begin{center}
+{\Large MATH 20510} \\
+{\Large Lecture 18} \\
+\vspace{.2in}
+May 5, 2025
+\end{center}
+
+\begin{definition} If $I = (i_1, \dots, i_k)$ is a multi-index and $i_1 < \dots < i_k$, we say $I$ is an \emph{increasing multi-index}. We say that $dx_I$ is a basic $k$-form.
+\end{definition}
+
+\begin{remark} Every $k$-form can be represented in terms of basic $k$-forms.
+\end{remark}
+
+\begin{example} $dx_1 \wedge dx_5 \wedge dx_3 \wedge dx_2 = - dx_1 \wedge dx_2 \wedge dx_3 \wedge dx_5$.
+\end{example}
+
+\begin{example} $dx_1 \wedge dx_3 \wedge dx_5 \wedge dx_2 = dx_1 \wedge dx_2 \wedge dx_3 \wedge dx_5$.
+\end{example}
+
+\begin{definition} If $\omega = \sum_I a_I dx_I$ is a $k$-form, we can convert each multi-index $I$ into an increasing multi-index $J$, and we say that \begin{align*} \omega = \sum_J b_J dx_J
+\end{align*} is in \emph{standard presentation}.
+\end{definition}
+
+\begin{example} \begin{align*} \omega & = x_1 dx_2 \wedge dx_1 - x_2dx_3 \wedge dx_2 + x_3 dx_2 \wedge dx_3 + dx_1 \wedge dx_2 \\ & = -x_1 dx_1 \wedge dx_2 + x_2 dx_2 \wedge dx_3 + x_3 dx_2 \wedge dx_3 + dx_1 \wedge dx_2 \\ & = (1 - x_1) dx_1 \wedge dx_2 + (x_2 + x_3) dx_2 \wedge dx_3.
+\end{align*} The last line is in standard presentation.
+\end{example}
+
+\begin{definition} Suppose $I = (i_1, \dots, i_p)$ and $J = (j_1, \dots, j_q)$ are increasing multi-indices. The \emph{product} of $dx_I$ and $dx_J$ is the $(p + q)$-form \begin{align*} dx_I \wedge dx_J & = dx_{i_1} \wedge dx_{i_2} \wedge \dots \wedge dx_{i_p} \wedge dx_{j_1} \wedge \dots \wedge dx_{j_q}.
+\end{align*}
+\end{definition}
+
+Note. If $I$ and $J$ have an element in common, $dx_I \wedge dx_J = 0$.
+
+Notation. If $I$ and $J$ have no elements in common, we denote the increasing $(p + q)$ length multi-index obtained from rearranging the members of $I \cup J$ in increasing order by $[I, J]$. \begin{align*} dx_I \wedge dx_J = (-1)^{\alpha} dx_{[I, J]}
+\end{align*} where $\alpha$ is the number of swaps needed to convert $I \cup J$ into an increasing multi-index.
+
+Suppose $\omega, \lambda$ are $p$ and $q$-forms respectively in $\bbR^n$ with standard representations \begin{align*} \omega = \sum_I b_I dx_I \quad \lambda = \sum_J c_J dx_J.
+\end{align*} The product of $\omega$ and $\lambda$ is the $(p + q)$-form \begin{align*} \omega \wedge \lambda & = \sum_{I, J} b_I c_I (dx_I \wedge dx_J).
+\end{align*}
+
+\begin{remark} $\text{}$ \begin{enumerate}
+  \item $(\omega_1 + \omega_2) \wedge \lambda = (\omega_1 \wedge \lambda) + (\omega_2 \wedge \lambda)$
+  \item $\omega \wedge (\lambda_1 + \lambda_2) = (\omega \wedge \lambda_1) + (\omega \wedge \lambda_2)$
+    \item $(\omega \wedge \lambda) \wedge \sigma = \omega \wedge (\lambda \wedge \sigma)$
+  \end{enumerate}
+\end{remark}
+
+\begin{definition} A $0$-form is a $C^1$ function.
+\end{definition}
+
+Notation. The product of a $0$-form $f$ with a $k$-form $\omega = \sum_I b_I dx_I$ is \begin{align*} f \omega = \omega f = \sum_I (fb_I) dx_I.
+\end{align*}
+
+\begin{remark} $f ( \omega \wedge \lambda) = f \omega \wedge \lambda = \omega \wedge f \lambda $.
+\end{remark}
+
+\begin{definition} (Differentiation of $k$-forms) Operator which associates a $(k + 1)$-form, $d \omega$, to each $k$-form, $\omega$.
+\begin{enumerate}
+  \item $0$-forms in $\bbR^n$. $f: E \to \bbR$, $E \subseteq \bbR^n$. \begin{align*} df & = D_1 fdx_1 + \dots + D_n f dx_n  \\ & = \frac{\partial f}{\partial x_1} dx_1 + \dots + \frac{\partial f}{\partial x_n} dx_n.
+  \end{align*}
+  \item $k$-forms in $\bbR^n$. Let $\omega = \sum_I b_I dx_I$ be given in standard presentation. \begin{align*} d \omega & = \sum_I (db_I) \wedge dx_I.
+  \end{align*}
+\end{enumerate}
+\end{definition}
+
+\begin{example} Let $\omega = \underbrace{x}_{f_1} dx + \underbrace{y^2}_{f_2} dz$ be a $1$-form in $\bbR^3$. \begin{align*} d \omega & = (df_1) \wedge dx + (df_2) \wedge dz \\ & = (1 dx + 0 dy + 0 dz) \wedge dx + (0dx + 2y dy + 0 dz) \wedge dz \\ & = dx \wedge dx + 2y dy \wedge dz \\ & = 2y dy \wedge dz.
+\end{align*} Further, \begin{align*} d(d\omega) & = d (2y dy \wedge dz) \\ & = (df) \wedge (dy \wedge dz) \\ & = (2dy) \wedge (dy \wedge dz) \\ & = 0.
+\end{align*}
+\end{example}
+
+\end{document}

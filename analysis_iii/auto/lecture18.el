@@ -1,12 +1,12 @@
 ;; -*- lexical-binding: t; -*-
 
 (TeX-add-style-hook
- "analysis_iii"
+ "lecture18"
  (lambda ()
    (TeX-add-to-alist 'LaTeX-provided-class-options
                      '(("article" "11pt")))
    (TeX-add-to-alist 'LaTeX-provided-package-options
-                     '(("master" "") ("titling" "")))
+                     '(("master" "")))
    (add-to-list 'LaTeX-verbatim-macros-with-braces-local "path")
    (add-to-list 'LaTeX-verbatim-macros-with-braces-local "url")
    (add-to-list 'LaTeX-verbatim-macros-with-braces-local "nolinkurl")
@@ -18,9 +18,6 @@
     "latex2e"
     "article"
     "art11"
-    "master"
-    "titling")
-   (LaTeX-add-pagestyles
-    "plain"))
+    "master"))
  :latex)
 

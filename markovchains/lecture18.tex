@@ -1,0 +1,41 @@
+\documentclass[11pt]{article}
+\usepackage{master}
+\title{MATH 235 Lec 18}
+\author{Andrew Hah}
+
+\begin{document}
+
+\pagestyle{plain}
+\begin{center}
+{\Large MATH 23500} \\
+{\Large Lecture 18} \\
+\vspace{.2in}
+May 5, 2025
+\end{center}
+
+\begin{example} Let $\{ X_n \}$ be the simple random walk on $\bbZ$. Let $\tau = \min \{ n : X_n = a \text{ or } X_n = -b \}$. We wish to compute $\bbE [\tau ]$. Let $M_n = X_n^2 - n$. As shown before, $M_n$ is a martingale with respect to $\mathcal{F}_n$. \\
+
+  Claim. $\bbP (\tau > n) \le e^{-cn}$ for some $c > 0$. The random walk stopped when we hit $a$ or $-b$ is a Markov chain on $\{ -b, -b + 1, \dots, 0, \dots, a - 1, a \}$, and $\{ -b + 1, \dots, a - 1 \}$ is a transient communication class. With this, we find \begin{align*} \bbE [\tau ] = \sum_{n = 0}^{\infty} \bbP (\tau > n ) \le \sum_{n = 0}^{\infty} e^{-cn} < \infty. \end{align*} Furthermore, \begin{align*} \bbE [ |M_{\tau} |] \le \bbE [ X_{\tau}^2] + \bbE [\tau] \le \max \{ a^2, b^2 \} + \bbE [\tau] < \infty. \end{align*} Since \begin{align*} \bbE [|M_n | \mathds{1}_{\{ \tau > n \}}] \le \left( \max \{ a, b \}^2 + n \right) e^{-cn} \to 0. \end{align*} we have \begin{align*} \bbE [M_0] & = \bbE [M_{\tau}] \\ & = \bbE [X_{\tau}^2] - \bbE[\tau] \\ & = a^2 \bbP (X_{\tau} = a) + b^2 \bbP (X_{\tau} = -b) - \bbE [\tau] \\ & = \frac{a^2b + b^2 a}{a + b} - \bbE[\tau] \\ & = 0. \end{align*} Hence, \begin{align*} \bbE [\tau] = ab. \end{align*}
+\end{example}
+
+\begin{example} At each toss of a coin, I bet $\$ 1$ on tails, and let $X_n$ be my winning on the $n$-th toss. $\bbP (X_n = 1) = \bbP(X_n = -1) = 1/2$. Let $T$ be the time at which the first tail occurs. Let $Y_n = X_1 + X_2 + \dots + X_n$ be my total winnings after $n$ tosses. $Y$ is a martingale, and by OST, \begin{align*} 0 = \bbE [Y_T] = \bbE \left[ \sum_{n = 1}^T X_n \right] = \bbE [(-1)(T - 1) + 1]. \end{align*} Thus \begin{align*} \bbE [T] = 2. \end{align*}
+\end{example}
+
+\begin{example} If the coin is unfair, play the same game, except you are compensated $\$ 1 - 2p$ for every $\$$ bet.
+\end{example}
+
+\begin{example} At times $1, 2, \dots$ a monkey types a capital letter uniformly at random. We wish to find the expected time until the monkey types ABRACADABRA. \\
+
+  Just before each time $n$, a new gambler arrives and bets $\$ 1$ that the $n$-th letter is $A$. If he loses, he leaves, and otherwise he receives $\$ 26$, all of which he bets on the $(n+1)$-th letter being $B$. Again, if he wins he bets his entire fortune of $\$ 26$ on the $(n +2)$-th letter being $R$, and so on. Let $M_n^j$ be the winnings of the $j$-th letter at time $n$. Then \begin{align*} \bbE [M_n^j \mid \mathcal{F}_{n - 1}] = 0 = M_{n - 1}^j.
+  \end{align*} If he wins the first $n - 1$ rounds, his fortune is $26^{n - 1}$ and so \begin{align*} \bbE [ M_n^j \mid \mathcal{F}_{n - 1}] = 26^n \cdot \frac{1}{26} + \frac{25}{26} \cdot 0 = 26^{n - 1} = M_{n - 1}^j.
+  \end{align*} By linearity, $M_n = \sum_{j = 1}^n M_n^j$ is a martingale with respect to $\mathcal{F}_n$. \\
+
+  Claim. OST applies to $M_n$ (exercise).
+
+  Let $T$ be the first time hte monkey types ABRACADABRA. Then, \begin{align*} \bbE [ M_0 ] & = \bbE [M_T]  \\ & = \bbE \left[ \sum_{j = 1}^T M_n^j \right] \\ & = \bbE \left[ (26^{11} - 1) + (26^4 - 1) + 25 + (-1)(T - 3) \right].
+  \end{align*} Thus, \begin{align*} \bbE [T] = 26^{11} + 26^4 + 26.
+  \end{align*}
+\end{example}
+  
+\end{document}
+

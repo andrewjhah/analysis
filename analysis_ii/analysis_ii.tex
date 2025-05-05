@@ -1,0 +1,91 @@
+\documentclass[11pt]{article}
+\usepackage{master}
+
+\usepackage{titling}
+
+\fancypagestyle{plain}{%
+  \fancyhf{}            % clear all header and footer fields
+  \renewcommand\headrulewidth{0pt}%
+  \renewcommand\footrulewidth{0pt}%
+}
+
+\renewcommand{\abstractname}{}
+
+% \title{Accelerated Analysis 3 Lecture Notes}
+% \author{Andrew Hah}
+
+\title{MATH 20410. Analysis in \(\mathbb{R}^n\) II  (accelerated)}
+\author{%
+  Based on lectures by Prof.\ Donald Stull\\
+  {\large Notes taken by Andrew Hah}\\[2ex]
+  {\normalsize The University of Chicago – Winter 2025}
+}
+\date{}  % no date
+
+% adjust spacing before/after title
+
+\setlength{\droptitle}{-1cm}
+\pretitle{\begin{center}\LARGE}
+\posttitle{\end{center}\par\vskip 1ex}
+\preauthor{\begin{center}\large}
+\postauthor{\end{center}\par\vskip 2ex}
+\predate{}
+\postdate{}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{empty}
+
+\vspace*{-1em}
+\noindent
+\begin{abstract} Any proof or argument that has been filled in, expanded, or written out in detail by me is marked with a \(\blacksquare\).  
+  All other material follows the lectures and any errors or omissions are entirely my own.
+  \end{abstract}
+
+\vspace{2em}
+\noindent
+\tableofcontents
+
+\newpage
+
+\section{Differentiation}
+
+\begin{definition} Let $f: [a, b] \to \mathbb{R}$ and $x \in [a, b]$. We say that $f$ is \emph{differentiable} at $x$ if the limit $$\lim_{t \to x} \frac{f(t) - f(x)}{t - x}$$exists. If the limit exists, we say it is the \emph{derivative} of $f$ at $x$, denoted by $f'(x)$.
+\end{definition}
+
+Extensions. \begin{enumerate}
+  \item $f: [a, b] \to \mathbb{C}$. $f = f_{\mathrm{RE}} + i f_{\mathrm{IM}}$ where $f_{\mathrm{RE}},  f_{\mathrm{IM}}: [a, b] \to \mathbb{R}$. 
+	Then $f$ is differentiable at $x \in [a, b]$ $\iff$ $f_{\mathrm{RE}},  f_{\mathrm{IM}}$ are differentiable at $x$.
+	If $f$ is differentiable at $x$ then $f'(x) = f_{\mathrm{RE}}'(x) + i  f_{\mathrm{IM}}'(x)$
+  \item $f: [a, b] \to \mathbb{R}^n$. $f = (f_1, \dots, f_n)$ where $f_1, \dots, f_n: [a, b] \to \mathbb{R}$.
+	Define the derivative of $f$ at $x$ by $f'(x) = \lim_{t \to x} \frac{f(t) - f(x)}{t - x}$. The limit is the vector limit. 
+	By Theorem 4.10 of Rudin, this limit exists $\iff$ the limit of each component exists, i.e. $f'(x) = (f_1'(x), \dots, f_n'(x))$.
+    \end{enumerate}
+     
+      \begin{theorem} If $f: [a, b] \to \mathbb{R}$, $x \in [a, b]$, and $f'(x)$ exists, then $f$ is continuous at $x$.
+      \end{theorem}
+
+      \begin{proof} Let $t \in [a, b]$, $t \neq x$. Then $f(t) - f(x) = \frac{f(t) - f(x)}{t - x} \cdot (t - x)$. As $t \to x$, the right hand side goes to $f'(x) \cdot 0 = 0$, so $f$ is continuous at $x$.
+      \end{proof}
+
+      Differentiation rules. \begin{enumerate}
+      \item Let $f, g: [a, b] \to \mathbb{R}$, both differentiable at $x \in [a, b]$. Then $f + g, f  \cdot g, \frac{f}{g} (g(x) \neq 0)$ are all differentiable at $x$. Moreover, $(f + g)'(x) = f'(x) + g'(x)$, $(fg)' = f'(x)g(x) + f(x)g'(x)$, and $\left( \frac{f}{g} \right)'(x) = \frac{f'(x)g(x) - g'(x)f(x)}{g^2(x)}$.
+      \item $f: [a, b] \to \mathbb{R}$, $g: [c, d] \to \mathbb{R}$, $f([a, b]) \subseteq [c, d]$. Let $x \in [a, b]$ s.t. $f'(x)$ exists and $g'(f(x))$ exists. Then $g \circ f$ is differentiable at $x$ and $(g \circ f)'(x) = g'(f(x)) f'(x)$.
+      \end{enumerate}
+
+      \begin{definition}
+        Let $(X, d)$ be a metric space and $f: X \to \mathbb{R}$. We say that $f$ has a \emph{local maximum} at $x \in X$ if there is an open ball $U \ni x$ such that $\forall y \in U$, $f(y) \le f(x)$, and a \emph{local minimum} if $\forall y \in U, f(y) \ge f(x)$.
+      \end{definition}
+
+      \begin{theorem} Let $f: [a, b] \to \mathbb{R}$ have a local maximum or local minimum at $x \in [a, b]$. If $f'(x)$ exists, then $f'(x) = 0$. 
+      \end{theorem}
+
+      \begin{proof} Suppose $x$ is a local maximum and $f'(x)$ exists. Then if $t < x$, $\frac{f(t) - f(x)}{t - x} \ge 0$, and if $t > x, \frac{f(t) - f(x)}{t - x} \le 0$. Thus $f'(x) = 0$.
+        \end{proof}
+      
+        \section{Differentiation in $\mathbb{R}^n$}
+
+        \section{Riemann-Stieltjes Integration}
+        
+\end{document}

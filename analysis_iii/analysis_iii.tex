@@ -1,24 +1,53 @@
 \documentclass[11pt]{article}
 \usepackage{master}
 
+\usepackage{titling}
+
+\fancypagestyle{plain}{%
+  \fancyhf{}            % clear all header and footer fields
+  \renewcommand\headrulewidth{0pt}%
+  \renewcommand\footrulewidth{0pt}%
+}
+
 \renewcommand{\abstractname}{}
 
-\title{Accelerated Analysis 3 Lecture Notes}
-\author{Andrew Hah}
+% \title{Accelerated Analysis 3 Lecture Notes}
+% \author{Andrew Hah}
+
+\title{MATH 20510. Analysis in \(\mathbb{R}^n\) III  (accelerated)}
+\author{%
+  Based on lectures by Prof.\ Donald Stull\\
+  {\large Notes taken by Andrew Hah}\\[2ex]
+  {\normalsize The University of Chicago – Spring 2025}
+}
+\date{}  % no date
+
+% adjust spacing before/after title
+\setlength{\droptitle}{-1cm}
+\pretitle{\begin{center}\LARGE}
+\posttitle{\end{center}\par\vskip 1ex}
+\preauthor{\begin{center}\large}
+\postauthor{\end{center}\par\vskip 2ex}
+\predate{}
+\postdate{}
 
 \begin{document}
-\thispagestyle{empty}  % no page number
 
-\begin{center}
-  {\Large MATH 20510. Analysis in $\bbR^{n}$ III (accelerated)}\par
-  \vspace{3ex}
-  {\large Based on lectures by Prof. Donald Stull}\par
-  {\normalsize Notes taken by Andrew Hah}\par
-  \vspace{2ex}
-  {\small The University of Chicago - Spring 2025}
-\end{center}
+\maketitle
+\thispagestyle{empty}
 
+\vspace*{-1em}
+\noindent
+\begin{abstract} Any proof or argument that has been filled in, expanded, or written out in detail by me is marked with a \(\blacksquare\).  
+  All other material follows the lectures and any errors or omissions are entirely my own.
+  \end{abstract}
+
+\vspace{2em}
+\noindent
 \tableofcontents
+
+\newpage
+
 
 \section{Measure and Integration}
 
@@ -412,6 +441,8 @@ We say $f \in \sR$ (Riemann integrable) if $f_{RE}, f_{IM} \in \mathscr{R}$ and 
 \begin{definition} A \emph{trigonometric polynomial} is a function $$f(x) = a_0 + \sum_1^N a_n \cos (nx) + b_n \sin (nx)$$ where $a_0, \dots, a_N, b_1, \dots, b_N \in \mathbb{C}$.
 \end{definition}
 
-Note. Using Euler's formula, we can equivalently write this as $$f(x) = \sum_{-N}^N c_n e^{inx}$$ where $c_{-N}, \dots, c_N \in \mathbb{C}$. 
+Note. Using Euler's formula, we can equivalently write this as $$f(x) = \sum_{-N}^N c_n e^{inx}$$ where $c_{-N}, \dots, c_N \in \mathbb{C}$.
+
+\section{Differential Forms}
   
 \end{document}
