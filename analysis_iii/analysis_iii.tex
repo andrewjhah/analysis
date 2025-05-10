@@ -432,6 +432,8 @@ Hence \begin{align*} \int_{E = A \sqcup B}  f dm & = \int_A f dm + \int_B f dm \
 \begin{theorem} If $m(E) < \infty$, then $f \in \mathscr{L}^2 \implies f \in \mathscr{L}^1$.
 \end{theorem}
 
+\newpage 
+
 \section{Fourier Analysis}
 
 Recall. Let $f: \mathbb{R} \to \mathbb{C}$. We can decompose $f$ into its real and imaginary components, $$f = f_{RE} + i f_{IM}$$where $f_{RE}, f_{IM}: \mathbb{R} \to \mathbb{R}$.
@@ -443,6 +445,417 @@ We say $f \in \sR$ (Riemann integrable) if $f_{RE}, f_{IM} \in \mathscr{R}$ and 
 
 Note. Using Euler's formula, we can equivalently write this as $$f(x) = \sum_{-N}^N c_n e^{inx}$$ where $c_{-N}, \dots, c_N \in \mathbb{C}$.
 
+We discuss $2\pi$-periodic functions defined on intervals $[a, b]$ of length $2\pi$.
+
+\begin{definition} Let $f \in \mathscr{R}$ on $[a, a + 2\pi]$, $n \in \mathbb{Z}$. The \emph{$n$-th Fourier coefficient of $f$} is \begin{align*} \hat{f} (n) = \frac{1}{2\pi} \int_a^{a + 2\pi} f(x) e^{-inx} dx.
+\end{align*}
+\end{definition}
+
+\begin{definition} The \emph{Fourier series of $f$} is given (formally) by \begin{align*} f \sim \sum_{- \infty}^\infty \hat{f}(n) e^{inx}.
+\end{align*}
+\end{definition}
+
+\begin{definition} The \emph{$N$-th partial sum of $f$} is \begin{align*}  s_N(f) = \sum_{-N}^N \hat{f}(n) e^{inx}.
+\end{align*}
+\end{definition}
+
+Note.  If $n \in \mathbb{Z} - \{ 0 \}$, $e^{inx}$ is the derivative of $\frac{e^{inx}}{in}$ (which is $2\pi$-periodic). Therefore, \begin{align*} \frac{1}{2\pi} \int_a^{a+2\pi} e^{inx} dx = \begin{cases} 1 & \text{if } n = 0 \\ 0 & \text{if } n \neq 0 \end{cases}
+\end{align*}
+
+\begin{example} Suppose $f(x) = \sum_{-N}^N c_n e^{inx}$. Let $|m| \le N$. Then \begin{align*} \hat{f}(m) & = \frac{1}{2\pi} \int_{-\pi}^\pi f(x) e^{-imx} dx \\ & = \frac{1}{2\pi} \int_{-\pi}^\pi \left( \sum_{-N}^N c_n e^{inx} \right) e^{-imx} dx \\ & = \frac{1}{2\pi} \int_{-\pi}^\pi \left( \sum_{-N}^N c_n e^{ix(n - m)} \right) dx\\ & = \frac{1}{2\pi} \sum_{-N}^N c_n \int_{-\pi}^\pi e^{ix(n - m)} dx \\ & = \frac{1}{2\pi} (c_m 2\pi) \\ & = c_m.  \end{align*}
+
+Note. If $|m| > N$ then $\hat{f}(m) = 0$.
+
+Hence, $f(x) = \sum_{-\infty}^\infty \hat{f}(n) e^{inx} = \sum_{-N}^N \hat{f}(n) e^{inx} = s_N (f)$.
+\end{example}
+
+Question. In what sense does $s_N(f) \to f$ as $N \to \infty$?
+
+\begin{example} Let $f(x) = x$ on $[-\pi, \pi]$. \begin{align*} \hat{f} (0) = 0 = \frac{1}{2\pi} \int_{-\pi}^\pi x dx.
+\end{align*}
+For $n \neq 0$, \begin{align*} \hat{f}(n) & = \frac{1}{2\pi} \int_{-\pi}^\pi xe^{-inx} \\ & = \frac{1}{2\pi} \left[ \frac{xe^{inx}}{in} \right]_{-\pi}^\pi + \frac{1}{2\pi in} \int_{-\pi}^\pi e^{-inx} dx \\ & = \frac{(-1)^{n + 1}}{in}.
+\end{align*}
+Fourier series of $f$ is \begin{align*} \sum_{n \neq 0} \frac{(-1)^{n + 1}}{in} e^{inx} = 2 \sum_1^\infty (-1)^{n + 1} \frac{\sin (nx)}{n}.
+\end{align*}
+In this example, $s_N(f) \to f$ uniformly.
+\end{example}
+
+Overview. \begin{enumerate}
+\item Let $f$ be (Riemann) integrable in $[a, a + 2\pi]$. Does $s_N(f) \to f$ pointwise? NO
+\item What about if $f$ is continuous (and periodic)? NO
+\item What if $f \in C^1$ (and periodic)? YES
+  
+\end{enumerate}
+
+Motivating question. If $f$ is $2\pi$-periodic, when can we prove that $s_N(f) \to f$ pointwise (uniformly)?
+
+\begin{theorem} Suppose $f \in \mathscr{R}$ on $[0, 2\pi]$, $f$ is $2\pi$-periodic, $\hat{f}(n) = 0$ for all $n \in \mathbb{Z}$. Then $f(x) = 0$ $\forall x$ at which $f$ is continuous. 
+\end{theorem}
+
+\begin{corollary} If $f$ is continuous, $2\pi$-periodic, and $\hat{f}(n) =0$ $\forall n \in \mathbb{Z}$, then $f =0$.
+\end{corollary}
+
+\begin{corollary} If $f, g$ are continuous, $2\pi$-periodic, and $\hat{f}(n) = \hat{g}(n)$ $\forall n \in \mathbb{Z}$, then $f = g$.
+\end{corollary}
+
+\begin{corollary} Suppose $f$ is continuous, $2\pi$-periodic, and the Fourier series of $f$ converges absolutely, i.e., $$\sum_{-\infty}^\infty |\hat{f}(n) | < \infty.$$ Then $\lim_{N \to \infty} S_N(f) (x) = f(x)$ uniformly.
+\end{corollary}
+\begin{proof} Since $\sum_{-\infty}^\infty |\hat{f}(n) | < \infty$, the partial sums $S_N(f)$ converge uniformly. Define \begin{align*} g(x) = \sum_{-\infty}^\infty \hat{f}(n) e^{inx} = \lim_{N \to \infty} \sum_{-N}^N \hat{f}(n) e^{inx}.
+\end{align*} Since $g$ is the uniform limit of continuous functions, $g$ is continuous. Moreover, $\forall n \in \mathbb{Z}$, \begin{align*} \hat{g}(n) & = \frac{1}{2\pi} \int_0^{2\pi} g(x) e^{-inx} dx \\ & = \frac{1}{2\pi} \int_0^{2\pi} \left( \sum_{-\infty}^\infty \hat{f} (m) e^{imx} \right) e^{-inx} dx \\ &  = \frac{1}{2\pi} \int_0^{2\pi} \left( \sum_{-\infty}^\infty \hat{f}(m) e^{ix(m - n)} \right) dx \\ & = \sum_{m = -\infty}^\infty \frac{1}{2\pi} \int_0^{2\pi} \hat{f} (m) e^{ix(m-n)} dx \\ & = \sum_{m = -\infty}^\infty \frac{1}{2\pi} \hat{f}(m) \int_0^{2\pi} e^{ix(m-n)} dx \\ & = \hat{f}(n).
+\end{align*}
+Hence $f = g$.
+\end{proof}
+
+\begin{lemma} Suppose $f$ is $C^2$ and $2\pi$-periodic. Then $\exists c > 0$ such that for all sufficiently large $|n|$, $$|\hat{f}(n)| \le \frac{c}{|n|^2},$$ i.e., $|\hat{f}(n)| = O\left(\frac{1}{n^2}\right)$.
+\end{lemma}
+\begin{proof} By integration by parts (twice), \begin{align*} 2 \pi \hat{f}(n) & = \int_0^{2\pi} f(x) e^{-inx} dx \\ & = f(x) \left[ \frac{e^{inx}}{in} \right]_{0}^{2\pi} + \frac{1}{in} \int_0^{2\pi} f'(x) e^{-inx} dx \\ & = \frac{1}{in} \left[ -f'(x) \frac{e^{-inx}}{in} \right]_0^{2\pi} + \frac{1}{(in)^2} \int_0^{2\pi} f''(x) e^{-inx} dx \\ & = - \frac{1}{n^2} \int_0^{2\pi} f''(x) e^{-inx} dx.
+\end{align*} Hence, \begin{align*} 2 \pi \hat{f}(n) = \frac{1}{|n|^2} \left| \int_0^{2\pi} f''(x) e^{-inx} dx \right|. \tag{1}
+\end{align*} Then \begin{align*} \mathrm{RHS} \text{ of } (1) & \le \frac{1}{|n|^2} \int_0^{2\pi} |f''(x)| |e^{-inx} dx \\ & = \frac{1}{|n|^2} \int_0^{2\pi} |f''(x)| dx \\ & \le \frac{1}{|n|^2} 2\pi c
+\end{align*}
+where $c = \max_{x \in [0, 2\pi]} |f''(x)|$. Therefore, $|\hat{f}(n)| \le \frac{c}{|n|^2}$.
+\end{proof}
+
+Note. We showed within the above proof that if $f$ is $C^1$, $\hat{f}'(n) = in \hat{f}(n)$.
+
+Next question. If $f$ is  $2\pi$-periodic and $\int_0^{2\pi} |f|^2 dx$ exists, under what type of convergence does $s_N(f) \to f$?
+
+\begin{theorem} Let $f$ be a complex valued, $2 \pi$-periodic, (Riemann) integrable function. Then \begin{align*} \lim_{N \to \infty} \int_0^{2\pi} |f(x) - s_N (f)(x) |^2 dx = 0.
+\end{align*}
+\end{theorem}
+
+\begin{definition} A \emph{vector space} over $\mathbb{C}$ is a set $V$ of vectors, operations $\cdot, +$ such that $\forall x, y, z \in V$, $\forall \lambda_1, \lambda_2 \in \mathbb{C}$,
+  \begin{enumerate}
+  \item $x + y \in V$.
+  \item $x + y = y + x$.
+  \item $x + (y + z) = (x + y) + z$.
+  \item $\lambda_1 x \in V$.
+  \item $\lambda_1 (x + y) = \lambda_1 x + \lambda_1 y$.
+  \item $(\lambda_1 + \lambda_2)x = \lambda_1 x + \lambda_2 x$.
+  \item $\lambda_1(\lambda_2 x) = (\lambda_1 \lambda_2)x$.
+  \end{enumerate}
+  In addition, $\exists 0 \in V$ such that $x + 0 = x$ $\forall x$. $\forall x \in V, \exists (-x) \in V$ such that $x + (-x) = 0$. $\exists 1 \in V$ such that $1 \cdot x = x$.
+\end{definition}
+
+\begin{definition} An \emph{inner product} of a vector space $V$ is a map $(\cdot, \cdot): V \times V \to \mathbb{C}$ satisfying
+  \begin{enumerate}
+  \item $(x, y) = \overline{(y, x)}$.
+  \item $(\alpha x + \beta y, z) = \alpha(x, z) + \beta(y, z)$.
+  \item $(x, \alpha y + \beta z) = \overline{\alpha} (x, y) + \overline{\beta} (x, z)$.
+  \item $(x, x) \ge 0$.
+  \end{enumerate}
+\end{definition}
+
+\begin{definition} Given an inner product $(\cdot, \cdot)$, we can define a \emph{norm} on $V$, $$\| x \| = (x, x)^{\frac{1}{2}}.$$
+\end{definition}
+
+\begin{definition} We say that $x, y$ are \emph{orthogonal} if $(x, y) = 0$, and we write $x \perp y$.
+\end{definition}
+
+\begin{example} $V = \mathbb{C}$, $(x, y) = x \overline{y}$. 
+\end{example}
+
+\begin{example} $V = \mathbb{R}^n$, $(x, y) = x \cdot y$.
+\end{example}
+
+\begin{example} Let $\mathcal{R}$ be the set of complex-valued, $2\pi$-periodic (Riemann) integrable functions. This is a vector space over $\mathbb{C}$. \begin{enumerate}
+  \item $(f + g)(x) = f(x) + g(x)$.
+  \item $(\lambda f)(x) = \lambda f(x)$.
+  \end{enumerate}
+Define the inner product \begin{align*} (f, g) = \frac{1}{2\pi} \int_0^{2\pi} f(x) \overline{g(x)} dx
+\end{align*}
+so the norm is \begin{align*} \| f \| = \left( \frac{1}{2\pi} \int_0^{2\pi} |f(x)|^2 dx \right)^{\frac{1}{2}}.
+\end{align*}
+\end{example}
+
+Three properties. Let $V$ be an inner product space. \begin{enumerate}
+  \item Pythagorean Theorem. If $x \perp y$ then \begin{align*} \| x + y \|^2 = \| x\|^2 + \| y \|^2.
+  \end{align*}
+  \item Cauchy-Schwarz. For any $x, y \in V$, \begin{align*} |(x, y)| \le \| x \|  \| y \|.
+  \end{align*}
+  \item Triangle inequality. For any $x, y \in V$, \begin{align*} \| x + y \| \le \| x \|  + \| y \|.
+  \end{align*}
+\end{enumerate}
+
+Notation. We will write $e_n(x) = e^{inx}$.
+
+Observation. The family $\{ e_n \}_{n \in \mathbb{Z}}$ is \emph{orthonormal}, i.e., \begin{align*} (e_n, e_m) = \begin{cases} 1 & \text{if } n = m \\ 0 & \text{otherwise} \end{cases}
+\end{align*} So $e_n \perp e_m$ if $n \neq m$ and $\| e_n \| = 1$ $\forall n \in \mathbb{Z}$. Moreover, $\forall f \in \mathcal{R}$, $n \in \mathbb{Z}$, \begin{align*} (f, e_n) & = \frac{1}{2\pi} \int_0^{2\pi} f(x) \overline{e_n(x)} dx \\ & = \frac{1}{2\pi} \int_0^{2\pi} f(x) e^{-inx} dx \\ & = \hat{f}(n).
+\end{align*} Then \begin{align*} s_N (f) & = \sum_{-N}^N \hat{f}(n) e_n \\ & = \sum_{-N}^N (f, e_n)e_n.
+\end{align*}
+
+Note. $\forall |m| \le N$, \begin{align*} (f - s_N(f)) \perp e_m.
+\end{align*} We see this since \begin{align*} (f - s_N(f), e_m) & = (f, e_m) - (s_N(f), e_m) \\ & = (f, e_m) - \sum_{-N}^N ((f, e_n)e_n, e_m) \\ & = (f, e_m) - \sum_{-N}^N (f, e_m)(e_n, e_m) \\ & = (f, e_m) - (f, e_m) \\ & = 0.
+\end{align*}
+
+\begin{corollary} For every $\{ e_n \}_{-N}^N$, \begin{align*} (f - s_N(f)) \perp \sum_{-N}^N c_n e_n.
+\end{align*}
+\end{corollary}
+
+Then, $f = f - s_N(f) + s_N(f)$, so by the Pythagorean theorem, \begin{align*} \| f \|^2 = \| f - s_N(f) \|^2 + \| s_N(f) \|^2.
+\end{align*}
+$s_N(f) = \sum_{-N}^N \hat{f}(n) e_n$, so \begin{align*} \| s_N(f) \|^2 & = \sum_{-N}^N \| \hat{f}(n) e_n \|^2 \\ & = \sum_{-N}^N \| \hat{f}(n) \|^2
+\end{align*} and thus \begin{align*} \| f \|^2 = \| f - s_N(f) \|^2 + \sum_{-N}^N \| \hat{f}(n) \|^2. \tag{2}
+\end{align*}
+
+\begin{lemma} (Best approximation) $f \in \mathcal{R}$. Then \begin{align*} \| f - s_N(f) \| \le \left \| f - \sum_{-N}^N c_n e_n  \right\|
+\end{align*}
+for any complex numbers $\{ c_n \}_{-N}^N$.
+\end{lemma}
+
+\begin{theorem} If $f \in \mathcal{R}$ then \begin{align*} \lim_{N \to \infty} \int_0^{2\pi} |f - s_N(f) |^2 dx = 0.
+\end{align*}
+\end{theorem}
+\begin{proof} Let $f \in \mathcal{R}$ be continuous. By (a version of) the Stone-Weierstrass theorem, $\forall \epsilon > 0$, $\exists$ trigonometric polynomial $P$ such that $|f(x) - P(x)| < \epsilon$, $\forall x \in [0, 2 \pi]$. \begin{align*} \| f - P \| & = \left( \frac{1}{2\pi} \int_0^{2\pi} |f(x) - P(x) |^2 dx  \right)^{1/2} \\ & <  \left( \frac{1}{2\pi} \int_0^{2\pi} \epsilon^2 dx  \right)^{1/2} \\ & = \epsilon.
+\end{align*} Let $M$ be the degree of $P$, i.e., $P = \sum_{-M}^M c_n e_n$. By the best approximation lemma, $\forall N \ge M$, \begin{align*} \| f - s_N(f) \| \le \| f - P \| < \epsilon.
+\end{align*} Hence, $\forall \epsilon > 0$, $\exists M$ such that $\forall N \ge M$, $\| f - s_N(f) \| < \epsilon$.
+Now we drop the condition that $f$ is continuous. For every $\epsilon > 0$, $\exists$ continuous $g$ such that \begin{enumerate}
+\item $\sup_{x \in [0, 2 \pi]} |g(x)| \le \sup_{x \in [0, 2\pi]} |f(x)| = B$.
+\item $\int_0^{2\pi} |f(x) - g(x) | dx < \epsilon^2$.
+\end{enumerate} Then \begin{align*} \| f - g \| & = \left( \frac{1}{2\pi} \int_0^{2\pi} |f(x) - g(x) |^2 dx  \right)^{1/2} \\ & = \left( \frac{1}{2\pi} \int_0^{2\pi} |f(x) - g(x) | |f(x) - g(x) |dx  \right)^{1/2} \\ & \le \left( \frac{B}{\pi} \int_0^{2\pi} |f(x) - g(x) | dx \right)^{1/2} \\ & < \left( \frac{B}{\pi} \epsilon^2 \right)^{1/2} \\ & = \sqrt{\frac{B}{\pi}} \epsilon.
+\end{align*} Since $g$ is continuous, $\exists$ trigonometric polynomial $P$ such that $\| g - P \| < \epsilon$. Therefore, \begin{align*} \| f - P \| & \le \| f - g \| + \| g - P \| \\ & < \epsilon \sqrt{ \frac{B}{\pi}} + \epsilon \\ & = \epsilon \left( 1 + \sqrt{ \frac{B}{\pi}} \right).
+\end{align*} By the best approximation lemma, $\forall N \ge \mathrm{deg}(P)$, \begin{align*} \| f - s_N(f) \| < \epsilon \left( 1 + \sqrt{ \frac{B}{\pi}} \right).
+\end{align*}
+\end{proof}
+
+\begin{corollary} (Parseval's Identity) $f \in \mathcal{R}$. Then \begin{align*} \sum_{-\infty}^\infty | \hat{f}(n) |^2 = \| f \|^2.
+\end{align*}
+\end{corollary}
+\begin{proof} For every $n$, $\| f \|^2 \ge \sum_{-N}^N | \hat{f}(n) |^2$ by $(2)$. By the previous theorem, $\forall \epsilon > 0$, $\exists M$ such that $\forall N \ge M$, $\| f - s_N(f) \| < \epsilon$, so by $(2)$ again, \begin{align*} \sum_{-N}^N | \hat{f}(n) |^2 \ge \| f \|^2 - \epsilon.
+\end{align*}
+\end{proof}
+
+\begin{corollary} (Riemann-Lebesgue) $f \in \mathcal{R}$. Then \begin{align*} \lim_{|n| \to \infty} | \hat{f}(n) | = 0.
+\end{align*}
+\end{corollary}
+
+\newpage
+
 \section{Differential Forms}
+
+Recall. $f: E \to \bbR$, $E \subseteq \bbR^n$ open, partials $D_1f, \dots, D_nf$. If the partials are themselves differentiable then the second order derivatives of $f$ are defined by $$D_{ij}f = D_iD_jf, \quad (i, j = 1, \dots, n).$$ If these functions are continuous in $E$, we say $f$ is $C^2$ in $E$.
+
+\begin{theorem} If $f \in C^2$ in $E$ then $$D_{ij}f = D_{ji}f, \quad \forall i, j.$$
+\end{theorem}
+
+\begin{definition}
+  If $f: E \to \bbR^n$, $E \subseteq \bbR^n$ open, $f$ is differentiable at $x \in E$, the determinant of (the linear operator) $f'(x)$ is called the \emph{Jacobian of $f$ at $x$} $$J_f(x) = \mathrm{det} f'(x)$$
+\end{definition}
+
+Notation. We may also use $\frac{\partial (y_1, \dots, y_n)}{\partial (x_1, \dots, x_n)}$; $f(x_1, \dots, x_n) = y_1, \dots, y_n$.
+
+\begin{definition} Let $k \in \bbN$. A \emph{$k$-cell} in $\bbR^k$ is the set of points $I^k = \{ x = (x_1, \dots, x_k) \}$ such that $a_i \le x_i \le b_i$, $\forall i = 1, \dots, k$.
+\end{definition}
+
+Suppose $I^k$ is a $k$-cell in $\bbR^k$ and $f: I^k \to \bbR$ is continuous. For every $j \le k$, let $I^j$ be the restriction of $I^k$ to the first $j$ components.\\
+
+Define $g_k: I^k \to \bbR$ by $g_k= f$. Define $g_{k - 1}: I^{k - 1} \to \bbR$ by $$g_{k - 1}(x_1, \dots, x_{k-1}) = \int_{a_k}^{b_k}g_k(x_1, \dots, x_k) d x_k$$
+
+Since $g_k$ is uniformly continuous on $I^k$, $g_{k - 1}$ is (uniformly) continuous on $I^{k - 1}$. Define $g_{k - 2}: I^{k - 2} \to \bbR$ by $$g_{k - 2}(x_1, \dots, x_{k - 2}) = \int_{a_{k - 1}}^{b_{k - 1}}g_{k - 1}(x_1, \dots, x_{k - 1}) dx_{k - 1}$$
+
+We can repeat this process, ultimately arriving at a number $$g_0 = \int_{a_1}^{b_1} g_1(x_1) dx_1$$
+
+We say $g_0$ is the integral of $f$ over $I^k$ and we write $$\int_{I^k} f(x) dx = g_0.$$
+
+\begin{example}
+  Let $I^2 = [1, 2] \times [0, 1]$, $f(x_1, x_2) = 2x_1x_2^2$. What is $\int_{I^2} f dx$? \\
+
+  $$g_1(x_1) = \int_0^1 2x_1x_2^2 dx = \left[ \frac{2}{3} x_1x_2^3 \right]_0^1 = \frac{2}{3} x_1 $$
+
+  $$\int_{I^2} f dx = g_0 = \int_1^2 g_1(x_1) dx_1 = \int_1^2 \frac{2}{3} x_1 dx_1 = \left[ \frac{1}{3} x_1^2 \right]_1^2 = 1$$
+\end{example}
+
+Question. Does this depend on the order of integration?
+
+Answer. No (try the other direction in the example above).
+
+\begin{definition}
+  If $f : \bbR^k \to \bbR$, the \emph{support} of $f$ is the closure of the set $\{ x \in \bbR^k : f(x) \neq 0 \}$.
+\end{definition}
+
+If $f: \bbR^k \to \bbR$ is continuous with compact support, let $I^k$ be any $k$-cell containing $\mathrm{supp}(f)$. We define $$\int_{\bbR^k} f dx = \int_{I^k} f dx$$
+
+\begin{theorem} (Change of variables) Let $T$ be a 1-1, $C^1$ mapping of $E \subseteq \bbR^n$ open to $\bbR^n$. Also assume $J_T(x) \neq 0$ for all $x \in E$. If $f$ is continuous on $\bbR^n$ with compact support that is contained in $T(E)$, then $$\int_{\bbR^n} f(y) dy = \int_{\bbR^n} f(T(x))|J_T(x)|dx.$$
+\end{theorem}
+
+\begin{definition} (Informal) A \emph{differential $1$-form} on $\bbR^n$ is \begin{enumerate}
+  \item An object which can be integrated on any curve in $\bbR^n$.
+  \item A rule assigning a real number to every oriented line segment in $\bbR^n$ in a ``suitable'' way.
+  \end{enumerate}
+\end{definition}
+
+\begin{definition} Let $p \in \bbR^n$. The \emph{tangent space} to $\bbR^n$ at $p$ is $T_p \bbR^n = \{ (p, v) : v \in \bbR^n \}$.
+\end{definition}
+
+Notation. If $\alpha$ is a 1-form, $p \in \bbR^n$, write $\alpha_p$ to denote the restriction of $\alpha$ to $T_p \bbR^n$.- $\alpha_p(v)$ is the value $\alpha$ assigns to the (oriented) line segment from $p$ to $p + v$.
+
+We require that $\alpha_p$ is a linear functional $\forall p \in \bbR^n$, that is \begin{enumerate}
+\item $\alpha_p(tv) = t \cdot \alpha_p(v)$, $\forall t \in \bbR, \forall p, v \in \bbR^n$.
+\item $\alpha_p(v + w) = \alpha_p(v) + \alpha_p(w)$, $\forall p, v, w \in \bbR^n$.
+\end{enumerate}
+
+We denote the projection maps in $\bbR^n$ by $dx_1, \dots, dx_n$, where $$dx_i(v) = dx_i(v_1, \dots, v_n) = v_i, \quad \forall i = 1, \dots, n$$
+
+These form a basis for the set of linear functionals. Therefore, for any $1$-form $\alpha$, its restriction $\alpha_p$ can be written as \begin{align*} \alpha_p & = A_1dx_1 + A_2dx_2 + \dots + A_ndx_n \\ & = A_1(p) dx_1 + \dots + A_n(p)dx_n \end{align*}
+
+Last requirement: $A_i(p)$ must be sufficiently continuous with respect to $p$.
+
+\begin{definition} A \emph{differential $1$-form} $\alpha$ on $\bbR^n$ is a map from every tangent vector $(p, v)$ in $\bbR^n$ which can be expressed in the form $$\alpha = f_1dx_1 + \dots + f_ndx_n$$ where $f_i: \bbR^n \to \bbR$ is $C^2$.
+\end{definition}
+
+\begin{example} $\alpha = ydx + dz$ on $\bbR^3$. Let $p = \begin{pmatrix} 1 \\ 2 \\ 3 \end{pmatrix}$ and $v = \begin{pmatrix} 4 \\ 5 \\ 6 \end{pmatrix}$. Then \begin{align*} \alpha((p, v)) & = \alpha_p(v) \\ & = f_1(p) dx_1(v) + f_2(p) dx_2(v) + f_3(p) dx_3(v) \\ & = 2 \cdot 4 + 0 + 1 \cdot 6 \\ & = 14 \end{align*}
+\end{example}
+
+\begin{definition} A \emph{curve} (1-surface) in $\bbR^n$ is a $C^1$-mapping $\gamma: [a, b] \to \bbR^n$.
+\end{definition}
+
+\begin{definition} Let $\alpha = f_1dx_1 + \dots + f_ndx_n$ be a $1$-form in $\bbR^n$ and let  $\gamma: [a, b] \to \bbR^{n}$ be $C^1$. \begin{align*} \int_{\gamma} \alpha = \int_a^b (f_1 (\gamma(t))\gamma_1'(t) + \dots + f_n (\gamma(t)) \gamma_n'(t)) dt \end{align*}
+\end{definition}
+
+\begin{example} $\alpha = x^2dx_1 + dx_2$ on $\bbR^2$. $\gamma(t) = (t, t^2)$, $t \in [0, 1]$. Then $\gamma_1' (t) = 1$, $\gamma_2'(t) = 2t$. \begin{align*} \int_{\gamma} \alpha & = \int_0^1 (f_1(\gamma(t)) \gamma_1' (t) + f_2 (\gamma(t)) \gamma_2'(t)) \\ & =\int_a^b (t^2 \cdot 1 +1  \cdot 2t) dt \\ & = \frac{4}{3} \end{align*}
+\end{example}
+
+\begin{definition} A \emph{$2$-surface} is a $C^1$ map $\gamma : I^2 \to \bbR^n$.
+\end{definition}
+
+\begin{definition} (Informal) A \emph{$2$-form} on $\bbR^n$ is
+  \begin{enumerate}
+  \item An object which can be integrated over any $2$-surface.
+  \item A rule which assigns a real number to every oriented parallelogram in $\bbR^n$ in a ``suitable'' way.
+  \end{enumerate}
+\end{definition}
+
+Specify an oriented parallelogram in $\bbR^n$ based at $p \in \bbR^n$ by giving $(v, w)$. We want every $2$-form $\omega$ to satisfy the following for every $p \in \bbR^n$
+\begin{enumerate}
+\item $\omega_p(tv_1, v_2) = \omega_p(v_1, tv_2) = t \omega_p(v_1, v_2)$.
+\item $\omega_p(v_1, v_2 + v_3) = \omega_p (v_1, v_2) + \omega_p(v_1, v_3)$ and $\omega_p(v_1 + v_2, v_3) = \omega_p(v_1, v_3) + \omega_p(v_2, v_3)$.
+\item $\omega_p(v_1, v_2) = - \omega_p(v_2, v_1)$.
+\end{enumerate}
+
+Basic $2$-forms on $\bbR^n$. $\forall v, w \in \bbR^n$,
+\begin{enumerate}
+\item $(dx_1 \wedge dx_2)(v, w) = \det \begin{pmatrix} v_1 & w_1 \\ v_2 & w_2 \end{pmatrix}$.
+\item $(dx_1 \wedge dx_3)(v, w) = \det \begin{pmatrix} v_1 & w_1 \\ v_3 & w_3 \end{pmatrix}$.
+\item $(dx_i \wedge dx_j)(v, w) = \det \begin{pmatrix} v_i & w_i \\ v_j & w_j \end{pmatrix}$.
+\end{enumerate}
+
+\begin{remark} If $\omega_p$ satisfies $(i) - (iii)$ then $\omega_p$ can be expressed as $$\omega_p = \sum_{i, j} A_{i, j}(p) (dx_i \wedge dx_j)$$ for constant $A_{i, j}$.
+\end{remark}
+
+\begin{definition} A \emph{$2$-form} in $\bbR^n$ is a rule assigning a real number to each oriented parallelogram in $\bbR^n$ that can be written as $$\omega = \sum_{i, j} f_{i, j} (dx_i \wedge dx_j)$$ where $f_{i, j}: \bbR^n \to \bbR$ is $C^2$. \\
+
+For any $p \in \bbR^n$, $v, w \in \bbR^n$, $$\omega_p(v, w) = \sum_{i, j} f_{i, j}(p) (dx_i \wedge dx_j)(v, w).$$
+\end{definition}
+
+\begin{example} $\omega$ is a $2$-form in $\bbR^2$, \begin{align*} \omega & = f_{1,1} \underbrace{(dx_1 \wedge dx_1)}_{= 0} + f_{1, 2} (dx_1 \wedge dx_2) + f_{2, 1} \underbrace{(dx_2 \wedge dx_1)}_{= - (dx_1 \wedge dx_2)} + f_{2, 2} \underbrace{(dx_2 \wedge dx_2)}_{= 0} \\ & = (f_{1, 2} - f_{2, 1})(dx_1 \wedge dx_2) \end{align*}
+  This implies that every $2$-form in $\bbR^2$ can be written as $\omega = f(dx_1 \wedge dx_2)$ where $f$ is $C^2$.
+\end{example}
+
+\begin{example} $\omega$ is a $2$-form in $\bbR^3$, \begin{align*} \omega = f_1 (dx_1 \wedge dx_2) + f_2 (dx_1 \wedge dx_3) + f_3 (dx_2 \wedge dx_3). \end{align*}
+\end{example}
+
+\begin{definition} Let $\gamma : I^2 \to \bbR^3$ be $C^1$, and $\omega = f_1 (dx_1 \wedge dx_2) + f_2 (dx_1 \wedge dx_3) + f_3 (dx_2 \wedge dx_3)$ be a $2$-form. Then \begin{align*} \int_{\gamma} \omega & = \int_{I^2} \omega_{\gamma(z)} \left( \frac{\partial \gamma}{\partial x_1}(z), \frac{\partial \gamma}{\partial x_2} (z) \right) dz \\ & = \int_{I^2}  f_1(\gamma (z)) (dx_1 \wedge dx_2) \left( \frac{\partial \gamma}{\partial x_1}(z), \frac{\partial \gamma}{\partial x_2} (z) \right) \\ & \qquad + f_2(\gamma(z))(dx_1 \wedge dx_3) \left( \frac{\partial \gamma}{\partial x_1}(z), \frac{\partial \gamma}{\partial x_2} (z) \right) + f_3 (\gamma (z)) (dx_2 \wedge dx_3) \left( \frac{\partial \gamma}{\partial x_1}(z), \frac{\partial \gamma}{\partial x_2} (z) \right) dz \\ & = \int_{I^2} f_1(\gamma(z)) \det \begin{pmatrix} D_1\gamma_1(z) & D_2 \gamma_1 (z) \\ D_1 \gamma_2(z) & D_2 \gamma_2(z) \end{pmatrix}\\ & \qquad +  f_2 (\gamma(z)) \det \begin{pmatrix} D_1\gamma_1(z) & D_2 \gamma_1 (z) \\ D_1 \gamma_3(z) & D_2 \gamma_3(z) \end{pmatrix} +  f_3(\gamma(z)) \det \begin{pmatrix} D_1\gamma_2(z) & D_2 \gamma_2 (z) \\ D_1 \gamma_3(z) & D_2 \gamma_3(z) \end{pmatrix} \end{align*}
+\end{definition}
+
+\begin{definition} The integral of a $2$-form $\omega = \sum_{i, j} f_{i, j} (dx_i \wedge dx_j)$ over a $2$-surface $\gamma : [a, b] \times [c, d] \to \bbR^n$ (which is $C^1$) is \begin{align*} \int_{\gamma} \omega = \int_a^b \left( \int_c^d \omega_{\gamma(t_1, t_2)} \left( \frac{\partial \gamma}{\partial t_1}, \frac{\partial \gamma}{\partial t_2} \right)  dt_2 \right) dt_1 \end{align*}
+\end{definition}
+
+\begin{definition} A \emph{$k$-surface} in $\bbR^n$ is a $C^1$ map $\gamma: D \to \bbR^n$ where $D$ is a $k$-cell.
+\end{definition}
+
+\begin{definition} (Informal) A $k$-form in $\bbR^n$, $\omega$, is a rule that assigns a real number to every oriented $k$-dimensional parallelepiped in $\bbR^n$ in a ``suitable'' way.
+\end{definition}
+
+Specify a $k$-dimensional oriented parallelepiped in $\bbR^n$ based at $p \in \bbR^n$ by giving an ordered list of vectors $v_1, \dots, v_k \in T_p\bbR^n$. We require that for any $p \in \bbR^n$, a $k$-form $\omega$ satisfies
+\begin{enumerate}
+\item $\omega_p(v_1, \dots, tv_i, \dots,  v_k) = t \omega_p (v_1, \dots, v_i, \dots,  v_k)$.
+\item $\omega_p(v_1, \dots, v_i + w_i, \dots, v_k) = \omega(v_1, \dots, v_i, \dots, v_k) + \omega_p (v_1, \dots, w_i, \dots v_k)$.
+\item $\omega_p(v_1, \dots, v_i, \dots, v_j, \dots, v_k) = - \omega_p(v_1, \dots, v_j, \dots, v_i, \dots, v_k)$.
+\end{enumerate}
+
+\begin{definition} A \emph{multi-index} of length $k$ in $\bbR^n$ is a list $I = (i_1, \dots, i_k)$ of $k$ integers between $1$ and $n$.
+\end{definition}
+
+\begin{definition} Let $I = (i_1, \dots, i_k)$ be a multi-index. Then $dx_I = dx_{i_1} \wedge \dots \wedge dx_{i_k}$ is the $k$-form in $\bbR^n$ defined by \begin{align*} dx_I (v^1 , \dots, v^k) & = \det \begin{pmatrix} v_{i_1}^1 & v_{i_1}^2 & \hdots & v_{i_1}^k \\ v_{i_2}^1 & v_{i_2}^2 & \hdots & v_{i_2}^k \\ \vdots & \vdots & \ddots & \vdots \\ v_{i_k}^1 & v_{i_k}^2 & \hdots & v_{i_k}^k \end{pmatrix} \end{align*}
+\end{definition}
+
+\begin{remark} $\text{}$
+  \begin{enumerate}
+  \item If $I$ contains a repeated index, then $dx_I (v^1, \dots, v^k) = 0$.
+  \item For any $I$, if $v^1, \dots, v^k$ contains a repeated vector, then $dx_I (v^1, \dots, v^k) = 0$. 
+  \item If $J$ is obtained from $I$ by swapping a single pair of indices, then $dx_I (v^1, \dots, v^k) = - dx_J (v^1, \dots, v^k)$.
+  \end{enumerate}
+\end{remark}
+
+\begin{definition} A \emph{differential $k$-form} in $\bbR^n$, $\omega$, is a rule assigning a real number to each oriented parallelepiped of the form \begin{align*} \omega = \sum_I f_I dx_I \end{align*} where the sum is taken over all multi-indices $I$ of length $k$ and $f_I: \bbR^n \to \bbR$ is $C^2$. If $p \in \bbR^n$, $v^1, \dots, v^k \in \bbR^n$, \begin{align*} \omega_p (v^1, \dots, v^k) = \sum_I f_I (p) dx_I (v^1, \dots, v^k) \end{align*}
+\end{definition}
+
+\begin{definition} Let $\phi: D \to \bbR^n$ be a $k$-surface and $\omega = \sum_I f_I dx_I$ be a $k$-form. \begin{align*} \int_{\phi} \omega & = \int_D \omega_{\phi(u)} \left( \frac{\partial \phi}{\partial u_1} , \dots, \frac{\partial \phi}{\partial u_k} \right) du \\ & = \int_D \sum_I f_I(\phi(u)) dx_I \left( \frac{\partial \phi}{\partial u_1} , \dots, \frac{\partial \phi}{\partial u_k} \right) du \\ & = \int_D \sum_I f_I (\phi(u)) \frac{\partial(x_{i_1}, \dots, x_{i_k})}{\partial (u_1, \dots, u_k)} du \end{align*} where $\frac{\partial(x_{i_1}, \dots, x_{i_k})}{\partial (u_1, \dots, u_k)}$ is the Jacobian of the map $u_1, \dots, u_k \mapsto \phi_{i_1}(u), \dots, \phi_{i_k}(u)$.
+\end{definition}
+
+\begin{example} $\omega = xdy \wedge dz - y dx \wedge dz + z dx \wedge dy$ is a $2$-form in $\bbR^3$. $\phi: [0, 3] \times [0, 2 \pi] \to \bbR^3$, $\phi(r, \theta) = (r \cos \theta, r \sin \theta, 5)$. \begin{align*}
+\end{example}
+  
+\begin{definition} If $I = (i_1, \dots, i_k)$ is a multi-index and $i_1 < \dots < i_k$, we say $I$ is an \emph{increasing multi-index}. We say that $dx_I$ is a basic $k$-form.
+\end{definition}
+
+\begin{remark} Every $k$-form can be represented in terms of basic $k$-forms.
+\end{remark}
+
+\begin{example} $dx_1 \wedge dx_5 \wedge dx_3 \wedge dx_2 = - dx_1 \wedge dx_2 \wedge dx_3 \wedge dx_5$.
+\end{example}
+
+\begin{example} $dx_1 \wedge dx_3 \wedge dx_5 \wedge dx_2 = dx_1 \wedge dx_2 \wedge dx_3 \wedge dx_5$.
+\end{example}
+
+\begin{definition} If $\omega = \sum_I a_I dx_I$ is a $k$-form, we can convert each multi-index $I$ into an increasing multi-index $J$, and we say that \begin{align*} \omega = \sum_J b_J dx_J
+\end{align*} is in \emph{standard presentation}.
+\end{definition}
+
+\begin{example} \begin{align*} \omega & = x_1 dx_2 \wedge dx_1 - x_2dx_3 \wedge dx_2 + x_3 dx_2 \wedge dx_3 + dx_1 \wedge dx_2 \\ & = -x_1 dx_1 \wedge dx_2 + x_2 dx_2 \wedge dx_3 + x_3 dx_2 \wedge dx_3 + dx_1 \wedge dx_2 \\ & = (1 - x_1) dx_1 \wedge dx_2 + (x_2 + x_3) dx_2 \wedge dx_3.
+\end{align*} The last line is in standard presentation.
+\end{example}
+
+\begin{definition} Suppose $I = (i_1, \dots, i_p)$ and $J = (j_1, \dots, j_q)$ are increasing multi-indices. The \emph{product} of $dx_I$ and $dx_J$ is the $(p + q)$-form \begin{align*} dx_I \wedge dx_J & = dx_{i_1} \wedge dx_{i_2} \wedge \dots \wedge dx_{i_p} \wedge dx_{j_1} \wedge \dots \wedge dx_{j_q}.
+\end{align*}
+\end{definition}
+
+Note. If $I$ and $J$ have an element in common, $dx_I \wedge dx_J = 0$.
+
+Notation. If $I$ and $J$ have no elements in common, we denote the increasing $(p + q)$ length multi-index obtained from rearranging the members of $I \cup J$ in increasing order by $[I, J]$. \begin{align*} dx_I \wedge dx_J = (-1)^{\alpha} dx_{[I, J]}
+\end{align*} where $\alpha$ is the number of swaps needed to convert $I \cup J$ into an increasing multi-index.
+
+Suppose $\omega, \lambda$ are $p$ and $q$-forms respectively in $\bbR^n$ with standard representations \begin{align*} \omega = \sum_I b_I dx_I \quad \lambda = \sum_J c_J dx_J.
+\end{align*} The product of $\omega$ and $\lambda$ is the $(p + q)$-form \begin{align*} \omega \wedge \lambda & = \sum_{I, J} b_I c_I (dx_I \wedge dx_J).
+\end{align*}
+
+\begin{remark} $\text{}$ \begin{enumerate}
+  \item $(\omega_1 + \omega_2) \wedge \lambda = (\omega_1 \wedge \lambda) + (\omega_2 \wedge \lambda)$
+  \item $\omega \wedge (\lambda_1 + \lambda_2) = (\omega \wedge \lambda_1) + (\omega \wedge \lambda_2)$
+    \item $(\omega \wedge \lambda) \wedge \sigma = \omega \wedge (\lambda \wedge \sigma)$
+  \end{enumerate}
+\end{remark}
+
+\begin{definition} A $0$-form is a $C^1$ function.
+\end{definition}
+
+Notation. The product of a $0$-form $f$ with a $k$-form $\omega = \sum_I b_I dx_I$ is \begin{align*} f \omega = \omega f = \sum_I (fb_I) dx_I.
+\end{align*}
+
+\begin{remark} $f ( \omega \wedge \lambda) = f \omega \wedge \lambda = \omega \wedge f \lambda $.
+\end{remark}
+
+\begin{definition} (Differentiation of $k$-forms) Operator which associates a $(k + 1)$-form, $d \omega$, to each $k$-form, $\omega$.
+\begin{enumerate}
+  \item $0$-forms in $\bbR^n$. $f: E \to \bbR$, $E \subseteq \bbR^n$. \begin{align*} df & = D_1 fdx_1 + \dots + D_n f dx_n  \\ & = \frac{\partial f}{\partial x_1} dx_1 + \dots + \frac{\partial f}{\partial x_n} dx_n.
+  \end{align*}
+  \item $k$-forms in $\bbR^n$. Let $\omega = \sum_I b_I dx_I$ be given in standard presentation. \begin{align*} d \omega & = \sum_I (db_I) \wedge dx_I.
+  \end{align*}
+\end{enumerate}
+\end{definition}
+
+\begin{example} Let $\omega = \underbrace{x}_{f_1} dx + \underbrace{y^2}_{f_2} dz$ be a $1$-form in $\bbR^3$. \begin{align*} d \omega & = (df_1) \wedge dx + (df_2) \wedge dz \\ & = (1 dx + 0 dy + 0 dz) \wedge dx + (0dx + 2y dy + 0 dz) \wedge dz \\ & = dx \wedge dx + 2y dy \wedge dz \\ & = 2y dy \wedge dz.
+\end{align*} Further, \begin{align*} d(d\omega) & = d (2y dy \wedge dz) \\ & = (df) \wedge (dy \wedge dz) \\ & = (2dy) \wedge (dy \wedge dz) \\ & = 0.
+\end{align*}
+\end{example}
   
 \end{document}

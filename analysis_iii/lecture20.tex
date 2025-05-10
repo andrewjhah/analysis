@@ -1,0 +1,62 @@
+\documentclass[11pt]{article}
+\usepackage{master}
+\title{MATH 20510 Lec 20}
+\author{Andrew Hah}
+
+\begin{document}
+
+\pagestyle{plain}
+\begin{center}
+{\Large MATH 20510} \\
+{\Large Lecture 20} \\
+\vspace{.2in}
+May 9, 2025
+\end{center}
+
+Let $E \subseteq \bbR^n$ open, $V \subseteq \bbR^m$ open, and $T: E \to V$ be a $C^1$ function. Let $\omega$ be a $k$-form on $V$.
+
+Notation. We say elements of $E$ are $x \in E$ and elements of $V$ are $y \in V$.
+
+Then write $\omega = \sum_I b_I(y) dy$ in standard presentation. \begin{align*} T(x) = (t_1(x), \dots, t_m(x)) = (y_1, \dots, y_m) = y.
+\end{align*} Then \begin{align*} dt_i = \sum_{j = 1}^n (D_j t_i )(x) dx_j \qquad i \in [m].
+\end{align*}
+
+Note. $dt_i$ is a $1$-form on $E$.
+
+$T$ will transform the $k$-form $\omega$ on $E$ to a $k$-form $\omega_T$ on $E$. This is called the \emph{pullback} form. \begin{align*} \omega_T(x) = \sum_I b_I (T(x)) dt_{i_1} \wedge dt_{i_2} \wedge \dots \wedge dt_{i_k}.
+\end{align*}
+
+\begin{example} Let $\mathrm{id} = T: \bbR^n \to \bbR^n$, $x \mapsto x = y$, and $\omega(y) = \sum b_I(y) dy_I$. Then $t_i(x) = x_i$ so $dt_i = dx_i$. Thus \begin{align*} \omega_T(x) = \sum_I b_I (T(x)) dx_{i_1} \wedge \dots \wedge dx_{i_k}.
+\end{align*}
+\end{example}
+
+\begin{example} Let $T: \bbR^2 \to \bbR^3$, $(x_1, x_2) \mapsto (x_2, x_1^2, x_1 + x_2)$, and $\omega(y_1, y_2, y_3) = y_1 dy_2 \wedge dy_3$ is a $2$-form on $\bbR^3$. Then $dt_1 = dx_2$, $dt_2 = 2x_1 dx_1$, $dt_3 = dx_1 + dx_2$. Thus \begin{align*} \omega_T(x_1, x_2) & = b_{\{ 2, 3 \}} (T(x_1, x_2)) dt_2 \wedge dt_3 \\ & = x_2 (2x_1 dx_1) \wedge (dx_1 + dx_2) \\ & = 2 x_2 x_1 (dx_1 \wedge dx_1 + dx_1 \wedge dx_2) \\ & = 2x_2 x_1 dx_1 \wedge dx_2.
+\end{align*}
+\end{example}
+
+\begin{lemma} Let $f: V \to \bbR$ be a $C^1$ function and $f_T = f \circ T$. Then $d(f_T) = (df)_T$. 
+\end{lemma}
+\begin{proof} \begin{align*} d(f_T) & = \sum_{j = 1}^n D_j f_T  dx_j \\ & = \sum_{j = 1}^n D_j (f \circ T) dx_j \\ & = \sum_{i = 1}^m \sum_{j = 1}^n (D_i f)(T) \cdot (D_j t_i) dx_j \\ & = \sum_{i = 1}^m (D_i f) (T) dt_i \\ & = (df)_T.
+\end{align*}
+\end{proof}
+
+\begin{theorem} Let $\omega$ be a $k$-form and $\lambda$ be an $l$-form on $V$. Then \begin{enumerate}
+  \item $(\omega + \lambda)_T = \omega_T + \lambda_T$ if $k = l$.
+  \item $(\omega \wedge \lambda)_T = \omega_T \wedge \lambda_T$.
+    \item $d (\omega_T) = (d \omega)_T$ if $\omega$ is of class $C^1$ and $T$ is of class $C^2$. 
+  \end{enumerate}
+\end{theorem}
+\begin{enumerate}
+    \item \begin{proof} \begin{align*} (\omega + \lambda)_T & = ( \sum (b_I + c_I) dy_I)_T \\ & = \sum (b_I + c_I) (T) dt_I \\ & = \sum b_I (T) dt_I + \sum c_I (T) dt_I \\ & = \omega_T + \lambd_T.
+    \end{align*}
+      \end{proof}
+  \item HW
+    \item \begin{proof} \begin{align*} \omega & = dy_I \\ & = dy_{i_1} \wedge \dots \wedge dy_{i_k} ,
+    \end{align*} and \begin{align*} \omega_T = dt_{i_1} \wedge \dots \wedge dt_{i_k}.
+    \end{align*} We have \begin{align*} d(\omega) & = \sum d(b_I) \wedge dy_I \\ & = 0.
+    \end{align*} Thus equivalently, \begin{align*} d(\omega)_T & = \left( \sum d(b_I) \wedge dy_I \right)_T \\ & = 0.
+    \end{align*} We will finish proof next lecture.
+      \end{proof}
+\end{enumerate}
+
+\end{document}

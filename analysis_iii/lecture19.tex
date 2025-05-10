@@ -1,0 +1,53 @@
+\documentclass[11pt]{article}
+\usepackage{master}
+\title{MATH 20510 Lec 19}
+\author{Andrew Hah}
+
+\begin{document}
+
+\pagestyle{plain}
+\begin{center}
+{\Large MATH 20510} \\
+{\Large Lecture 19} \\
+\vspace{.2in}
+May 7, 2025
+\end{center}
+
+\begin{theorem} (Graded product rule) Let $\omega$ be a $k$-form and $\lambda$ be an $m$-form, both of class $C^1$. Then \begin{align*} d(\omega \wedge \lambda) = (d \omega) \wedge \lambda + (-1)^k \omega \wedge (d \lambda).
+\end{align*}
+\end{theorem}
+\begin{proof}
+  It suffices to show this on simple forms $\omega = f dx_I$, $\lambda = g dx_J$, $f, g \in C^1$. Then \begin{align*} \omega \wedge \lambda = f g dx_I \wedge dx_J.
+  \end{align*} If $I$ and $J$ have any common indices, then both sides equal $0$ and the theorem holds. Now assume that $I$ and $J$ have no common terms. Then \begin{align*} d(\omega \wedge \lambda) & = d(fg dx_I \wedge dx_J) \\ & = (-1)^{\alpha} d (fg dx_{[I, J]}) \\ & = (-1)^{\alpha} (f dg + g df) \wedge dx_{[I, J]} \\ & = (f dg + g df) \wedge dx_I \wedge dx_J \\ & = (-1)^k (f dx_I) \wedge dg \wedge dx_J + df \wedge dx_I \wedge (g dx_J) \\ & = (-1)^k \omega \wedge (d \lambda) + (d \omega) \wedge \lambda. 
+  \end{align*}
+\end{proof}
+
+\begin{theorem} If $\omega$ is a $k$-form of class $C^1$, then $$d^2(\omega) = 0.$$
+\end{theorem}
+\begin{proof} \begin{align*} d (dx_I) = 0 = d(1 dx_I) = d(1) \wedge dx_I.
+\end{align*} Let $f \in C^2(E)$, $E \subseteq \bbR^n$. Then \begin{align*} d^2 f & = d \left( \sum_{i = 1}^n (D_i f)(x) dx_i \right) \\ & = \sum_{i = 1}^n d(D_i f) \wedge dx_i \\ & = \sum_{j = 1}^n \sum_{i = 1}^n D_{ij} f dx_j \wedge dx_i \\ & = \sum_{j = 1}^n \sum_{i = 1}^n -D_{ij} f dx_i \wedge dx_j.
+\end{align*} Thus $d^2 f = 0$.
+Then, for a $k$-form $\omega = f dx_I$, \begin{align*} d \omega = df \wedge dx_I
+\end{align*} and \begin{align*} d^2 \omega & = d^2 f \wedge dx_I + (-1) df \wedge d (dx_I) \\ & = 0 - 0 \\ & = 0.
+\end{align*}
+\end{proof}
+
+\begin{definition} $\text{}$
+  \begin{enumerate}
+  \item A $k$-form $\omega$ is \emph{closed} if $d \omega = 0$.
+    \item A $k$-form $\omega$ is \emph{exact} if there exists a $(k - 1)$-form $\alpha$ such that $d(\alpha) = \omega$. 
+  \end{enumerate}
+\end{definition}
+
+\begin{remark} $\text{}$
+  \begin{enumerate}
+  \item If $\omega$ is a $k$-form that is of class $C^2$ then $d^2 \omega = 0$ so $d \omega$ is exact.
+    \item Every exact form is closed $(d (d\omega) = 0)$.
+  \end{enumerate}
+\end{remark}
+
+Question. Is the converse of (ii) true?
+
+Answer. No. 
+
+\end{document}

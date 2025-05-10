@@ -1,0 +1,53 @@
+\documentclass[11pt]{article}
+\usepackage{master}
+
+\title{Math Proseminar Notes}
+\author{Andrew Hah}
+\begin{document}
+
+\pagestyle{plain}
+\begin{center}
+{\Large MATH 297. Proseminar in Mathematics} \\
+\vspace{.2in}  
+Andrew Hah \\
+Spring 2025
+\end{center}
+
+\begin{theorem} (Multicolor triangle Ramsey theorem) For every positive integer $r$, there is some integer $N = N(r)$ such that if each edge of $K_N$ is colored using on of $r$ colors, then there is a monochromatic triangle.
+\end{theorem}
+\begin{proof} Zhao, GTAC, pg 3.
+\end{proof}
+
+\begin{theorem} (Graph Ramsey theorem) For every $k$ and $r$ there exists some $N = N(k, r)$ such that if each edge of $K_N$ is colored using one of $r$ colors, then there is a monochromatic $K_k$.
+\end{theorem}
+
+Question. What is the maximum number of edges in a triangle-free $n$-vertex graph?
+
+\begin{definition} (Turán number) We write $\mathrm{ex} (n, H)$ for the maximum number of edges in an $n$-vertex $H$-free graph, where a graph is $H$-free if it does not contain $H$ as a subgraph.
+\end{definition}
+
+\begin{theorem} (Mantel's theorem) Every $n$-vertex triangle-free graph has at most $\lfloor n^2 /4 \rfloor$, i.e., $\mathrm{ex}(n, K_3) = \lfloor n^2 /4 \rfloor$.
+\end{theorem}
+\begin{proof} Proof ii, Zhao, GTAC, pg 13.
+\end{proof}
+
+\begin{exercise} Let $X$ and $Y$ be independent and identically distributed random vectors in $\bbR^d$ according to some arbitrary probability distribution. Prove that \begin{align*} \bbP (| X + Y | \ge 1) \ge \frac{1}{2} \bbP (|X| \ge 1)^2.
+\end{align*}
+\end{exercise}
+
+\begin{definition} The Turán graph $T_{n, r}$ is defined to be the complete $n$-vertex $r$-partite graph with part sizes differing by at most $1$ (so each part has size $\lfloor n/ r \rfloor$ or $\lceil n / r \rceil$.
+\end{definition}
+
+\begin{example} $T_{10, 3} = K_{3, 3, 4}$.
+\end{example}
+
+\begin{theorem} (Turán's theorem) The Turán graph $T_{n, r}$ maximizes the number of edges among all $n$-vertex $K_{r+1}$-free graphs. It is also the unique maximizer.
+\end{theorem}
+
+\begin{definition} The edge density of a graph $G$ is \begin{align*} \frac{e(G)}{{v(G) \choose 2}}.
+\end{align*}
+\end{definition}
+
+
+
+\end{document}
