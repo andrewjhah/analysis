@@ -1,0 +1,60 @@
+\documentclass[11pt]{article}
+\usepackage{master}
+\title{MATH 235 Lec 21}
+\author{Andrew Hah}
+
+\begin{document}
+
+\pagestyle{plain}
+\begin{center}
+{\Large MATH 23500} \\
+{\Large Lecture 21} \\
+\vspace{.2in}
+May 12, 2025
+\end{center}
+
+Brownian motion. This is a continuous time, continuous space process $\{ B_t \}_{t \ge 0}$. We should think of it as a random function $B: [0, \infty) \to \bbR$. We define $B$ in terms of its properties. Assume $B_0 = 0$. \begin{enumerate}
+\item Stationary increments. For every $t > s \ge 0$, $B_t - B_s$ has the same distribution as $B_{t - s}$.
+\item Independent increments. For every $s_1 \le t_1 \le s_2 \le t_2 \le \dots \le s_k \le t_k$, the increments $B_{t_j} - B_{s_j}$ for $j = 1, \dots, k$ are independent.
+\item Continuity. $t \mapsto B_t$ is a continuous function.
+\end{enumerate}
+
+\begin{theorem} Let $B: [0, \infty) \to \bbR$ be a random continuous function with independent, stationary increments. Assume $B_0 = 0$. Then there exists $\mu \in \bbR$, $\sigma^2 > 0$ such that $B_t \sim \mathcal{N}(\mu t, \sigma^2 t)$. Furthermore, $\mu$ and $\sigma^2$ characterize $B$ uniquely. 
+\end{theorem}
+
+Construction.
+\begin{enumerate}
+  \item Take a simple random walk $S_n = \sum_{k = 1}^n X_i$. Then by the central limit theorem, \begin{align*} \lim_{n \to \infty} \bbP \left( \frac{S_n}{\sqrt{n}} \le x \right) \to \Phi (x),
+  \end{align*} i.e., the rescaled random walk converges to a $\mathcal{N}(0, 1)$ random variable. Then \begin{align*} B_n^{(t)} \coloneqq \frac{S_{\lfloor tn \rfloor}}{\sqrt{tn}} \to B_t,
+  \end{align*} i.e., these processes are $\mathcal{N}(0, t)$.
+  \item (Lévy construction) Consider a family of normal random variables indexed by a countable dense subset of $[0, 1]$. Recursively define $B_k$ using this set. Linearly interpolate and take limits. 
+  \end{enumerate}
+
+  \begin{definition} Standard Brownian motion is the process $\{ B_t \}_{t \ge 0}$ with $B_0 = 0$ satisfying the following \begin{enumerate}
+    \item $B$ is continuous
+    \item For each $s < t$, $B_t - B_s \sim \mathcal{N}(0, t - s)$.
+      \item For each $s_1 \le t_1 \le \dots \le s_k \le t_k$, the increments $B_{t_j} - B_{s_j}$ are independent. 
+  \end{enumerate}
+\end{definition}
+
+Note. $X \sim \mathcal{N}(\mu, \sigma^2)$. The density of $X$ is \begin{align*} \frac{1}{\sqrt{2\pi \sigma^2}} e^{- \left( \frac{(x - \mu)^2}{2 \sigma^2} \right)}.
+\end{align*}
+
+\begin{example} Suppose $B$ is a standard Brownian motion. Compute $\bbP (B_1 \ge 1, B_3 \ge B_1 + 1)$. \begin{align*} \bbP (B_1 \ge 1) = \frac{1}{\sqrt{2 \pi}} \int_1^{\infty} e^{- \frac{x^2}{2}} dx
+\end{align*} and \begin{align*} \bbP (B_3 \ge B_1 + 1) = \bbP (B_3 - B_1 \ge 1) = \frac{1}{\sqrt{4 \pi}} \int_1^{\infty} e^{- \frac{x^4}{4}} dx.
+\end{align*} By independence, we multiply to get the result.
+\end{example}
+
+\begin{proposition} Let $B$ be a standard Brownian motion, and $c > 0$. Then $t \mapsto c^{-1/2} B_{ct}$ is a standard Brownian motion. 
+\end{proposition}
+\begin{proof} Clearly the rescaled process is continuous and has independent increments. Note that for $s < t$, $B_{ct} - B_{cs} \sim \mathcal{N}(0, c(t - s))$. Thus, \begin{align*} c^{-1/2} (B_{ct} - B_{cs}) \sim \mathcal{N}(0, t - s).
+\end{align*}
+\end{proof}
+
+\begin{proposition} For each fixed $t \ge 0$, it holds with probability $1$ that $B$ is not differentiable at $t$.
+\end{proposition}
+\begin{proof} For $\eps > 0$, $\eps^{- 1/2}(B_{t + \eps} - B_t) \sim \mathcal{N}(0, 1)$. Thus, $\frac{B_{t + \eps} - B_t}{\eps}$ is a $\mathcal{N}(0, 1)$ random variable $Z$, but rescaled by $1/ \sqrt{\eps}$. Hence, \begin{align*} \bbP \left(\frac{|B_{t + \eps} - B_t|}{\eps} \ge c \right) = \bbP \left( \frac{1}{\sqrt{\eps}} |Z| \ge c \right) = \bbP (|Z| \ge \sqrt{\eps} c ) \to 1,
+\end{align*} as $\eps \to 0$. Thus, with probability $1$, $\limsup_{\eps \to 0} \frac{B_{t + \eps} - B_t}{\eps} = \infty$.
+\end{proof}
+
+\end{document}

@@ -3,8 +3,9 @@
 \usepackage{amssymb}
 \usepackage{amsthm}
 \usepackage{amsrefs}
-%\usepackage{mathrsfs} 
-\usepackage[mathscr]{euscript}
+\usepackage{mathrsfs} 
+%\usepackage[mathscr]{euscript}
+\usepackage{dsfont}
 \usepackage{stmaryrd}
 \usepackage[all]{xy}
 \usepackage[mathcal]{eucal}
@@ -30,14 +31,6 @@
 \onehalfspacing
 \newcolumntype{Y}{>{\raggedright\arraybackslash}X}
 \allowdisplaybreaks[1]
-\usepackage{tocloft}
-\renewcommand{\cftsecfont}{\bfseries}
-\renewcommand{\cftsecpagefont}{\bfseries}
-\setlength{\cftbeforesecskip}{1pt}  % tight spacing
-\setlength{\cftaftertoctitleskip}{1em}
-
-\renewcommand{\cftdot}{.}
-\renewcommand{\cftdotsep}{1}  % spacing between dots
 %----------Commands----------
 
 %%penalizes orphans
@@ -131,6 +124,7 @@
 \newcommand\cG{\mathcal G}
 \newcommand{\BB}{\mathcal B}
 \newcommand{\CC}{\mathcal C}
+\newcommand{\cR}{\mathcal R}
 
 \newcommand{\simto}{\overset{\sim}{\rightarrow}}
 \newcommand{\epi}{\twoheadrightarrow}
@@ -197,3 +191,11 @@
 
 \linespread{}  % slightly tighter
 
+\usepackage{tocloft}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\setlength{\cftbeforesecskip}{1pt}  % tight spacing
+\setlength{\cftaftertoctitleskip}{1em}
+
+\renewcommand{\cftdot}{.}
+\renewcommand{\cftdotsep}{1}  % spacing between dots

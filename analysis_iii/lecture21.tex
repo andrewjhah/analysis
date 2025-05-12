@@ -1,0 +1,52 @@
+\documentclass[11pt]{article}
+\usepackage{master}
+\title{MATH 20510 Lec 21}
+\author{Andrew Hah}
+
+\begin{document}
+
+\pagestyle{plain}
+\begin{center}
+{\Large MATH 20510} \\
+{\Large Lecture 21} \\
+\vspace{.2in}
+May 12, 2025
+\end{center}
+
+\begin{theorem} $T$ is a $C^1$ map of an open set $E \subseteq \bbR^n$ into an open set $V \subseteq \bbR^m$, $S$ is a $C^1$ map of $V$ into an open set $W \subseteq \bbR^{\ell}$, $\omega$ is a $k$-form on $W$ ($\omega_S$ is a $k$-form on $V$, $(\omega_S)_{T}$ is a $k$-form on $E$, $\omega_{ST}$ is a $k$-form on $E$). Then \begin{align*} (\omega_S)_T = \omega_{ST}.
+\end{align*}
+\end{theorem}
+
+\begin{theorem} Suppose $\omega$ is a $k$-form on an open set $E \subseteq \bbR^n$, $\phi$ is a $k$-surface in $E$ with parameter domain $D \subseteq \bbR^k$ and $\Delta$ is the trivial $k$-surface, $\Delta : D \to \bbR^k$, $\Delta(u) = u$. Then \begin{align*} \int_{\phi} \omega = \int_{\Delta} \omega_{\phi}.
+\end{align*}
+\end{theorem}
+\begin{proof} It suffices to prove thsi in the case when \begin{align*} \omega = a dx_I = adx_{i_1} \wedge \dots \wedge dx_{i_k}.
+\end{align*} Let $\phi_1, \dots, \phi_n$ denote the components of $\phi$. Then $\omega_{\phi} = a(\phi)d\phi_{i_1} \wedge \dots \wedge d \phi_{i_k}$. It suffices to prove \begin{align*} d \phi_{i_1} \wedge \dots \wedge d \phi_{i_k} = J(u) du_1 \wedge \dots \wedge du_k \tag{1}
+\end{align*} where $J(u) = \frac{\partial (x_{i_1}, \dots, x_{i_k})}{\partial(u_1, \dots, u_k)}$. Assuming $(1)$, \begin{align*} \int_{\Delta} \omega_{\phi} & = \int_{\Delta} a(\phi) d\phi_{i_1} \wedge \dots \wedge d \phi_{i_k} \\ & = \int_{\Delta} a (\phi) J(u) du_1 \wedge \dots \wedge du_k \\ & = \int_D a(\phi(u)) J(u) du \\ & = \int_{\phi} \omega.
+\end{align*} Let $[A]$ be the $k \times k$ matrix with entries \begin{align*} \alpha (p, q) = D_q \phi_{i_p}(u), \qquad p, q = 1, \dots, k.
+\end{align*} Note. $\mathrm{det}(A) = J(u)$.
+
+Since $d \phi_{i_p} = \sum_q \alpha(p, q) du_q$, we have \begin{align*} d \phi_{i_1} \wedge \dots \wedge d \phi_{i_k} = \sum \alpha(1, q_1) \dots \alpha (k, q_k) du_{q_1} \wedge \dots \wedge du_{q_k},
+\end{align*} where the sum ranges over all $q_1, \dots, q_k \in \{ 1, \dots, k \}$. Rearranging each $duq_1 \wedge \dots \wedge du_{q_k}$ we get \begin{align*} d \phi_{i_1} \wedge \dots \wedge d\phi_{i_k} & = \mathrm{det}(A) du_1 \wedge \dots \wedge du_k \\ & = J(u) du_1 \wedge \dots \wedge du_k.
+\end{align*}
+\end{proof}
+
+\begin{theorem} Suppose $T$ is a $C^1$ map of an open set $E \subseteq \bbR^n$ into an open set $V \subseteq \bbR^n$, $\phi$ is a $k$-surface in $E$, $\omega$ is a $k$-form on $V$. Then \begin{align*} \int_{T \phi} \omega = \int_{\phi} \omega_T.
+\end{align*}
+\end{theorem}
+\begin{proof} Let $D$ be the parameter domain of $\phi$ (and therefore of $T \phi$ as well). Let $\Delta$ be the trivial $k$-surface on $D$, i.e., $\Delta (u) = u$. Then \begin{align*} \int_{T \phi} \omega = \int_{\Delta} \omega_{T \phi} = \int_{\Delta} (\omega_T)_{\phi} = \int_{\phi} \omega_T.
+\end{align*}
+\end{proof}
+
+\begin{definition} A map $f$ from a vector space $X$ to a vector space $Y$ is called \emph{affine} if $f - f(0)$ is linear, i.e., \begin{align*} f(x) = f(0) + Ax, \qquad A: X \to Y \text{ is linear}.
+\end{align*}
+\end{definition}
+
+\begin{remark} An affine map $f: \bbR^k \to \bbR^n$ is determined by $f(0)$ and $f(e_i)$ for $i = 1, \dots, k$.
+\end{remark}
+
+\begin{definition} The $k$-simplex in $\bbR^k$ is $Q^k \subseteq \bbR^k$, \begin{align*} Q^k = \{ x = (x_1, \dots, x_k) : x_i \ge 0, x_1 + \dots + x_k \le 1 \}.
+\end{align*}
+\end{definition}
+
+\end{document}
