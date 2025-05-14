@@ -1,5 +1,7 @@
 \documentclass[11pt]{article}
 \usepackage{master}
+\usepackage[backend=biber,style=alphabetic]{biblatex}
+\addbibresource{refs.bib}
 
 \title{Entropy and Graphons}
 \author{Andrew Hah}
@@ -15,24 +17,34 @@ This paper began with my curiosity about how ideas from information theory and a
 
 \tableofcontents
 
+\newpage
+
 \section{Extremal Graph Theory}
 
 \subsection{Classical Results}
 
+A classical question in extremal graph theory is of the form, given a fixed forbidden subgraph \(H\), what is the maximum number of edges a graph on \(n\) vertices can have without containing \(H\) as a (not necessarily induced) subgraph? This number is called the Turán number, denoted $\mathrm{ex}(n, H)$. What is often considered the first result in extremal graph theory is Mantel's theorem, which answers this question for the special case when $H = K_3$ is a triangle.
+
+\begin{theorem} (Mantel's theorem) Every $n$-vertex triangle-free graph has at most $\lfloor n^2 /4 \rfloor$ edges, i.e., $\mathrm{ex}(n, K_3) = \lfloor n^2 /4 \rfloor$.
+\end{theorem}
+\begin{proof} See \cite[Theorem~1.1.1]{gtac2023} for two different proofs, or the original argument in \cite{mantel1907}.
+\end{proof}
+
+We would like to generalize this theorem from triangles to arbitrary cliques. To do so, we first construct the Turán graph.
+
+\begin{definition} The \emph{Turán graph} $T_{n, r}$ is defined to be the complete $n$-vertex $r$-partite graph with part sizes differing by at most $1$ (so each part has size $\lfloor n/ r \rfloor$ or $\lceil n / r \rceil$.
+\end{definition}
+
+For example, $T_{3, 1} = K_3$ and $T_{10, 3} = K_{3, 3, 4}$.
+
+\begin{theorem} (Turán's theorem) The Turán graph $T_{n, r}$ maximizes the number of edges among all $n$-vertex $K_{r+1}$-free graphs. It is also the unique maximizer.
+\end{theorem}
+\begin{proof} Turán first showed this in \cite{turan1941}. See \cite[Theorem~1.2.4]{gtac2023} for four different proofs.
+\end{proof}
+
+
+
 \subsection{Homomorphism Densities}
-Let \( G \) be a finite simple graph with vertex set \( V(G) \) and edge set \( E(G) \). An important question in many areas of graph theory is: how often does a fixed small graph \( H \) appear inside \( G \)?
-
-To quantify this, we define the \emph{homomorphism density} of a graph \( H \) in a graph \( G \), denoted \( t(H, G) \), as the probability that a uniformly random map \( \phi : V(H) \to V(G) \) is a graph homomorphism; that is, for every edge \( \{u, v\} \in E(H) \), the image \( \{\phi(u), \phi(v)\} \in E(G) \). Formally,
-\[
-t(H, G) := \frac{|\mathrm{Hom}(H, G)|}{|V(G)|^{|V(H)|}},
-\]
-where \( \mathrm{Hom}(H, G) \) is the set of all homomorphisms from \( H \) to \( G \).
-
-This quantity reflects the “density” of \( H \) in \( G \). For example, if \( H \) is the triangle \( K_3 \), then \( t(K_3, G) \) captures how likely it is for three randomly chosen vertices in \( G \) to form a triangle, when accounting for all mappings.
-
-The homomorphism density is closely related to induced subgraph counts and plays a fundamental role in extremal graph theory. Many classical results — such as Turán’s Theorem — can be rephrased in terms of maximizing or minimizing \( t(H, G) \) under certain constraints.
-
-In what follows, we will use homomorphism densities as a lens for understanding graph sequences, graph parameters, and the eventual need for limiting objects such as graphons.
 
 \section{Entropy in Combinatorics}
 
@@ -48,7 +60,6 @@ In what follows, we will use homomorphism densities as a lens for understanding 
 
 \section*{Acknowledgments}
 
-\section*{References}
-
+\printbibliography
 
 \end{document}

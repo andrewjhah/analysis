@@ -1,0 +1,81 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{anyt/global//global/global/global}
+    \entry{mantel1907}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=a48addf725d562d7e6eb67394d324950}{%
+           family={Mantel},
+           familyi={M\bibinitperiod},
+           given={W.},
+           giveni={W\bibinitperiod}}}%
+      }
+      \strng{namehash}{a48addf725d562d7e6eb67394d324950}
+      \strng{fullhash}{a48addf725d562d7e6eb67394d324950}
+      \strng{fullhashraw}{a48addf725d562d7e6eb67394d324950}
+      \strng{bibnamehash}{a48addf725d562d7e6eb67394d324950}
+      \strng{authorbibnamehash}{a48addf725d562d7e6eb67394d324950}
+      \strng{authornamehash}{a48addf725d562d7e6eb67394d324950}
+      \strng{authorfullhash}{a48addf725d562d7e6eb67394d324950}
+      \strng{authorfullhashraw}{a48addf725d562d7e6eb67394d324950}
+      \field{labelalpha}{Man07}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Wiskundige Opgaven}
+      \field{title}{Problem 28}
+      \field{volume}{10}
+      \field{year}{1907}
+      \field{pages}{60\bibrangedash 61}
+      \range{pages}{2}
+    \endentry
+    \entry{gtac2023}{book}{}{}
+      \name{author}{1}{}{%
+        {{hash=6b0656736f97f8058eb859f69cdc40ed}{%
+           family={Zhao},
+           familyi={Z\bibinitperiod},
+           given={Yufei},
+           giveni={Y\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Cambridge University Press}%
+      }
+      \strng{namehash}{6b0656736f97f8058eb859f69cdc40ed}
+      \strng{fullhash}{6b0656736f97f8058eb859f69cdc40ed}
+      \strng{fullhashraw}{6b0656736f97f8058eb859f69cdc40ed}
+      \strng{bibnamehash}{6b0656736f97f8058eb859f69cdc40ed}
+      \strng{authorbibnamehash}{6b0656736f97f8058eb859f69cdc40ed}
+      \strng{authornamehash}{6b0656736f97f8058eb859f69cdc40ed}
+      \strng{authorfullhash}{6b0656736f97f8058eb859f69cdc40ed}
+      \strng{authorfullhashraw}{6b0656736f97f8058eb859f69cdc40ed}
+      \field{labelalpha}{Zha23}
+      \field{sortinit}{Z}
+      \field{sortinithash}{96892c0b0a36bb8557c40c49813d48b3}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{9781009310956}
+      \field{title}{Graph Theory and Additive Combinatorics: Exploring Structure and Randomness}
+      \field{year}{2023}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

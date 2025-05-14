@@ -47,15 +47,15 @@ Question. What is the maximum number of edges in a triangle-free $n$-vertex grap
 \begin{corollary} $\mathrm{ex} (n, K_{r + 1}) \le \left( 1 - \frac{1}{r} \right) \frac{n^2}{2}$. 
 \end{corollary}
 
-\begin{definition} The edge density of a graph $G$ is \begin{align*} \frac{e(G)}{{v(G) \choose 2}}.
+\begin{definition} The edge density of a graph $G$ is \begin{align*} \frac{e(G)}{\binom{v(G)}{2}}.
 \end{align*}
 \end{definition}
 
-\begin{proposition} (Monotonicity of Turán numbers) For every graph $H$ and positive integer $n$, \begin{align*} \frac{\mathrm{ex} (n + 1, H)}{n + 1 \choose 2} \le \frac{\mathrm{ex}(n, H)}{n \choose 2}.
+\begin{proposition} (Monotonicity of Turán numbers) For every graph $H$ and positive integer $n$, \begin{align*} \frac{\mathrm{ex} (n + 1, H)}{\binom{n + 1}{2}} \le \frac{\mathrm{ex}(n, H)}{\binom{n}{2}}.
 \end{align*}
 \end{proposition}
 
-For every fixed $H$, the sequence $\frac{\mathrm{ex}(n, H)}{n \choose 2}$ is nonincreasing and bounded between $0$ and $1$. It follows that it approaches a limit.
+For every fixed $H$, the sequence $\mathrm{ex}(n, H)} / \binom{n}{2}$ is nonincreasing and bounded between $0$ and $1$. It follows that it approaches a limit.
 
 \begin{definition} The \emph{Turán density} of a graph $H$ is defined to be \begin{align*} \pi(H) = \lim_{n \to \infty} \frac{\mathrm{ex}(n, H)}{n \choose 2}.
 \end{align*}
